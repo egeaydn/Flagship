@@ -109,12 +109,33 @@ export async function createFeatureFlag(data: {
   tags?: string[];
   createdBy: string;
 }) {
-  return await addDoc(collection(db, COLLECTIONS.FEATURE_FLAGS), {
+  // Create the flag
+  const flagRef = await addDoc(collection(db, COLLECTIONS.FEATURE_FLAGS), {
     ...data,
     tags: data.tags || [],
     createdAt: serverTimestamp(),
     updatedAt: serverTimestamp(),
   });
+
+  // Get all environments for this project
+  const envsQuery = query(
+    collection(db, COLLECTIONS.ENVIRONMENTS),
+    where('projectId', '==', data.projectId)
+  );
+  const envsSnap = await getDocs(envsQuery);
+
+  // Create flag_values for each environment
+  for (const envDoc of envsSnap.docs) {
+    await addDoc(collection(db, COLLECTIONS.FLAG_VALUES), {
+      flagId: flagRef.id,
+      environmentId: envDoc.id,
+      enabled: false,
+      value: data.defaultValue,
+      updatedAt: serverTimestamp(),
+    });
+  }
+
+  return flagRef;
 }
 
 // Audit log function

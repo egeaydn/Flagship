@@ -160,12 +160,12 @@ if (typeof globalThis.$RefreshHelpers$ === 'object' && globalThis.$RefreshHelper
     __turbopack_context__.k.registerExports(__turbopack_context__.m, globalThis.$RefreshHelpers$);
 }
 }),
-"[project]/Desktop/flagship/apps/dashboard/app/dashboard/[slug]/page.tsx [app-client] (ecmascript)", ((__turbopack_context__) => {
+"[project]/Desktop/flagship/apps/dashboard/app/dashboard/[slug]/projects/[projectKey]/page.tsx [app-client] (ecmascript)", ((__turbopack_context__) => {
 "use strict";
 
 __turbopack_context__.s([
     "default",
-    ()=>OrganizationPage
+    ()=>ProjectPage
 ]);
 var __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$flagship$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/Desktop/flagship/node_modules/next/dist/compiled/react/jsx-dev-runtime.js [app-client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$flagship$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/Desktop/flagship/node_modules/next/dist/compiled/react/index.js [app-client] (ecmascript)");
@@ -185,99 +185,152 @@ var _s = __turbopack_context__.k.signature();
 ;
 ;
 ;
-function OrganizationPage() {
+function ProjectPage() {
     _s();
     const params = (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$flagship$2f$node_modules$2f$next$2f$navigation$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useParams"])();
     const slug = params.slug;
+    const projectKey = params.projectKey;
     const router = (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$flagship$2f$node_modules$2f$next$2f$navigation$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useRouter"])();
     const [user, setUser] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$flagship$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(null);
     const [loading, setLoading] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$flagship$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(true);
-    const [organization, setOrganization] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$flagship$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(null);
-    const [projects, setProjects] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$flagship$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])([]);
+    const [project, setProject] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$flagship$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(null);
+    const [environments, setEnvironments] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$flagship$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])([]);
+    const [selectedEnv, setSelectedEnv] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$flagship$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])('');
+    const [flags, setFlags] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$flagship$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])([]);
+    const [flagValues, setFlagValues] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$flagship$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])([]);
     const [showCreateForm, setShowCreateForm] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$flagship$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(false);
     const [formData, setFormData] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$flagship$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])({
         name: '',
         key: '',
-        description: ''
+        description: '',
+        flagType: 'boolean',
+        defaultValue: false
     });
     const [creating, setCreating] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$flagship$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(false);
     (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$flagship$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useEffect"])({
-        "OrganizationPage.useEffect": ()=>{
+        "ProjectPage.useEffect": ()=>{
             const unsubscribe = (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$flagship$2f$node_modules$2f40$firebase$2f$auth$2f$dist$2f$esm$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["onAuthStateChanged"])(__TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$flagship$2f$apps$2f$dashboard$2f$lib$2f$firebase$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["auth"], {
-                "OrganizationPage.useEffect.unsubscribe": async (user)=>{
+                "ProjectPage.useEffect.unsubscribe": async (user)=>{
                     if (user) {
                         setUser(user);
-                        await loadOrganization(slug);
+                        await loadProject();
                     } else {
                         router.push('/login');
                     }
                     setLoading(false);
                 }
-            }["OrganizationPage.useEffect.unsubscribe"]);
+            }["ProjectPage.useEffect.unsubscribe"]);
             return ({
-                "OrganizationPage.useEffect": ()=>unsubscribe()
-            })["OrganizationPage.useEffect"];
+                "ProjectPage.useEffect": ()=>unsubscribe()
+            })["ProjectPage.useEffect"];
         }
-    }["OrganizationPage.useEffect"], [
+    }["ProjectPage.useEffect"], [
         router,
-        slug
+        projectKey
     ]);
-    const loadOrganization = async (slug)=>{
+    const loadProject = async ()=>{
         try {
-            const q = (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$flagship$2f$node_modules$2f40$firebase$2f$firestore$2f$dist$2f$index$2e$esm$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["query"])((0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$flagship$2f$node_modules$2f40$firebase$2f$firestore$2f$dist$2f$index$2e$esm$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["collection"])(__TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$flagship$2f$apps$2f$dashboard$2f$lib$2f$firebase$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["db"], __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$flagship$2f$apps$2f$dashboard$2f$lib$2f$firestore$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["COLLECTIONS"].ORGANIZATIONS), (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$flagship$2f$node_modules$2f40$firebase$2f$firestore$2f$dist$2f$index$2e$esm$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["where"])('slug', '==', slug));
+            const q = (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$flagship$2f$node_modules$2f40$firebase$2f$firestore$2f$dist$2f$index$2e$esm$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["query"])((0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$flagship$2f$node_modules$2f40$firebase$2f$firestore$2f$dist$2f$index$2e$esm$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["collection"])(__TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$flagship$2f$apps$2f$dashboard$2f$lib$2f$firebase$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["db"], __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$flagship$2f$apps$2f$dashboard$2f$lib$2f$firestore$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["COLLECTIONS"].PROJECTS), (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$flagship$2f$node_modules$2f40$firebase$2f$firestore$2f$dist$2f$index$2e$esm$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["where"])('key', '==', projectKey));
             const snapshot = await (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$flagship$2f$node_modules$2f40$firebase$2f$firestore$2f$dist$2f$index$2e$esm$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["getDocs"])(q);
             if (!snapshot.empty) {
-                const orgData = {
+                const projectData = {
                     id: snapshot.docs[0].id,
                     ...snapshot.docs[0].data()
                 };
-                setOrganization(orgData);
-                await loadProjects(orgData.id);
+                setProject(projectData);
+                await loadEnvironments(projectData.id);
+                await loadFlags(projectData.id);
             } else {
-                router.push('/dashboard');
+                router.push(`/dashboard/${slug}`);
             }
         } catch (error) {
-            console.error('Error loading organization:', error);
+            console.error('Error loading project:', error);
         }
     };
-    const loadProjects = async (orgId)=>{
+    const loadEnvironments = async (projectId)=>{
         try {
-            const q = (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$flagship$2f$node_modules$2f40$firebase$2f$firestore$2f$dist$2f$index$2e$esm$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["query"])((0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$flagship$2f$node_modules$2f40$firebase$2f$firestore$2f$dist$2f$index$2e$esm$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["collection"])(__TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$flagship$2f$apps$2f$dashboard$2f$lib$2f$firebase$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["db"], __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$flagship$2f$apps$2f$dashboard$2f$lib$2f$firestore$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["COLLECTIONS"].PROJECTS), (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$flagship$2f$node_modules$2f40$firebase$2f$firestore$2f$dist$2f$index$2e$esm$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["where"])('organizationId', '==', orgId));
+            const q = (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$flagship$2f$node_modules$2f40$firebase$2f$firestore$2f$dist$2f$index$2e$esm$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["query"])((0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$flagship$2f$node_modules$2f40$firebase$2f$firestore$2f$dist$2f$index$2e$esm$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["collection"])(__TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$flagship$2f$apps$2f$dashboard$2f$lib$2f$firebase$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["db"], __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$flagship$2f$apps$2f$dashboard$2f$lib$2f$firestore$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["COLLECTIONS"].ENVIRONMENTS), (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$flagship$2f$node_modules$2f40$firebase$2f$firestore$2f$dist$2f$index$2e$esm$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["where"])('projectId', '==', projectId));
             const snapshot = await (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$flagship$2f$node_modules$2f40$firebase$2f$firestore$2f$dist$2f$index$2e$esm$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["getDocs"])(q);
-            const projectsList = snapshot.docs.map((doc)=>({
+            const envList = snapshot.docs.map((doc)=>({
                     id: doc.id,
                     ...doc.data()
                 }));
-            setProjects(projectsList);
+            setEnvironments(envList);
+            if (envList.length > 0) {
+                setSelectedEnv(envList[0].id);
+            }
         } catch (error) {
-            console.error('Error loading projects:', error);
+            console.error('Error loading environments:', error);
         }
     };
-    const handleCreateProject = async (e)=>{
+    const loadFlags = async (projectId)=>{
+        try {
+            const q = (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$flagship$2f$node_modules$2f40$firebase$2f$firestore$2f$dist$2f$index$2e$esm$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["query"])((0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$flagship$2f$node_modules$2f40$firebase$2f$firestore$2f$dist$2f$index$2e$esm$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["collection"])(__TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$flagship$2f$apps$2f$dashboard$2f$lib$2f$firebase$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["db"], __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$flagship$2f$apps$2f$dashboard$2f$lib$2f$firestore$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["COLLECTIONS"].FEATURE_FLAGS), (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$flagship$2f$node_modules$2f40$firebase$2f$firestore$2f$dist$2f$index$2e$esm$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["where"])('projectId', '==', projectId));
+            const snapshot = await (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$flagship$2f$node_modules$2f40$firebase$2f$firestore$2f$dist$2f$index$2e$esm$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["getDocs"])(q);
+            const flagsList = snapshot.docs.map((doc)=>({
+                    id: doc.id,
+                    ...doc.data()
+                }));
+            setFlags(flagsList);
+            // Load flag values
+            const valuesQ = (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$flagship$2f$node_modules$2f40$firebase$2f$firestore$2f$dist$2f$index$2e$esm$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["query"])((0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$flagship$2f$node_modules$2f40$firebase$2f$firestore$2f$dist$2f$index$2e$esm$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["collection"])(__TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$flagship$2f$apps$2f$dashboard$2f$lib$2f$firebase$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["db"], __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$flagship$2f$apps$2f$dashboard$2f$lib$2f$firestore$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["COLLECTIONS"].FLAG_VALUES));
+            const valuesSnapshot = await (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$flagship$2f$node_modules$2f40$firebase$2f$firestore$2f$dist$2f$index$2e$esm$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["getDocs"])(valuesQ);
+            const valuesList = valuesSnapshot.docs.map((doc)=>({
+                    id: doc.id,
+                    ...doc.data()
+                }));
+            setFlagValues(valuesList);
+        } catch (error) {
+            console.error('Error loading flags:', error);
+        }
+    };
+    const handleCreateFlag = async (e)=>{
         e.preventDefault();
-        if (!user || !organization) return;
+        if (!user || !project) return;
         setCreating(true);
         try {
-            await (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$flagship$2f$apps$2f$dashboard$2f$lib$2f$firestore$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["createProject"])({
-                organizationId: organization.id,
+            await (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$flagship$2f$apps$2f$dashboard$2f$lib$2f$firestore$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["createFeatureFlag"])({
+                projectId: project.id,
                 name: formData.name,
                 key: formData.key,
                 description: formData.description,
+                flagType: formData.flagType,
+                defaultValue: formData.defaultValue,
                 createdBy: user.uid
             });
             setFormData({
                 name: '',
                 key: '',
-                description: ''
+                description: '',
+                flagType: 'boolean',
+                defaultValue: false
             });
             setShowCreateForm(false);
-            await loadProjects(organization.id);
+            await loadFlags(project.id);
         } catch (error) {
-            console.error('Error creating project:', error);
+            console.error('Error creating flag:', error);
             alert('Hata: ' + error.message);
         } finally{
             setCreating(false);
         }
+    };
+    const toggleFlag = async (flagId, currentValue)=>{
+        if (!selectedEnv) return;
+        try {
+            const flagValue = flagValues.find((fv)=>fv.flagId === flagId && fv.environmentId === selectedEnv);
+            if (flagValue) {
+                await (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$flagship$2f$node_modules$2f40$firebase$2f$firestore$2f$dist$2f$index$2e$esm$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["updateDoc"])((0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$flagship$2f$node_modules$2f40$firebase$2f$firestore$2f$dist$2f$index$2e$esm$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["doc"])(__TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$flagship$2f$apps$2f$dashboard$2f$lib$2f$firebase$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["db"], __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$flagship$2f$apps$2f$dashboard$2f$lib$2f$firestore$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["COLLECTIONS"].FLAG_VALUES, flagValue.id), {
+                    enabled: !currentValue,
+                    updatedAt: new Date()
+                });
+            }
+            await loadFlags(project.id);
+        } catch (error) {
+            console.error('Error toggling flag:', error);
+        }
+    };
+    const getFlagValue = (flagId)=>{
+        return flagValues.find((fv)=>fv.flagId === flagId && fv.environmentId === selectedEnv);
     };
     const generateKey = (name)=>{
         return name.toLowerCase().replace(/ğ/g, 'g').replace(/ü/g, 'u').replace(/ş/g, 's').replace(/ı/g, 'i').replace(/ö/g, 'o').replace(/ç/g, 'c').replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
@@ -289,17 +342,17 @@ function OrganizationPage() {
                 className: "text-gray-600",
                 children: "Yükleniyor..."
             }, void 0, false, {
-                fileName: "[project]/Desktop/flagship/apps/dashboard/app/dashboard/[slug]/page.tsx",
-                lineNumber: 120,
+                fileName: "[project]/Desktop/flagship/apps/dashboard/app/dashboard/[slug]/projects/[projectKey]/page.tsx",
+                lineNumber: 193,
                 columnNumber: 9
             }, this)
         }, void 0, false, {
-            fileName: "[project]/Desktop/flagship/apps/dashboard/app/dashboard/[slug]/page.tsx",
-            lineNumber: 119,
+            fileName: "[project]/Desktop/flagship/apps/dashboard/app/dashboard/[slug]/projects/[projectKey]/page.tsx",
+            lineNumber: 192,
             columnNumber: 7
         }, this);
     }
-    if (!organization) {
+    if (!project) {
         return null;
     }
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$flagship$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -316,26 +369,26 @@ function OrganizationPage() {
                                 className: "flex items-center space-x-4",
                                 children: [
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$flagship$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
-                                        onClick: ()=>router.push('/dashboard'),
+                                        onClick: ()=>router.push(`/dashboard/${slug}`),
                                         className: "text-gray-600 hover:text-gray-900",
                                         children: "← Geri"
                                     }, void 0, false, {
-                                        fileName: "[project]/Desktop/flagship/apps/dashboard/app/dashboard/[slug]/page.tsx",
-                                        lineNumber: 135,
+                                        fileName: "[project]/Desktop/flagship/apps/dashboard/app/dashboard/[slug]/projects/[projectKey]/page.tsx",
+                                        lineNumber: 208,
                                         columnNumber: 15
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$flagship$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h1", {
                                         className: "text-xl font-bold text-gray-900",
-                                        children: organization.name
+                                        children: project.name
                                     }, void 0, false, {
-                                        fileName: "[project]/Desktop/flagship/apps/dashboard/app/dashboard/[slug]/page.tsx",
-                                        lineNumber: 141,
+                                        fileName: "[project]/Desktop/flagship/apps/dashboard/app/dashboard/[slug]/projects/[projectKey]/page.tsx",
+                                        lineNumber: 214,
                                         columnNumber: 15
                                     }, this)
                                 ]
                             }, void 0, true, {
-                                fileName: "[project]/Desktop/flagship/apps/dashboard/app/dashboard/[slug]/page.tsx",
-                                lineNumber: 134,
+                                fileName: "[project]/Desktop/flagship/apps/dashboard/app/dashboard/[slug]/projects/[projectKey]/page.tsx",
+                                lineNumber: 207,
                                 columnNumber: 13
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$flagship$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -344,29 +397,29 @@ function OrganizationPage() {
                                     className: "text-gray-700",
                                     children: user?.email
                                 }, void 0, false, {
-                                    fileName: "[project]/Desktop/flagship/apps/dashboard/app/dashboard/[slug]/page.tsx",
-                                    lineNumber: 144,
+                                    fileName: "[project]/Desktop/flagship/apps/dashboard/app/dashboard/[slug]/projects/[projectKey]/page.tsx",
+                                    lineNumber: 217,
                                     columnNumber: 15
                                 }, this)
                             }, void 0, false, {
-                                fileName: "[project]/Desktop/flagship/apps/dashboard/app/dashboard/[slug]/page.tsx",
-                                lineNumber: 143,
+                                fileName: "[project]/Desktop/flagship/apps/dashboard/app/dashboard/[slug]/projects/[projectKey]/page.tsx",
+                                lineNumber: 216,
                                 columnNumber: 13
                             }, this)
                         ]
                     }, void 0, true, {
-                        fileName: "[project]/Desktop/flagship/apps/dashboard/app/dashboard/[slug]/page.tsx",
-                        lineNumber: 133,
+                        fileName: "[project]/Desktop/flagship/apps/dashboard/app/dashboard/[slug]/projects/[projectKey]/page.tsx",
+                        lineNumber: 206,
                         columnNumber: 11
                     }, this)
                 }, void 0, false, {
-                    fileName: "[project]/Desktop/flagship/apps/dashboard/app/dashboard/[slug]/page.tsx",
-                    lineNumber: 132,
+                    fileName: "[project]/Desktop/flagship/apps/dashboard/app/dashboard/[slug]/projects/[projectKey]/page.tsx",
+                    lineNumber: 205,
                     columnNumber: 9
                 }, this)
             }, void 0, false, {
-                fileName: "[project]/Desktop/flagship/apps/dashboard/app/dashboard/[slug]/page.tsx",
-                lineNumber: 131,
+                fileName: "[project]/Desktop/flagship/apps/dashboard/app/dashboard/[slug]/projects/[projectKey]/page.tsx",
+                lineNumber: 204,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$flagship$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("main", {
@@ -375,29 +428,62 @@ function OrganizationPage() {
                     className: "px-4 py-6 sm:px-0",
                     children: [
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$flagship$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                            className: "mb-6",
+                            children: [
+                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$flagship$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("label", {
+                                    className: "block text-sm font-medium text-gray-700 mb-2",
+                                    children: "Environment"
+                                }, void 0, false, {
+                                    fileName: "[project]/Desktop/flagship/apps/dashboard/app/dashboard/[slug]/projects/[projectKey]/page.tsx",
+                                    lineNumber: 227,
+                                    columnNumber: 13
+                                }, this),
+                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$flagship$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                    className: "flex space-x-2",
+                                    children: environments.map((env)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$flagship$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
+                                            onClick: ()=>setSelectedEnv(env.id),
+                                            className: `px-4 py-2 rounded-md font-medium transition-colors ${selectedEnv === env.id ? 'bg-blue-600 text-white' : 'bg-white text-gray-700 border border-gray-300 hover:bg-gray-50'}`,
+                                            children: env.name
+                                        }, env.id, false, {
+                                            fileName: "[project]/Desktop/flagship/apps/dashboard/app/dashboard/[slug]/projects/[projectKey]/page.tsx",
+                                            lineNumber: 230,
+                                            columnNumber: 17
+                                        }, this))
+                                }, void 0, false, {
+                                    fileName: "[project]/Desktop/flagship/apps/dashboard/app/dashboard/[slug]/projects/[projectKey]/page.tsx",
+                                    lineNumber: 228,
+                                    columnNumber: 13
+                                }, this)
+                            ]
+                        }, void 0, true, {
+                            fileName: "[project]/Desktop/flagship/apps/dashboard/app/dashboard/[slug]/projects/[projectKey]/page.tsx",
+                            lineNumber: 226,
+                            columnNumber: 11
+                        }, this),
+                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$flagship$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                             className: "flex justify-between items-center mb-6",
                             children: [
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$flagship$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h2", {
                                     className: "text-2xl font-bold text-gray-900",
-                                    children: "Projects"
+                                    children: "Feature Flags"
                                 }, void 0, false, {
-                                    fileName: "[project]/Desktop/flagship/apps/dashboard/app/dashboard/[slug]/page.tsx",
-                                    lineNumber: 154,
+                                    fileName: "[project]/Desktop/flagship/apps/dashboard/app/dashboard/[slug]/projects/[projectKey]/page.tsx",
+                                    lineNumber: 247,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$flagship$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
                                     onClick: ()=>setShowCreateForm(!showCreateForm),
                                     className: "px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 font-medium",
-                                    children: showCreateForm ? 'İptal' : '+ Yeni Project'
+                                    children: showCreateForm ? 'İptal' : '+ Yeni Flag'
                                 }, void 0, false, {
-                                    fileName: "[project]/Desktop/flagship/apps/dashboard/app/dashboard/[slug]/page.tsx",
-                                    lineNumber: 155,
+                                    fileName: "[project]/Desktop/flagship/apps/dashboard/app/dashboard/[slug]/projects/[projectKey]/page.tsx",
+                                    lineNumber: 248,
                                     columnNumber: 13
                                 }, this)
                             ]
                         }, void 0, true, {
-                            fileName: "[project]/Desktop/flagship/apps/dashboard/app/dashboard/[slug]/page.tsx",
-                            lineNumber: 153,
+                            fileName: "[project]/Desktop/flagship/apps/dashboard/app/dashboard/[slug]/projects/[projectKey]/page.tsx",
+                            lineNumber: 246,
                             columnNumber: 11
                         }, this),
                         showCreateForm && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$flagship$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -405,24 +491,24 @@ function OrganizationPage() {
                             children: [
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$flagship$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h3", {
                                     className: "text-lg font-semibold mb-4",
-                                    children: "Yeni Project Oluştur"
+                                    children: "Yeni Feature Flag Oluştur"
                                 }, void 0, false, {
-                                    fileName: "[project]/Desktop/flagship/apps/dashboard/app/dashboard/[slug]/page.tsx",
-                                    lineNumber: 166,
+                                    fileName: "[project]/Desktop/flagship/apps/dashboard/app/dashboard/[slug]/projects/[projectKey]/page.tsx",
+                                    lineNumber: 259,
                                     columnNumber: 15
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$flagship$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("form", {
-                                    onSubmit: handleCreateProject,
+                                    onSubmit: handleCreateFlag,
                                     className: "space-y-4",
                                     children: [
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$flagship$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                             children: [
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$flagship$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("label", {
                                                     className: "block text-sm font-medium text-gray-700 mb-1",
-                                                    children: "Project Adı"
+                                                    children: "Flag Adı"
                                                 }, void 0, false, {
-                                                    fileName: "[project]/Desktop/flagship/apps/dashboard/app/dashboard/[slug]/page.tsx",
-                                                    lineNumber: 169,
+                                                    fileName: "[project]/Desktop/flagship/apps/dashboard/app/dashboard/[slug]/projects/[projectKey]/page.tsx",
+                                                    lineNumber: 262,
                                                     columnNumber: 19
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$flagship$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
@@ -437,26 +523,26 @@ function OrganizationPage() {
                                                         });
                                                     },
                                                     className: "w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500",
-                                                    placeholder: "Mobile App"
+                                                    placeholder: "Dark Mode"
                                                 }, void 0, false, {
-                                                    fileName: "[project]/Desktop/flagship/apps/dashboard/app/dashboard/[slug]/page.tsx",
-                                                    lineNumber: 172,
+                                                    fileName: "[project]/Desktop/flagship/apps/dashboard/app/dashboard/[slug]/projects/[projectKey]/page.tsx",
+                                                    lineNumber: 265,
                                                     columnNumber: 19
                                                 }, this)
                                             ]
                                         }, void 0, true, {
-                                            fileName: "[project]/Desktop/flagship/apps/dashboard/app/dashboard/[slug]/page.tsx",
-                                            lineNumber: 168,
+                                            fileName: "[project]/Desktop/flagship/apps/dashboard/app/dashboard/[slug]/projects/[projectKey]/page.tsx",
+                                            lineNumber: 261,
                                             columnNumber: 17
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$flagship$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                             children: [
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$flagship$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("label", {
                                                     className: "block text-sm font-medium text-gray-700 mb-1",
-                                                    children: "Project Key"
+                                                    children: "Flag Key"
                                                 }, void 0, false, {
-                                                    fileName: "[project]/Desktop/flagship/apps/dashboard/app/dashboard/[slug]/page.tsx",
-                                                    lineNumber: 188,
+                                                    fileName: "[project]/Desktop/flagship/apps/dashboard/app/dashboard/[slug]/projects/[projectKey]/page.tsx",
+                                                    lineNumber: 281,
                                                     columnNumber: 19
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$flagship$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
@@ -468,26 +554,26 @@ function OrganizationPage() {
                                                             key: e.target.value
                                                         }),
                                                     className: "w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500",
-                                                    placeholder: "mobile-app"
+                                                    placeholder: "dark-mode"
                                                 }, void 0, false, {
-                                                    fileName: "[project]/Desktop/flagship/apps/dashboard/app/dashboard/[slug]/page.tsx",
-                                                    lineNumber: 191,
+                                                    fileName: "[project]/Desktop/flagship/apps/dashboard/app/dashboard/[slug]/projects/[projectKey]/page.tsx",
+                                                    lineNumber: 284,
                                                     columnNumber: 19
                                                 }, this)
                                             ]
                                         }, void 0, true, {
-                                            fileName: "[project]/Desktop/flagship/apps/dashboard/app/dashboard/[slug]/page.tsx",
-                                            lineNumber: 187,
+                                            fileName: "[project]/Desktop/flagship/apps/dashboard/app/dashboard/[slug]/projects/[projectKey]/page.tsx",
+                                            lineNumber: 280,
                                             columnNumber: 17
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$flagship$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                             children: [
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$flagship$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("label", {
                                                     className: "block text-sm font-medium text-gray-700 mb-1",
-                                                    children: "Açıklama (Opsiyonel)"
+                                                    children: "Açıklama"
                                                 }, void 0, false, {
-                                                    fileName: "[project]/Desktop/flagship/apps/dashboard/app/dashboard/[slug]/page.tsx",
-                                                    lineNumber: 201,
+                                                    fileName: "[project]/Desktop/flagship/apps/dashboard/app/dashboard/[slug]/projects/[projectKey]/page.tsx",
+                                                    lineNumber: 294,
                                                     columnNumber: 19
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$flagship$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("textarea", {
@@ -497,17 +583,79 @@ function OrganizationPage() {
                                                             description: e.target.value
                                                         }),
                                                     className: "w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500",
-                                                    placeholder: "Project açıklaması...",
-                                                    rows: 3
+                                                    placeholder: "Flag açıklaması...",
+                                                    rows: 2
                                                 }, void 0, false, {
-                                                    fileName: "[project]/Desktop/flagship/apps/dashboard/app/dashboard/[slug]/page.tsx",
-                                                    lineNumber: 204,
+                                                    fileName: "[project]/Desktop/flagship/apps/dashboard/app/dashboard/[slug]/projects/[projectKey]/page.tsx",
+                                                    lineNumber: 297,
                                                     columnNumber: 19
                                                 }, this)
                                             ]
                                         }, void 0, true, {
-                                            fileName: "[project]/Desktop/flagship/apps/dashboard/app/dashboard/[slug]/page.tsx",
-                                            lineNumber: 200,
+                                            fileName: "[project]/Desktop/flagship/apps/dashboard/app/dashboard/[slug]/projects/[projectKey]/page.tsx",
+                                            lineNumber: 293,
+                                            columnNumber: 17
+                                        }, this),
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$flagship$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                            children: [
+                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$flagship$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("label", {
+                                                    className: "block text-sm font-medium text-gray-700 mb-1",
+                                                    children: "Tip"
+                                                }, void 0, false, {
+                                                    fileName: "[project]/Desktop/flagship/apps/dashboard/app/dashboard/[slug]/projects/[projectKey]/page.tsx",
+                                                    lineNumber: 306,
+                                                    columnNumber: 19
+                                                }, this),
+                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$flagship$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("select", {
+                                                    value: formData.flagType,
+                                                    onChange: (e)=>setFormData({
+                                                            ...formData,
+                                                            flagType: e.target.value
+                                                        }),
+                                                    className: "w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500",
+                                                    children: [
+                                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$flagship$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("option", {
+                                                            value: "boolean",
+                                                            children: "Boolean (true/false)"
+                                                        }, void 0, false, {
+                                                            fileName: "[project]/Desktop/flagship/apps/dashboard/app/dashboard/[slug]/projects/[projectKey]/page.tsx",
+                                                            lineNumber: 314,
+                                                            columnNumber: 21
+                                                        }, this),
+                                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$flagship$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("option", {
+                                                            value: "number",
+                                                            children: "Number"
+                                                        }, void 0, false, {
+                                                            fileName: "[project]/Desktop/flagship/apps/dashboard/app/dashboard/[slug]/projects/[projectKey]/page.tsx",
+                                                            lineNumber: 315,
+                                                            columnNumber: 21
+                                                        }, this),
+                                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$flagship$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("option", {
+                                                            value: "json",
+                                                            children: "JSON"
+                                                        }, void 0, false, {
+                                                            fileName: "[project]/Desktop/flagship/apps/dashboard/app/dashboard/[slug]/projects/[projectKey]/page.tsx",
+                                                            lineNumber: 316,
+                                                            columnNumber: 21
+                                                        }, this),
+                                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$flagship$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("option", {
+                                                            value: "multivariate",
+                                                            children: "Multivariate"
+                                                        }, void 0, false, {
+                                                            fileName: "[project]/Desktop/flagship/apps/dashboard/app/dashboard/[slug]/projects/[projectKey]/page.tsx",
+                                                            lineNumber: 317,
+                                                            columnNumber: 21
+                                                        }, this)
+                                                    ]
+                                                }, void 0, true, {
+                                                    fileName: "[project]/Desktop/flagship/apps/dashboard/app/dashboard/[slug]/projects/[projectKey]/page.tsx",
+                                                    lineNumber: 309,
+                                                    columnNumber: 19
+                                                }, this)
+                                            ]
+                                        }, void 0, true, {
+                                            fileName: "[project]/Desktop/flagship/apps/dashboard/app/dashboard/[slug]/projects/[projectKey]/page.tsx",
+                                            lineNumber: 305,
                                             columnNumber: 17
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$flagship$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -516,142 +664,248 @@ function OrganizationPage() {
                                             className: "w-full px-4 py-2 bg-green-600 text-white rounded-md hover:bg-green-700 font-medium disabled:opacity-50",
                                             children: creating ? 'Oluşturuluyor...' : 'Oluştur'
                                         }, void 0, false, {
-                                            fileName: "[project]/Desktop/flagship/apps/dashboard/app/dashboard/[slug]/page.tsx",
-                                            lineNumber: 212,
+                                            fileName: "[project]/Desktop/flagship/apps/dashboard/app/dashboard/[slug]/projects/[projectKey]/page.tsx",
+                                            lineNumber: 320,
                                             columnNumber: 17
                                         }, this)
                                     ]
                                 }, void 0, true, {
-                                    fileName: "[project]/Desktop/flagship/apps/dashboard/app/dashboard/[slug]/page.tsx",
-                                    lineNumber: 167,
+                                    fileName: "[project]/Desktop/flagship/apps/dashboard/app/dashboard/[slug]/projects/[projectKey]/page.tsx",
+                                    lineNumber: 260,
                                     columnNumber: 15
                                 }, this)
                             ]
                         }, void 0, true, {
-                            fileName: "[project]/Desktop/flagship/apps/dashboard/app/dashboard/[slug]/page.tsx",
-                            lineNumber: 165,
+                            fileName: "[project]/Desktop/flagship/apps/dashboard/app/dashboard/[slug]/projects/[projectKey]/page.tsx",
+                            lineNumber: 258,
                             columnNumber: 13
                         }, this),
-                        projects.length === 0 ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$flagship$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                        flags.length === 0 ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$flagship$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                             className: "bg-white rounded-lg shadow p-8 text-center",
                             children: [
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$flagship$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
                                     className: "text-gray-500 mb-4",
-                                    children: "Henüz project oluşturmadınız."
+                                    children: "Henüz feature flag oluşturmadınız."
                                 }, void 0, false, {
-                                    fileName: "[project]/Desktop/flagship/apps/dashboard/app/dashboard/[slug]/page.tsx",
-                                    lineNumber: 226,
+                                    fileName: "[project]/Desktop/flagship/apps/dashboard/app/dashboard/[slug]/projects/[projectKey]/page.tsx",
+                                    lineNumber: 334,
                                     columnNumber: 15
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$flagship$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
                                     onClick: ()=>setShowCreateForm(true),
                                     className: "text-blue-600 hover:text-blue-700 font-medium",
-                                    children: "İlk project'inizi oluşturun →"
+                                    children: "İlk flag'inizi oluşturun →"
                                 }, void 0, false, {
-                                    fileName: "[project]/Desktop/flagship/apps/dashboard/app/dashboard/[slug]/page.tsx",
-                                    lineNumber: 227,
+                                    fileName: "[project]/Desktop/flagship/apps/dashboard/app/dashboard/[slug]/projects/[projectKey]/page.tsx",
+                                    lineNumber: 335,
                                     columnNumber: 15
                                 }, this)
                             ]
                         }, void 0, true, {
-                            fileName: "[project]/Desktop/flagship/apps/dashboard/app/dashboard/[slug]/page.tsx",
-                            lineNumber: 225,
+                            fileName: "[project]/Desktop/flagship/apps/dashboard/app/dashboard/[slug]/projects/[projectKey]/page.tsx",
+                            lineNumber: 333,
                             columnNumber: 13
                         }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$flagship$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                            className: "grid gap-4",
-                            children: projects.map((project)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$flagship$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                    className: "bg-white rounded-lg shadow p-6 hover:shadow-md transition-shadow cursor-pointer",
-                                    onClick: ()=>router.push(`/dashboard/${slug}/projects/${project.key}`),
-                                    children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$flagship$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                        className: "flex justify-between items-start",
-                                        children: [
-                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$flagship$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                            className: "bg-white rounded-lg shadow overflow-hidden",
+                            children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$flagship$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("table", {
+                                className: "min-w-full divide-y divide-gray-200",
+                                children: [
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$flagship$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("thead", {
+                                        className: "bg-gray-50",
+                                        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$flagship$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("tr", {
+                                            children: [
+                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$flagship$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("th", {
+                                                    className: "px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider",
+                                                    children: "Flag"
+                                                }, void 0, false, {
+                                                    fileName: "[project]/Desktop/flagship/apps/dashboard/app/dashboard/[slug]/projects/[projectKey]/page.tsx",
+                                                    lineNumber: 347,
+                                                    columnNumber: 21
+                                                }, this),
+                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$flagship$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("th", {
+                                                    className: "px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider",
+                                                    children: "Key"
+                                                }, void 0, false, {
+                                                    fileName: "[project]/Desktop/flagship/apps/dashboard/app/dashboard/[slug]/projects/[projectKey]/page.tsx",
+                                                    lineNumber: 350,
+                                                    columnNumber: 21
+                                                }, this),
+                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$flagship$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("th", {
+                                                    className: "px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider",
+                                                    children: "Tip"
+                                                }, void 0, false, {
+                                                    fileName: "[project]/Desktop/flagship/apps/dashboard/app/dashboard/[slug]/projects/[projectKey]/page.tsx",
+                                                    lineNumber: 353,
+                                                    columnNumber: 21
+                                                }, this),
+                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$flagship$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("th", {
+                                                    className: "px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider",
+                                                    children: "Durum"
+                                                }, void 0, false, {
+                                                    fileName: "[project]/Desktop/flagship/apps/dashboard/app/dashboard/[slug]/projects/[projectKey]/page.tsx",
+                                                    lineNumber: 356,
+                                                    columnNumber: 21
+                                                }, this)
+                                            ]
+                                        }, void 0, true, {
+                                            fileName: "[project]/Desktop/flagship/apps/dashboard/app/dashboard/[slug]/projects/[projectKey]/page.tsx",
+                                            lineNumber: 346,
+                                            columnNumber: 19
+                                        }, this)
+                                    }, void 0, false, {
+                                        fileName: "[project]/Desktop/flagship/apps/dashboard/app/dashboard/[slug]/projects/[projectKey]/page.tsx",
+                                        lineNumber: 345,
+                                        columnNumber: 17
+                                    }, this),
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$flagship$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("tbody", {
+                                        className: "bg-white divide-y divide-gray-200",
+                                        children: flags.map((flag)=>{
+                                            const flagValue = getFlagValue(flag.id);
+                                            const isEnabled = flagValue?.enabled || false;
+                                            return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$flagship$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("tr", {
+                                                className: "hover:bg-gray-50",
                                                 children: [
-                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$flagship$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h3", {
-                                                        className: "text-lg font-semibold text-gray-900",
-                                                        children: project.name
-                                                    }, void 0, false, {
-                                                        fileName: "[project]/Desktop/flagship/apps/dashboard/app/dashboard/[slug]/page.tsx",
-                                                        lineNumber: 244,
-                                                        columnNumber: 23
+                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$flagship$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("td", {
+                                                        className: "px-6 py-4 whitespace-nowrap",
+                                                        children: [
+                                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$flagship$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                                className: "text-sm font-medium text-gray-900",
+                                                                children: flag.name
+                                                            }, void 0, false, {
+                                                                fileName: "[project]/Desktop/flagship/apps/dashboard/app/dashboard/[slug]/projects/[projectKey]/page.tsx",
+                                                                lineNumber: 369,
+                                                                columnNumber: 27
+                                                            }, this),
+                                                            flag.description && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$flagship$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                                className: "text-sm text-gray-500",
+                                                                children: flag.description
+                                                            }, void 0, false, {
+                                                                fileName: "[project]/Desktop/flagship/apps/dashboard/app/dashboard/[slug]/projects/[projectKey]/page.tsx",
+                                                                lineNumber: 371,
+                                                                columnNumber: 29
+                                                            }, this)
+                                                        ]
+                                                    }, void 0, true, {
+                                                        fileName: "[project]/Desktop/flagship/apps/dashboard/app/dashboard/[slug]/projects/[projectKey]/page.tsx",
+                                                        lineNumber: 368,
+                                                        columnNumber: 25
                                                     }, this),
-                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$flagship$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                                                        className: "text-sm text-gray-500",
-                                                        children: project.key
+                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$flagship$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("td", {
+                                                        className: "px-6 py-4 whitespace-nowrap",
+                                                        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$flagship$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("code", {
+                                                            className: "text-sm text-gray-600 bg-gray-100 px-2 py-1 rounded",
+                                                            children: flag.key
+                                                        }, void 0, false, {
+                                                            fileName: "[project]/Desktop/flagship/apps/dashboard/app/dashboard/[slug]/projects/[projectKey]/page.tsx",
+                                                            lineNumber: 375,
+                                                            columnNumber: 27
+                                                        }, this)
                                                     }, void 0, false, {
-                                                        fileName: "[project]/Desktop/flagship/apps/dashboard/app/dashboard/[slug]/page.tsx",
-                                                        lineNumber: 245,
-                                                        columnNumber: 23
+                                                        fileName: "[project]/Desktop/flagship/apps/dashboard/app/dashboard/[slug]/projects/[projectKey]/page.tsx",
+                                                        lineNumber: 374,
+                                                        columnNumber: 25
                                                     }, this),
-                                                    project.description && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$flagship$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                                                        className: "text-sm text-gray-600 mt-2",
-                                                        children: project.description
+                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$flagship$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("td", {
+                                                        className: "px-6 py-4 whitespace-nowrap",
+                                                        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$flagship$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                                            className: "text-sm text-gray-500",
+                                                            children: flag.flagType
+                                                        }, void 0, false, {
+                                                            fileName: "[project]/Desktop/flagship/apps/dashboard/app/dashboard/[slug]/projects/[projectKey]/page.tsx",
+                                                            lineNumber: 380,
+                                                            columnNumber: 27
+                                                        }, this)
                                                     }, void 0, false, {
-                                                        fileName: "[project]/Desktop/flagship/apps/dashboard/app/dashboard/[slug]/page.tsx",
-                                                        lineNumber: 247,
+                                                        fileName: "[project]/Desktop/flagship/apps/dashboard/app/dashboard/[slug]/projects/[projectKey]/page.tsx",
+                                                        lineNumber: 379,
+                                                        columnNumber: 25
+                                                    }, this),
+                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$flagship$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("td", {
+                                                        className: "px-6 py-4 whitespace-nowrap",
+                                                        children: [
+                                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$flagship$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
+                                                                onClick: ()=>toggleFlag(flag.id, isEnabled),
+                                                                className: `relative inline-flex h-6 w-11 items-center rounded-full transition-colors ${isEnabled ? 'bg-green-600' : 'bg-gray-300'}`,
+                                                                children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$flagship$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                                                    className: `inline-block h-4 w-4 transform rounded-full bg-white transition-transform ${isEnabled ? 'translate-x-6' : 'translate-x-1'}`
+                                                                }, void 0, false, {
+                                                                    fileName: "[project]/Desktop/flagship/apps/dashboard/app/dashboard/[slug]/projects/[projectKey]/page.tsx",
+                                                                    lineNumber: 389,
+                                                                    columnNumber: 29
+                                                                }, this)
+                                                            }, void 0, false, {
+                                                                fileName: "[project]/Desktop/flagship/apps/dashboard/app/dashboard/[slug]/projects/[projectKey]/page.tsx",
+                                                                lineNumber: 383,
+                                                                columnNumber: 27
+                                                            }, this),
+                                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$flagship$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                                                className: "ml-3 text-sm text-gray-600",
+                                                                children: isEnabled ? 'Aktif' : 'Pasif'
+                                                            }, void 0, false, {
+                                                                fileName: "[project]/Desktop/flagship/apps/dashboard/app/dashboard/[slug]/projects/[projectKey]/page.tsx",
+                                                                lineNumber: 395,
+                                                                columnNumber: 27
+                                                            }, this)
+                                                        ]
+                                                    }, void 0, true, {
+                                                        fileName: "[project]/Desktop/flagship/apps/dashboard/app/dashboard/[slug]/projects/[projectKey]/page.tsx",
+                                                        lineNumber: 382,
                                                         columnNumber: 25
                                                     }, this)
                                                 ]
-                                            }, void 0, true, {
-                                                fileName: "[project]/Desktop/flagship/apps/dashboard/app/dashboard/[slug]/page.tsx",
-                                                lineNumber: 243,
-                                                columnNumber: 21
-                                            }, this),
-                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$flagship$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                className: "text-xs text-gray-400",
-                                                children: project.createdAt?.toDate?.()?.toLocaleDateString('tr-TR') || 'Yeni'
-                                            }, void 0, false, {
-                                                fileName: "[project]/Desktop/flagship/apps/dashboard/app/dashboard/[slug]/page.tsx",
-                                                lineNumber: 250,
-                                                columnNumber: 21
-                                            }, this)
-                                        ]
-                                    }, void 0, true, {
-                                        fileName: "[project]/Desktop/flagship/apps/dashboard/app/dashboard/[slug]/page.tsx",
-                                        lineNumber: 242,
-                                        columnNumber: 19
+                                            }, flag.id, true, {
+                                                fileName: "[project]/Desktop/flagship/apps/dashboard/app/dashboard/[slug]/projects/[projectKey]/page.tsx",
+                                                lineNumber: 367,
+                                                columnNumber: 23
+                                            }, this);
+                                        })
+                                    }, void 0, false, {
+                                        fileName: "[project]/Desktop/flagship/apps/dashboard/app/dashboard/[slug]/projects/[projectKey]/page.tsx",
+                                        lineNumber: 361,
+                                        columnNumber: 17
                                     }, this)
-                                }, project.id, false, {
-                                    fileName: "[project]/Desktop/flagship/apps/dashboard/app/dashboard/[slug]/page.tsx",
-                                    lineNumber: 237,
-                                    columnNumber: 17
-                                }, this))
+                                ]
+                            }, void 0, true, {
+                                fileName: "[project]/Desktop/flagship/apps/dashboard/app/dashboard/[slug]/projects/[projectKey]/page.tsx",
+                                lineNumber: 344,
+                                columnNumber: 15
+                            }, this)
                         }, void 0, false, {
-                            fileName: "[project]/Desktop/flagship/apps/dashboard/app/dashboard/[slug]/page.tsx",
-                            lineNumber: 235,
+                            fileName: "[project]/Desktop/flagship/apps/dashboard/app/dashboard/[slug]/projects/[projectKey]/page.tsx",
+                            lineNumber: 343,
                             columnNumber: 13
                         }, this)
                     ]
                 }, void 0, true, {
-                    fileName: "[project]/Desktop/flagship/apps/dashboard/app/dashboard/[slug]/page.tsx",
-                    lineNumber: 151,
+                    fileName: "[project]/Desktop/flagship/apps/dashboard/app/dashboard/[slug]/projects/[projectKey]/page.tsx",
+                    lineNumber: 224,
                     columnNumber: 9
                 }, this)
             }, void 0, false, {
-                fileName: "[project]/Desktop/flagship/apps/dashboard/app/dashboard/[slug]/page.tsx",
-                lineNumber: 150,
+                fileName: "[project]/Desktop/flagship/apps/dashboard/app/dashboard/[slug]/projects/[projectKey]/page.tsx",
+                lineNumber: 223,
                 columnNumber: 7
             }, this)
         ]
     }, void 0, true, {
-        fileName: "[project]/Desktop/flagship/apps/dashboard/app/dashboard/[slug]/page.tsx",
-        lineNumber: 130,
+        fileName: "[project]/Desktop/flagship/apps/dashboard/app/dashboard/[slug]/projects/[projectKey]/page.tsx",
+        lineNumber: 203,
         columnNumber: 5
     }, this);
 }
-_s(OrganizationPage, "h4PnF7bsZu/C13cU1PLRIEPztE4=", false, function() {
+_s(ProjectPage, "JlP1YpJxRocf40EQtJwP6ndQaAE=", false, function() {
     return [
         __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$flagship$2f$node_modules$2f$next$2f$navigation$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useParams"],
         __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$flagship$2f$node_modules$2f$next$2f$navigation$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useRouter"]
     ];
 });
-_c = OrganizationPage;
+_c = ProjectPage;
 var _c;
-__turbopack_context__.k.register(_c, "OrganizationPage");
+__turbopack_context__.k.register(_c, "ProjectPage");
 if (typeof globalThis.$RefreshHelpers$ === 'object' && globalThis.$RefreshHelpers !== null) {
     __turbopack_context__.k.registerExports(__turbopack_context__.m, globalThis.$RefreshHelpers$);
 }
 }),
 ]);
 
-//# sourceMappingURL=Desktop_flagship_apps_dashboard_20db20b4._.js.map
+//# sourceMappingURL=Desktop_flagship_apps_dashboard_a9775999._.js.map
