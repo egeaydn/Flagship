@@ -1,6 +1,1 @@
-[00:00:02.105] Server  LOG      ✓ Ready in 1578ms
-[00:00:08.666] Browser WARN    Image with src "http://localhost:3000/vercel.svg" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
-[00:00:32.989] Server  LOG      ✓ Compiled in 61ms
-[00:11:18.006] Server  LOG      ✓ Compiled in 48ms
-[00:11:18.797] Browser ERROR   Error loading organizations: {"code":"permission-denied","name":"FirebaseError"}
-[00:12:41.697] Browser ERROR   Error loading organizations: {"code":"permission-denied","name":"FirebaseError"}
+[00:00:01.081] Server  LOG      ✓ Ready in 772ms
