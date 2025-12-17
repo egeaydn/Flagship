@@ -5,14 +5,18 @@
   "description": "Production-ready feature flag management platform",
   "author": "Your Name",
   "license": "MIT",
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
   "engines": {
     "node": ">=20.0.0",
     "pnpm": ">=8.0.0"
   },
   "scripts": {
-    "dev": "pnpm --filter dashboard dev",
-    "build": "pnpm --filter dashboard build",
-    "start": "pnpm --filter dashboard start",
+    "dev": "npm run dev --workspace=dashboard",
+    "build": "npm run build --workspace=dashboard",
+    "start": "npm run start --workspace=dashboard",
     "lint": "eslint .",
     "format": "prettier --write \"**/*.{ts,tsx,md,json}\"",
     "clean": "rm -rf node_modules apps/*/node_modules packages/*/node_modules",
