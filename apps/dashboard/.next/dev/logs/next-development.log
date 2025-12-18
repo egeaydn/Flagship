@@ -1,1 +1,13 @@
-[00:00:01.883] Server  LOG      ✓ Ready in 1397ms
+[00:00:01.149] Server  LOG      ✓ Ready in 835ms
+[00:00:13.844] Server  WARN    [2025-12-18T18:14:37.166Z]  @firebase/firestore: "Firestore (12.6.0): GrpcConnection" "RPC 'Write' stream 0x71e026c1 error. Code:" "7" "Message:" "7 PERMISSION_DENIED: Missing or insufficient permissions."
+[00:00:13.850] Server  ERROR   API Error: FirebaseError: [code=permission-denied]: 7 PERMISSION_DENIED: Missing or insufficient permissions.
+[00:01:08.578] Server  WARN    [2025-12-18T18:15:31.899Z]  @firebase/firestore: "Firestore (12.6.0): GrpcConnection" "RPC 'Write' stream 0x71e026c2 error. Code:" "7" "Message:" "7 PERMISSION_DENIED: Missing or insufficient permissions."
+[00:01:08.583] Server  ERROR   API Error: FirebaseError: [code=permission-denied]: 7 PERMISSION_DENIED: Missing or insufficient permissions.
+[00:04:19.553] Server  WARN    [2025-12-18T18:18:42.876Z]  @firebase/firestore: "Firestore (12.6.0): GrpcConnection" "RPC 'Write' stream 0x71e026c4 error. Code:" "7" "Message:" "7 PERMISSION_DENIED: Missing or insufficient permissions."
+[00:04:19.554] Server  ERROR   API Error: FirebaseError: [code=permission-denied]: 7 PERMISSION_DENIED: Missing or insufficient permissions.
+[00:04:51.492] Server  WARN    [2025-12-18T18:19:14.814Z]  @firebase/firestore: "Firestore (12.6.0): GrpcConnection" "RPC 'Write' stream 0x71e026c5 error. Code:" "7" "Message:" "7 PERMISSION_DENIED: Missing or insufficient permissions."
+[00:04:51.496] Server  ERROR   API Error: FirebaseError: [code=permission-denied]: 7 PERMISSION_DENIED: Missing or insufficient permissions.
+[00:08:03.222] Server  WARN    [2025-12-18T18:22:26.545Z]  @firebase/firestore: "Firestore (12.6.0): GrpcConnection" "RPC 'Write' stream 0x71e026c7 error. Code:" "7" "Message:" "7 PERMISSION_DENIED: Missing or insufficient permissions."
+[00:08:03.225] Server  ERROR   API Error: FirebaseError: [code=permission-denied]: 7 PERMISSION_DENIED: Missing or insufficient permissions.
+[00:08:09.969] Server  WARN    [2025-12-18T18:22:33.292Z]  @firebase/firestore: "Firestore (12.6.0): GrpcConnection" "RPC 'Write' stream 0x71e026c8 error. Code:" "7" "Message:" "7 PERMISSION_DENIED: Missing or insufficient permissions."
+[00:08:09.970] Server  ERROR   API Error: FirebaseError: [code=permission-denied]: 7 PERMISSION_DENIED: Missing or insufficient permissions.
