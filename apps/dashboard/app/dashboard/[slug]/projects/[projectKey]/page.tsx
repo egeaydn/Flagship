@@ -244,7 +244,15 @@ export default function ProjectPage() {
 
           {/* Header */}
           <div className="flex justify-between items-center mb-6">
-            <h2 className="text-2xl font-bold text-gray-900">Feature Flags</h2>
+            <div className="flex items-center space-x-4">
+              <h2 className="text-2xl font-bold text-gray-900">Feature Flags</h2>
+              <button
+                onClick={() => router.push(`/dashboard/${slug}/projects/${projectKey}/api-keys`)}
+                className="px-3 py-1 text-sm bg-gray-100 text-gray-700 rounded-md hover:bg-gray-200 font-medium"
+              >
+                🔑 API Keys
+              </button>
+            </div>
             <button
               onClick={() => setShowCreateForm(!showCreateForm)}
               className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 font-medium"

@@ -138,6 +138,62 @@ export async function createFeatureFlag(data: {
   return flagRef;
 }
 
+// API Key functions
+export async function createApiKey(data: {
+  environmentId: string;
+  name: string;
+  keyType: 'client' | 'server';
+  createdBy: string;
+}) {
+  const bcrypt = (await import('bcryptjs')).default;
+  
+  // Generate random key: fsk_{type}_{32-char-random}
+  const randomPart = Array.from(crypto.getRandomValues(new Uint8Array(16)))
+    .map(b => b.toString(16).padStart(2, '0'))
+    .join('');
+  const rawKey = `fsk_${data.keyType}_${randomPart}`;
+  
+  // Hash for storage
+  const keyHash = await bcrypt.hash(rawKey, 10);
+  
+  // Prefix for quick lookup (first 12 chars)
+  const keyPrefix = rawKey.substring(0, 12);
+  
+  // Store in Firestore
+  await addDoc(collection(db, COLLECTIONS.API_KEYS), {
+    environmentId: data.environmentId,
+    name: data.name,
+    keyPrefix,
+    keyHash,
+    keyType: data.keyType,
+    revoked: false,
+    lastUsedAt: null,
+    createdAt: serverTimestamp(),
+    createdBy: data.createdBy,
+  });
+  
+  // Return raw key (shown ONCE)
+  return rawKey;
+}
+
+export async function revokeApiKey(keyId: string) {
+  const keyRef = doc(db, COLLECTIONS.API_KEYS, keyId);
+  await updateDoc(keyRef, {
+    revoked: true,
+    updatedAt: serverTimestamp(),
+  });
+}
+
+export async function getEnvironmentApiKeys(environmentId: string) {
+  const q = query(
+    collection(db, COLLECTIONS.API_KEYS),
+    where('environmentId', '==', environmentId),
+    where('revoked', '==', false)
+  );
+  const snapshot = await getDocs(q);
+  return snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+}
+
 // Audit log function
 export async function createAuditLog(data: {
   organizationId: string;
