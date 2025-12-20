@@ -1,0 +1,35 @@
+{
+  "name": "@flagship/sdk-react",
+  "version": "1.0.0",
+  "description": "React hooks and components for Flagship Feature Flags",
+  "main": "./dist/index.js",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.js"
+    }
+  },
+  "scripts": {
+    "build": "tsup src/index.ts --format cjs,esm --dts",
+    "dev": "tsup src/index.ts --format cjs,esm --dts --watch"
+  },
+  "keywords": [
+    "react",
+    "hooks",
+    "feature-flags",
+    "flagship"
+  ],
+  "peerDependencies": {
+    "@flagship/sdk": "workspace:*",
+    "react": "^18.0.0 || ^19.0.0"
+  },
+  "devDependencies": {
+    "@types/react": "^18.2.0",
+    "react": "^19.0.0",
+    "tsup": "^8.0.0",
+    "typescript": "^5.0.0"
+  }
+}

@@ -330,6 +330,8 @@ async function createAuditLog(data) {
 __turbopack_context__.s([
     "GET",
     ()=>GET,
+    "OPTIONS",
+    ()=>OPTIONS,
     "POST",
     ()=>POST
 ]);
@@ -477,6 +479,9 @@ async function POST(request) {
         }, {
             status: 200,
             headers: {
+                'Access-Control-Allow-Origin': '*',
+                'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
+                'Access-Control-Allow-Headers': 'Content-Type, x-api-key',
                 'Cache-Control': 'public, max-age=60, s-maxage=60',
                 'Content-Type': 'application/json'
             }
@@ -491,11 +496,25 @@ async function POST(request) {
         });
     }
 }
+async function OPTIONS() {
+    return new __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$flagship$2f$node_modules$2f$next$2f$server$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["NextResponse"](null, {
+        status: 200,
+        headers: {
+            'Access-Control-Allow-Origin': '*',
+            'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
+            'Access-Control-Allow-Headers': 'Content-Type, x-api-key'
+        }
+    });
+}
 async function GET() {
     return __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$flagship$2f$node_modules$2f$next$2f$server$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["NextResponse"].json({
         service: 'Flagship Feature Flags API',
         version: '1.0.0',
         status: 'operational'
+    }, {
+        headers: {
+            'Access-Control-Allow-Origin': '*'
+        }
     });
 }
 }),

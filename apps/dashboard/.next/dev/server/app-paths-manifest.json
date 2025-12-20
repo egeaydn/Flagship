@@ -1,3 +1,4 @@
 {
-  "/api/v1/flags/route": "app/api/v1/flags/route.js"
+  "/api/v1/flags/route": "app/api/v1/flags/route.js",
+  "/dashboard/[slug]/projects/[projectKey]/page": "app/dashboard/[slug]/projects/[projectKey]/page.js"
 }

@@ -172,6 +172,9 @@ export async function POST(request: NextRequest) {
       {
         status: 200,
         headers: {
+          'Access-Control-Allow-Origin': '*',
+          'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
+          'Access-Control-Allow-Headers': 'Content-Type, x-api-key',
           'Cache-Control': 'public, max-age=60, s-maxage=60',
           'Content-Type': 'application/json',
         },
@@ -188,11 +191,30 @@ export async function POST(request: NextRequest) {
   }
 }
 
+// OPTIONS method for CORS preflight
+export async function OPTIONS() {
+  return new NextResponse(null, {
+    status: 200,
+    headers: {
+      'Access-Control-Allow-Origin': '*',
+      'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
+      'Access-Control-Allow-Headers': 'Content-Type, x-api-key',
+    },
+  });
+}
+
 // GET method for health check
 export async function GET() {
-  return NextResponse.json({
-    service: 'Flagship Feature Flags API',
-    version: '1.0.0',
-    status: 'operational',
-  });
+  return NextResponse.json(
+    {
+      service: 'Flagship Feature Flags API',
+      version: '1.0.0',
+      status: 'operational',
+    },
+    {
+      headers: {
+        'Access-Control-Allow-Origin': '*',
+      },
+    }
+  );
 }
