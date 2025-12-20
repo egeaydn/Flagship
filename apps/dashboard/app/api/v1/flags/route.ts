@@ -39,10 +39,10 @@ async function authenticateApiKey(apiKey: string | null) {
     const isValid = await bcrypt.compare(apiKey, keyData.keyHash);
     
     if (isValid) {
-      // Update last used timestamp
-      await updateDoc(doc(db, COLLECTIONS.API_KEYS, keyDoc.id), {
-        lastUsedAt: new Date(),
-      });
+      // TODO: Update last used timestamp (requires Admin SDK)
+      // await updateDoc(doc(db, COLLECTIONS.API_KEYS, keyDoc.id), {
+      //   lastUsedAt: new Date(),
+      // });
       
       return {
         valid: true,
