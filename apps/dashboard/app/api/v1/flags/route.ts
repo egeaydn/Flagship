@@ -3,6 +3,7 @@ import { z } from 'zod';
 import { db } from '@/lib/firebase';
 import { collection, query, where, getDocs, doc, updateDoc } from 'firebase/firestore';
 import { COLLECTIONS } from '@/lib/firestore';
+import { evaluateTargeting, UserContext } from '@/lib/targeting';
 
 // Request schema validation
 const requestSchema = z.object({
@@ -69,8 +70,8 @@ async function getProjectFromEnvironment(environmentId: string) {
   return envDoc.data().projectId;
 }
 
-// Fetch flags for project
-async function getProjectFlags(projectId: string, environmentId: string) {
+// Fetch flags for project with targeting evaluation
+async function getProjectFlags(projectId: string, environmentId: string, user?: UserContext) {
   // Get all flags for project
   const flagsQuery = query(
     collection(db, COLLECTIONS.FEATURE_FLAGS),
@@ -91,7 +92,7 @@ async function getProjectFlags(projectId: string, environmentId: string) {
     flagValues.set(data.flagId, data);
   });
   
-  // Combine flags with values
+  // Combine flags with values and evaluate targeting
   const flags: Record<string, any> = {};
   
   flagsSnapshot.docs.forEach(doc => {
@@ -99,11 +100,30 @@ async function getProjectFlags(projectId: string, environmentId: string) {
     const flagValue = flagValues.get(doc.id);
     
     if (flagValue) {
-      flags[flagData.key] = {
-        enabled: flagValue.enabled || false,
-        value: flagValue.value,
-        type: flagData.flagType,
-      };
+      // Evaluate targeting rules if present
+      const targeting = flagValue.targeting;
+      
+      if (targeting && targeting.enabled && user) {
+        const result = evaluateTargeting(
+          flagData.key,
+          targeting,
+          user,
+          flagValue.value
+        );
+        
+        flags[flagData.key] = {
+          enabled: result.enabled,
+          value: result.value,
+          type: flagData.flagType,
+        };
+      } else {
+        // No targeting or targeting disabled
+        flags[flagData.key] = {
+          enabled: flagValue.enabled || false,
+          value: flagValue.value,
+          type: flagData.flagType,
+        };
+      }
     } else {
       // Default values if no flag_value exists
       flags[flagData.key] = {
@@ -160,8 +180,12 @@ export async function POST(request: NextRequest) {
       );
     }
     
-    // Fetch flags
-    const flags = await getProjectFlags(projectId, auth.environmentId!);
+    // Fetch flags with targeting evaluation
+    const flags = await getProjectFlags(
+      projectId, 
+      auth.environmentId!,
+      validation.data.user
+    );
     
     // Return response
     return NextResponse.json(

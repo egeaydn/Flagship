@@ -141,10 +141,18 @@ if (feature.enabled) {
       <div className="info-box">
         <h3>👤 User Context</h3>
         <p>
-          User ID: <code>{flags?.user?.id || 'anonymous'}</code>
+          User ID: <code>{flags?.user?.id || 'demo-user-123'}</code>
         </p>
-        <p style={{ marginTop: '0.5rem', color: '#666', fontSize: '0.875rem' }}>
-          You can pass user attributes for targeting and segmentation.
+        <div style={{ marginTop: '0.5rem' }}>
+          <strong>Attributes:</strong>
+          <ul style={{ marginLeft: '1.5rem', marginTop: '0.5rem' }}>
+            <li><code>plan</code>: premium</li>
+            <li><code>country</code>: TR</li>
+          </ul>
+        </div>
+        <p style={{ marginTop: '1rem', color: '#666', fontSize: '0.875rem' }}>
+          Targeting rules use these attributes to determine which users see which features.
+          Try changing user attributes to test different targeting scenarios!
         </p>
       </div>
     </div>
@@ -156,9 +164,9 @@ export default function Home() {
     <FlagshipProvider 
       client={client}
       user={{ 
-        id: 'demo-user-123',
+        id: 'demo-user-456',
         attributes: {
-          plan: 'premium',
+          plan: 'free',  // premium → free (targeting testi için)
           country: 'TR'
         }
       }}

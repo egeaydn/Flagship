@@ -372,24 +372,36 @@ export default function ProjectPage() {
                     const isEnabled = flagValue?.enabled || false;
                     
                     return (
-                      <tr key={flag.id} className="hover:bg-gray-50">
-                        <td className="px-6 py-4 whitespace-nowrap">
-                          <div className="text-sm font-medium text-gray-900">{flag.name}</div>
+                      <tr key={flag.id} className="hover:bg-gray-50 cursor-pointer">
+                        <td 
+                          className="px-6 py-4 whitespace-nowrap"
+                          onClick={() => router.push(`/dashboard/${params.slug}/projects/${params.projectKey}/flags/${flag.key}`)}
+                        >
+                          <div className="text-sm font-medium text-gray-900 hover:text-blue-600">{flag.name}</div>
                           {flag.description && (
                             <div className="text-sm text-gray-500">{flag.description}</div>
                           )}
                         </td>
-                        <td className="px-6 py-4 whitespace-nowrap">
+                        <td 
+                          className="px-6 py-4 whitespace-nowrap"
+                          onClick={() => router.push(`/dashboard/${params.slug}/projects/${params.projectKey}/flags/${flag.key}`)}
+                        >
                           <code className="text-sm text-gray-600 bg-gray-100 px-2 py-1 rounded">
                             {flag.key}
                           </code>
                         </td>
-                        <td className="px-6 py-4 whitespace-nowrap">
+                        <td 
+                          className="px-6 py-4 whitespace-nowrap"
+                          onClick={() => router.push(`/dashboard/${params.slug}/projects/${params.projectKey}/flags/${flag.key}`)}
+                        >
                           <span className="text-sm text-gray-500">{flag.flagType}</span>
                         </td>
                         <td className="px-6 py-4 whitespace-nowrap">
                           <button
-                            onClick={() => toggleFlag(flag.id, isEnabled)}
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              toggleFlag(flag.id, isEnabled);
+                            }}
                             className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors ${
                               isEnabled ? 'bg-green-600' : 'bg-gray-300'
                             }`}
