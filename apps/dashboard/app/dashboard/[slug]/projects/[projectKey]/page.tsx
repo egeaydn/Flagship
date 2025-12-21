@@ -6,6 +6,7 @@ import { auth, db } from '@/lib/firebase';
 import { useRouter, useParams } from 'next/navigation';
 import { collection, query, where, getDocs, doc, updateDoc } from 'firebase/firestore';
 import { COLLECTIONS, createFeatureFlag, createAuditLog } from '@/lib/firestore';
+import toast from 'react-hot-toast';
 
 interface Project {
   id: string;
@@ -52,6 +53,7 @@ export default function ProjectPage() {
   const [flags, setFlags] = useState<FeatureFlag[]>([]);
   const [flagValues, setFlagValues] = useState<FlagValue[]>([]);
   const [showCreateForm, setShowCreateForm] = useState(false);
+  const [togglingFlag, setTogglingFlag] = useState<string | null>(null);
   const [formData, setFormData] = useState({
     name: '',
     key: '',
@@ -140,12 +142,13 @@ export default function ProjectPage() {
         createdBy: user.uid,
       });
 
+      toast.success(`✅ Flag "${formData.name}" created successfully!`);
       setFormData({ name: '', key: '', description: '', flagType: 'boolean', defaultValue: false });
       setShowCreateForm(false);
       await loadFlags(project.id);
     } catch (error: any) {
       console.error('Error creating flag:', error);
-      alert('Hata: ' + error.message);
+      toast.error(`❌ Failed to create flag: ${error.message}`);
     } finally {
       setCreating(false);
     }
@@ -154,6 +157,7 @@ export default function ProjectPage() {
   const toggleFlag = async (flagId: string, currentValue: boolean) => {
     if (!selectedEnv || !user || !project) return;
 
+    setTogglingFlag(flagId);
     try {
       const flagValue = flagValues.find(fv => fv.flagId === flagId && fv.environmentId === selectedEnv);
       const flag = flags.find(f => f.id === flagId);
@@ -185,9 +189,13 @@ export default function ProjectPage() {
         });
       }
       
+      toast.success(`${newValue ? '✅ Flag enabled' : '⏸️ Flag disabled'}`);
       await loadFlags(project.id);
     } catch (error) {
       console.error('Error toggling flag:', error);
+      toast.error('❌ Failed to toggle flag');
+    } finally {
+      setTogglingFlag(null);
     }
   };
 
@@ -435,18 +443,23 @@ export default function ProjectPage() {
                               e.stopPropagation();
                               toggleFlag(flag.id, isEnabled);
                             }}
-                            className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors ${
+                            disabled={togglingFlag === flag.id}
+                            className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors disabled:opacity-50 disabled:cursor-not-allowed ${
                               isEnabled ? 'bg-green-600' : 'bg-gray-300'
                             }`}
                           >
-                            <span
-                              className={`inline-block h-4 w-4 transform rounded-full bg-white transition-transform ${
-                                isEnabled ? 'translate-x-6' : 'translate-x-1'
-                              }`}
-                            />
+                            {togglingFlag === flag.id ? (
+                              <span className="inline-block h-4 w-4 rounded-full bg-white animate-pulse mx-auto" />
+                            ) : (
+                              <span
+                                className={`inline-block h-4 w-4 transform rounded-full bg-white transition-transform ${
+                                  isEnabled ? 'translate-x-6' : 'translate-x-1'
+                                }`}
+                              />
+                            )}
                           </button>
                           <span className="ml-3 text-sm text-gray-600">
-                            {isEnabled ? 'Aktif' : 'Pasif'}
+                            {togglingFlag === flag.id ? 'Updating...' : (isEnabled ? 'Aktif' : 'Pasif')}
                           </span>
                         </td>
                       </tr>

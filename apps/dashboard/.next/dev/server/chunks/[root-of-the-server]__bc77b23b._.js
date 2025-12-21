@@ -668,7 +668,14 @@ async function getProjectFlags(projectId, environmentId, user) {
                     userId: user.id,
                     result: result.enabled,
                     targetingApplied
-                }).catch((err)=>console.error('Analytics error:', err));
+                }).then(()=>{
+                    console.log('✅ Analytics recorded:', {
+                        flagKey: flagData.key,
+                        projectId,
+                        environmentId,
+                        userId: user.id
+                    });
+                }).catch((err)=>console.error('❌ Analytics error:', err));
             } else {
                 // No targeting or targeting disabled
                 flags[flagData.key] = {

@@ -7,6 +7,7 @@ import { db } from '@/lib/firebase';
 import { COLLECTIONS, createAuditLog } from '@/lib/firestore';
 import { onAuthStateChanged } from 'firebase/auth';
 import { auth } from '@/lib/firebase';
+import toast from 'react-hot-toast';
 
 interface TargetingCondition {
   attribute: string;
@@ -173,10 +174,10 @@ export default function FlagDetailPage() {
         }
       });
       
-      alert('Targeting rules saved!');
+      toast.success('✅ Targeting rules saved successfully!');
     } catch (error) {
       console.error('Error saving targeting:', error);
-      alert('Failed to save targeting rules');
+      toast.error('❌ Failed to save targeting rules');
     }
   }
 
