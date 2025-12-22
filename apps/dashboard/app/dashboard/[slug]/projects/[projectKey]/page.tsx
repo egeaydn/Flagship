@@ -232,18 +232,18 @@ export default function ProjectPage() {
     <div className="min-h-screen bg-gray-50">
       <nav className="bg-white shadow">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between h-16">
-            <div className="flex items-center space-x-4">
+          <div className="flex justify-between items-center h-16">
+            <div className="flex items-center space-x-2 sm:space-x-4">
               <button
                 onClick={() => router.push(`/dashboard/${slug}`)}
-                className="text-gray-600 hover:text-gray-900"
+                className="text-gray-600 hover:text-gray-900 text-sm sm:text-base"
               >
                 ← Geri
               </button>
-              <h1 className="text-xl font-bold text-gray-900">{project.name}</h1>
+              <h1 className="text-lg sm:text-xl font-bold text-gray-900 truncate max-w-[150px] sm:max-w-none">{project.name}</h1>
             </div>
-            <div className="flex items-center space-x-4">
-              <span className="text-gray-700">{user?.email}</span>
+            <div className="flex items-center">
+              <span className="text-gray-700 text-xs sm:text-sm truncate max-w-[120px] sm:max-w-none">{user?.email}</span>
             </div>
           </div>
         </div>
@@ -254,12 +254,12 @@ export default function ProjectPage() {
           {/* Environment Selector */}
           <div className="mb-6">
             <label className="block text-sm font-medium text-gray-700 mb-2">Environment</label>
-            <div className="flex space-x-2">
+            <div className="flex flex-wrap gap-2">
               {environments.map((env) => (
                 <button
                   key={env.id}
                   onClick={() => setSelectedEnv(env.id)}
-                  className={`px-4 py-2 rounded-md font-medium transition-colors ${
+                  className={`px-3 sm:px-4 py-2 rounded-md font-medium text-sm transition-colors ${
                     selectedEnv === env.id
                       ? 'bg-blue-600 text-white'
                       : 'bg-white text-gray-700 border border-gray-300 hover:bg-gray-50'
@@ -272,31 +272,33 @@ export default function ProjectPage() {
           </div>
 
           {/* Header */}
-          <div className="flex justify-between items-center mb-6">
-            <div className="flex items-center space-x-4">
-              <h2 className="text-2xl font-bold text-gray-900">Feature Flags</h2>
-              <button
-                onClick={() => router.push(`/dashboard/${slug}/projects/${projectKey}/api-keys`)}
-                className="px-3 py-1 text-sm bg-gray-100 text-gray-700 rounded-md hover:bg-gray-200 font-medium"
+          <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4 mb-6">
+            <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4">
+              <h2 className="text-xl sm:text-2xl font-bold text-gray-900">Feature Flags</h2>
+              <div className="flex flex-wrap gap-2">
+                <button
+                  onClick={() => router.push(`/dashboard/${slug}/projects/${projectKey}/api-keys`)}
+                  className="px-3 py-1 text-xs sm:text-sm bg-gray-100 text-gray-700 rounded-md hover:bg-gray-200 font-medium"
               >
                 🔑 API Keys
               </button>
               <button
                 onClick={() => router.push(`/dashboard/${slug}/projects/${projectKey}/analytics`)}
-                className="px-3 py-1 text-sm bg-blue-100 text-blue-700 rounded-md hover:bg-blue-200 font-medium"
+                className="px-3 py-1 text-xs sm:text-sm bg-blue-100 text-blue-700 rounded-md hover:bg-blue-200 font-medium"
               >
                 📊 Analytics
               </button>
               <button
                 onClick={() => router.push(`/dashboard/${slug}/audit-logs`)}
-                className="px-3 py-1 text-sm bg-purple-100 text-purple-700 rounded-md hover:bg-purple-200 font-medium"
+                className="px-3 py-1 text-xs sm:text-sm bg-purple-100 text-purple-700 rounded-md hover:bg-purple-200 font-medium"
               >
                 📋 Audit Logs
               </button>
+              </div>
             </div>
             <button
               onClick={() => setShowCreateForm(!showCreateForm)}
-              className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 font-medium"
+              className="w-full sm:w-auto px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 font-medium text-sm sm:text-base"
             >
               {showCreateForm ? 'İptal' : '+ Yeni Flag'}
             </button>
@@ -390,24 +392,26 @@ export default function ProjectPage() {
             </div>
           ) : (
             <div className="bg-white rounded-lg shadow overflow-hidden">
-              <table className="min-w-full divide-y divide-gray-200">
-                <thead className="bg-gray-50">
-                  <tr>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                      Flag
-                    </th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                      Key
-                    </th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                      Tip
-                    </th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                      Durum
-                    </th>
-                  </tr>
-                </thead>
-                <tbody className="bg-white divide-y divide-gray-200">
+              {/* Desktop Table */}
+              <div className="hidden sm:block overflow-x-auto">
+                <table className="min-w-full divide-y divide-gray-200">
+                  <thead className="bg-gray-50">
+                    <tr>
+                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                        Flag
+                      </th>
+                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                        Key
+                      </th>
+                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                        Tip
+                      </th>
+                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                        Durum
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody className="bg-white divide-y divide-gray-200">
                   {flags.map((flag) => {
                     const flagValue = getFlagValue(flag.id);
                     const isEnabled = flagValue?.enabled || false;
@@ -467,6 +471,61 @@ export default function ProjectPage() {
                   })}
                 </tbody>
               </table>
+              </div>
+              
+              {/* Mobile Card View */}
+              <div className="sm:hidden divide-y divide-gray-200">
+                {flags.map((flag) => {
+                  const flagValue = getFlagValue(flag.id);
+                  const isEnabled = flagValue?.enabled || false;
+                  
+                  return (
+                    <div 
+                      key={flag.id}
+                      onClick={() => router.push(`/dashboard/${params.slug}/projects/${params.projectKey}/flags/${flag.key}`)}
+                      className="p-4 hover:bg-gray-50 cursor-pointer"
+                    >
+                      <div className="flex justify-between items-start mb-2">
+                        <div className="flex-1 min-w-0">
+                          <div className="text-sm font-medium text-gray-900 truncate">{flag.name}</div>
+                          {flag.description && (
+                            <div className="text-xs text-gray-500 mt-1">{flag.description}</div>
+                          )}
+                          <code className="text-xs text-gray-600 bg-gray-100 px-2 py-1 rounded mt-1 inline-block">
+                            {flag.key}
+                          </code>
+                        </div>
+                        <button
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            toggleFlag(flag.id, isEnabled);
+                          }}
+                          disabled={togglingFlag === flag.id}
+                          className={`ml-3 relative inline-flex h-6 w-11 flex-shrink-0 items-center rounded-full transition-colors disabled:opacity-50 ${
+                            isEnabled ? 'bg-green-600' : 'bg-gray-300'
+                          }`}
+                        >
+                          {togglingFlag === flag.id ? (
+                            <span className="inline-block h-4 w-4 rounded-full bg-white animate-pulse mx-auto" />
+                          ) : (
+                            <span
+                              className={`inline-block h-4 w-4 transform rounded-full bg-white transition-transform ${
+                                isEnabled ? 'translate-x-6' : 'translate-x-1'
+                              }`}
+                            />
+                          )}
+                        </button>
+                      </div>
+                      <div className="flex items-center gap-2 text-xs">
+                        <span className="px-2 py-1 bg-gray-100 text-gray-600 rounded">{flag.flagType}</span>
+                        <span className={`px-2 py-1 rounded ${isEnabled ? 'bg-green-100 text-green-700' : 'bg-gray-100 text-gray-600'}`}>
+                          {togglingFlag === flag.id ? 'Updating...' : (isEnabled ? '✓ Aktif' : '✗ Pasif')}
+                        </span>
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
             </div>
           )}
         </div>
