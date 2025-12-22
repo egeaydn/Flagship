@@ -29,64 +29,75 @@ export interface UserContext {
 }
 
 // Hash function for consistent percentage rollout
-function hashString(str: string): number {
+export function hashString(str: string): number {
   let hash = 0;
   for (let i = 0; i < str.length; i++) {
     const char = str.charCodeAt(i);
     hash = (hash << 5) - hash + char;
     hash = hash & hash; // Convert to 32bit integer
   }
-  return Math.abs(hash);
+  return Math.abs(hash) % 100; // Return 0-100
 }
 
 // Check if user falls within rollout percentage
-function isInRollout(userId: string, flagKey: string, percentage: number): boolean {
+export function isInRollout(userId: string, flagKey: string, percentage: number): boolean {
   if (percentage === 0) return false;
   if (percentage === 100) return true;
 
   const combinedStr = `${flagKey}:${userId}`;
-  const hash = hashString(combinedStr);
-  const bucket = hash % 100;
+  const bucket = hashString(combinedStr); // Already 0-100
   
   return bucket < percentage;
 }
 
 // Evaluate a single condition
-function evaluateCondition(condition: TargetingCondition, user: UserContext): boolean {
-  const userValue = user.attributes?.[condition.attribute];
-  
+export function evaluateCondition(
+  userValue: any,
+  operator: TargetingCondition['operator'],
+  conditionValue: any
+): boolean {
   if (userValue === undefined) {
     return false;
   }
 
-  switch (condition.operator) {
+  switch (operator) {
     case 'eq':
-      return userValue === condition.value;
+      return userValue === conditionValue;
     
     case 'ne':
-      return userValue !== condition.value;
+      return userValue !== conditionValue;
     
     case 'contains':
-      return String(userValue).includes(String(condition.value));
+      return String(userValue).includes(String(conditionValue));
     
     case 'in':
-      return Array.isArray(condition.value) && condition.value.includes(userValue);
+      // Handle both array and comma-separated string
+      const values = Array.isArray(conditionValue) 
+        ? conditionValue 
+        : String(conditionValue).split(',').map(v => v.trim());
+      return values.includes(userValue);
     
     case 'gt':
-      return Number(userValue) > Number(condition.value);
+      return Number(userValue) > Number(conditionValue);
     
     case 'lt':
-      return Number(userValue) < Number(condition.value);
+      return Number(userValue) < Number(conditionValue);
     
     case 'gte':
-      return Number(userValue) >= Number(condition.value);
+      return Number(userValue) >= Number(conditionValue);
     
     case 'lte':
-      return Number(userValue) <= Number(condition.value);
+      return Number(userValue) <= Number(conditionValue);
     
     default:
       return false;
   }
+}
+
+// Internal function for evaluating condition with user context
+function evaluateConditionWithUser(condition: TargetingCondition, user: UserContext): boolean {
+  const userValue = user.attributes?.[condition.attribute];
+  return evaluateCondition(userValue, condition.operator, condition.value);
 }
 
 // Evaluate a targeting rule (all conditions must match - AND logic)
@@ -97,7 +108,7 @@ function evaluateRule(rule: TargetingRule, user: UserContext, flagKey: string): 
 
   // Check all conditions
   const allConditionsMatch = rule.conditions.every(condition => 
-    evaluateCondition(condition, user)
+    evaluateConditionWithUser(condition, user)
   );
 
   if (!allConditionsMatch) {

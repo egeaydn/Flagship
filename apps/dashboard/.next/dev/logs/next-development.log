@@ -1,7 +1,111 @@
-[00:00:01.255] Server  LOG      ✓ Ready in 837ms
-[00:00:09.246] Browser LOG     📊 Analytics Query: {"envId":"production","projId":"bay-kemal","slug":"tukiyenin-birinci-partisi-cumhuriyet-halk-partisi"}
-[00:00:09.971] Browser LOG     📊 Analytics Data: []
-[00:00:40.583] Server  WARN    [2025-12-21T16:14:54.421Z]  @firebase/firestore: "Firestore (12.6.0): GrpcConnection" "RPC 'Write' stream 0x8007fec7 error. Code:" "7" "Message:" "7 PERMISSION_DENIED: Missing or insufficient permissions."
-[00:00:40.588] Server  ERROR   ❌ Analytics error: FirebaseError: [code=permission-denied]: 7 PERMISSION_DENIED: Missing or insufficient permissions.
-[00:00:40.980] Server  WARN    [2025-12-21T16:14:54.818Z]  @firebase/firestore: "Firestore (12.6.0): GrpcConnection" "RPC 'Write' stream 0x8007fec8 error. Code:" "7" "Message:" "7 PERMISSION_DENIED: Missing or insufficient permissions."
-[00:00:40.981] Server  ERROR   Analytics error: FirebaseError: [code=permission-denied]: 7 PERMISSION_DENIED: Missing or insufficient permissions.
+[00:00:01.884] Server  LOG      ✓ Ready in 1348ms
+[00:00:26.628] Server  WARN    [2025-12-22T15:12:23.747Z]  @firebase/firestore: "Firestore (12.6.0): GrpcConnection" "RPC 'Write' stream 0x733e0244 error. Code:" "7" "Message:" "7 PERMISSION_DENIED: Missing or insufficient permissions."
+[00:00:26.630] Server  ERROR   ❌ Analytics error: FirebaseError: [code=permission-denied]: 7 PERMISSION_DENIED: Missing or insufficient permissions.
+[00:00:26.792] Server  WARN    [2025-12-22T15:12:23.910Z]  @firebase/firestore: "Firestore (12.6.0): GrpcConnection" "RPC 'Write' stream 0x733e0245 error. Code:" "7" "Message:" "7 PERMISSION_DENIED: Missing or insufficient permissions."
+[00:00:26.798] Server  ERROR   Analytics error: FirebaseError: [code=permission-denied]: 7 PERMISSION_DENIED: Missing or insufficient permissions.
+[00:00:27.048] Server  WARN    [2025-12-22T15:12:24.168Z]  @firebase/firestore: "Firestore (12.6.0): GrpcConnection" "RPC 'Write' stream 0x733e0246 error. Code:" "7" "Message:" "7 PERMISSION_DENIED: Missing or insufficient permissions."
+[00:00:27.049] Server  ERROR   ❌ Analytics error: FirebaseError: [code=permission-denied]: 7 PERMISSION_DENIED: Missing or insufficient permissions.
+[00:00:27.227] Server  WARN    [2025-12-22T15:12:24.345Z]  @firebase/firestore: "Firestore (12.6.0): GrpcConnection" "RPC 'Write' stream 0x733e0247 error. Code:" "7" "Message:" "7 PERMISSION_DENIED: Missing or insufficient permissions."
+[00:00:27.230] Server  ERROR   Analytics error: FirebaseError: [code=permission-denied]: 7 PERMISSION_DENIED: Missing or insufficient permissions.
+[00:00:27.434] Server  WARN    [2025-12-22T15:12:24.553Z]  @firebase/firestore: "Firestore (12.6.0): GrpcConnection" "RPC 'Write' stream 0x733e0248 error. Code:" "7" "Message:" "7 PERMISSION_DENIED: Missing or insufficient permissions."
+[00:00:27.435] Server  ERROR   ❌ Analytics error: FirebaseError: [code=permission-denied]: 7 PERMISSION_DENIED: Missing or insufficient permissions.
+[00:00:27.601] Server  WARN    [2025-12-22T15:12:24.720Z]  @firebase/firestore: "Firestore (12.6.0): GrpcConnection" "RPC 'Write' stream 0x733e0249 error. Code:" "7" "Message:" "7 PERMISSION_DENIED: Missing or insufficient permissions."
+[00:00:27.605] Server  ERROR   Analytics error: FirebaseError: [code=permission-denied]: 7 PERMISSION_DENIED: Missing or insufficient permissions.
+[00:00:27.638] Server  ERROR   Analytics error: FirebaseError: [code=invalid-argument]: Function addDoc() called with invalid data. Unsupported field value: undefined (found in field userId in document flag_analytics/TmdmanRAs4qI8YTbKUJr)
+[00:00:27.639] Server  ERROR   Analytics error: FirebaseError: [code=invalid-argument]: Function addDoc() called with invalid data. Unsupported field value: undefined (found in field userId in document flag_analytics/AS9OcIQYcrJoCEdaR3xK)
+[00:00:28.194] Server  WARN    [2025-12-22T15:12:25.314Z]  @firebase/firestore: "Firestore (12.6.0): GrpcConnection" "RPC 'Write' stream 0x733e024a error. Code:" "7" "Message:" "7 PERMISSION_DENIED: Missing or insufficient permissions."
+[00:00:28.195] Server  ERROR   ❌ Analytics error: FirebaseError: [code=permission-denied]: 7 PERMISSION_DENIED: Missing or insufficient permissions.
+[00:00:28.359] Server  WARN    [2025-12-22T15:12:25.478Z]  @firebase/firestore: "Firestore (12.6.0): GrpcConnection" "RPC 'Write' stream 0x733e024b error. Code:" "7" "Message:" "7 PERMISSION_DENIED: Missing or insufficient permissions."
+[00:00:28.362] Server  ERROR   Analytics error: FirebaseError: [code=permission-denied]: 7 PERMISSION_DENIED: Missing or insufficient permissions.
+[00:00:28.605] Server  WARN    [2025-12-22T15:12:25.724Z]  @firebase/firestore: "Firestore (12.6.0): GrpcConnection" "RPC 'Write' stream 0x733e024c error. Code:" "7" "Message:" "7 PERMISSION_DENIED: Missing or insufficient permissions."
+[00:00:28.608] Server  ERROR   ❌ Analytics error: FirebaseError: [code=permission-denied]: 7 PERMISSION_DENIED: Missing or insufficient permissions.
+[00:00:28.766] Server  WARN    [2025-12-22T15:12:25.886Z]  @firebase/firestore: "Firestore (12.6.0): GrpcConnection" "RPC 'Write' stream 0x733e024d error. Code:" "7" "Message:" "7 PERMISSION_DENIED: Missing or insufficient permissions."
+[00:00:28.767] Server  ERROR   Analytics error: FirebaseError: [code=permission-denied]: 7 PERMISSION_DENIED: Missing or insufficient permissions.
+[00:00:44.944] Server  WARN    [2025-12-22T15:12:42.064Z]  @firebase/firestore: "Firestore (12.6.0): GrpcConnection" "RPC 'Write' stream 0x733e024e error. Code:" "7" "Message:" "7 PERMISSION_DENIED: Missing or insufficient permissions."
+[00:00:44.945] Server  ERROR   ❌ Analytics error: FirebaseError: [code=permission-denied]: 7 PERMISSION_DENIED: Missing or insufficient permissions.
+[00:00:45.070] Server  WARN    [2025-12-22T15:12:42.189Z]  @firebase/firestore: "Firestore (12.6.0): GrpcConnection" "RPC 'Write' stream 0x733e024f error. Code:" "7" "Message:" "7 PERMISSION_DENIED: Missing or insufficient permissions."
+[00:00:45.071] Server  ERROR   Analytics error: FirebaseError: [code=permission-denied]: 7 PERMISSION_DENIED: Missing or insufficient permissions.
+[00:00:45.280] Server  WARN    [2025-12-22T15:12:42.399Z]  @firebase/firestore: "Firestore (12.6.0): GrpcConnection" "RPC 'Write' stream 0x733e0250 error. Code:" "7" "Message:" "7 PERMISSION_DENIED: Missing or insufficient permissions."
+[00:00:45.280] Server  ERROR   ❌ Analytics error: FirebaseError: [code=permission-denied]: 7 PERMISSION_DENIED: Missing or insufficient permissions.
+[00:00:45.415] Server  WARN    [2025-12-22T15:12:42.534Z]  @firebase/firestore: "Firestore (12.6.0): GrpcConnection" "RPC 'Write' stream 0x733e0251 error. Code:" "7" "Message:" "7 PERMISSION_DENIED: Missing or insufficient permissions."
+[00:00:45.416] Server  ERROR   Analytics error: FirebaseError: [code=permission-denied]: 7 PERMISSION_DENIED: Missing or insufficient permissions.
+[00:00:45.686] Server  WARN    [2025-12-22T15:12:42.806Z]  @firebase/firestore: "Firestore (12.6.0): GrpcConnection" "RPC 'Write' stream 0x733e0252 error. Code:" "7" "Message:" "7 PERMISSION_DENIED: Missing or insufficient permissions."
+[00:00:45.687] Server  ERROR   ❌ Analytics error: FirebaseError: [code=permission-denied]: 7 PERMISSION_DENIED: Missing or insufficient permissions.
+[00:00:45.806] Server  WARN    [2025-12-22T15:12:42.925Z]  @firebase/firestore: "Firestore (12.6.0): GrpcConnection" "RPC 'Write' stream 0x733e0253 error. Code:" "7" "Message:" "7 PERMISSION_DENIED: Missing or insufficient permissions."
+[00:00:45.807] Server  ERROR   Analytics error: FirebaseError: [code=permission-denied]: 7 PERMISSION_DENIED: Missing or insufficient permissions.
+[00:00:45.902] Server  ERROR   Analytics error: FirebaseError: [code=invalid-argument]: Function addDoc() called with invalid data. Unsupported field value: undefined (found in field userId in document flag_analytics/Zod0fUwcOkBnNnVw1OyB)
+[00:00:45.903] Server  ERROR   Analytics error: FirebaseError: [code=invalid-argument]: Function addDoc() called with invalid data. Unsupported field value: undefined (found in field userId in document flag_analytics/rLRCNHKBPjxSVV7dHlu0)
+[00:00:46.498] Server  WARN    [2025-12-22T15:12:43.618Z]  @firebase/firestore: "Firestore (12.6.0): GrpcConnection" "RPC 'Write' stream 0x733e0254 error. Code:" "7" "Message:" "7 PERMISSION_DENIED: Missing or insufficient permissions."
+[00:00:46.499] Server  ERROR   ❌ Analytics error: FirebaseError: [code=permission-denied]: 7 PERMISSION_DENIED: Missing or insufficient permissions.
+[00:00:46.671] Server  WARN    [2025-12-22T15:12:43.790Z]  @firebase/firestore: "Firestore (12.6.0): GrpcConnection" "RPC 'Write' stream 0x733e0255 error. Code:" "7" "Message:" "7 PERMISSION_DENIED: Missing or insufficient permissions."
+[00:00:46.672] Server  ERROR   Analytics error: FirebaseError: [code=permission-denied]: 7 PERMISSION_DENIED: Missing or insufficient permissions.
+[00:00:46.844] Server  WARN    [2025-12-22T15:12:43.963Z]  @firebase/firestore: "Firestore (12.6.0): GrpcConnection" "RPC 'Write' stream 0x733e0256 error. Code:" "7" "Message:" "7 PERMISSION_DENIED: Missing or insufficient permissions."
+[00:00:46.845] Server  ERROR   ❌ Analytics error: FirebaseError: [code=permission-denied]: 7 PERMISSION_DENIED: Missing or insufficient permissions.
+[00:00:47.030] Server  WARN    [2025-12-22T15:12:44.149Z]  @firebase/firestore: "Firestore (12.6.0): GrpcConnection" "RPC 'Write' stream 0x733e0257 error. Code:" "7" "Message:" "7 PERMISSION_DENIED: Missing or insufficient permissions."
+[00:00:47.031] Server  ERROR   Analytics error: FirebaseError: [code=permission-denied]: 7 PERMISSION_DENIED: Missing or insufficient permissions.
+[00:03:04.707] Server  WARN    [2025-12-22T15:15:01.827Z]  @firebase/firestore: "Firestore (12.6.0): GrpcConnection" "RPC 'Write' stream 0x564511e7 error. Code:" "7" "Message:" "7 PERMISSION_DENIED: Missing or insufficient permissions."
+[00:03:04.708] Server  ERROR   ❌ Analytics error: FirebaseError: [code=permission-denied]: 7 PERMISSION_DENIED: Missing or insufficient permissions.
+[00:03:04.913] Server  WARN    [2025-12-22T15:15:02.033Z]  @firebase/firestore: "Firestore (12.6.0): GrpcConnection" "RPC 'Write' stream 0x564511e8 error. Code:" "7" "Message:" "7 PERMISSION_DENIED: Missing or insufficient permissions."
+[00:03:04.914] Server  ERROR   Analytics error: FirebaseError: [code=permission-denied]: 7 PERMISSION_DENIED: Missing or insufficient permissions.
+[00:03:05.392] Server  WARN    [2025-12-22T15:15:02.512Z]  @firebase/firestore: "Firestore (12.6.0): GrpcConnection" "RPC 'Write' stream 0x16df99fb error. Code:" "7" "Message:" "7 PERMISSION_DENIED: Missing or insufficient permissions."
+[00:03:05.393] Server  ERROR   ❌ Analytics error: FirebaseError: [code=permission-denied]: 7 PERMISSION_DENIED: Missing or insufficient permissions.
+[00:03:05.525] Server  WARN    [2025-12-22T15:15:02.644Z]  @firebase/firestore: "Firestore (12.6.0): GrpcConnection" "RPC 'Write' stream 0x16df99fc error. Code:" "7" "Message:" "7 PERMISSION_DENIED: Missing or insufficient permissions."
+[00:03:05.525] Server  ERROR   Analytics error: FirebaseError: [code=permission-denied]: 7 PERMISSION_DENIED: Missing or insufficient permissions.
+[00:03:05.815] Server  WARN    [2025-12-22T15:15:02.934Z]  @firebase/firestore: "Firestore (12.6.0): GrpcConnection" "RPC 'Write' stream 0x16df99fd error. Code:" "7" "Message:" "7 PERMISSION_DENIED: Missing or insufficient permissions."
+[00:03:05.815] Server  ERROR   ❌ Analytics error: FirebaseError: [code=permission-denied]: 7 PERMISSION_DENIED: Missing or insufficient permissions.
+[00:03:05.941] Server  WARN    [2025-12-22T15:15:03.060Z]  @firebase/firestore: "Firestore (12.6.0): GrpcConnection" "RPC 'Write' stream 0x16df99fe error. Code:" "7" "Message:" "7 PERMISSION_DENIED: Missing or insufficient permissions."
+[00:03:05.942] Server  ERROR   Analytics error: FirebaseError: [code=permission-denied]: 7 PERMISSION_DENIED: Missing or insufficient permissions.
+[00:03:06.054] Server  ERROR   Analytics error: FirebaseError: [code=invalid-argument]: Function addDoc() called with invalid data. Unsupported field value: undefined (found in field userId in document flag_analytics/iM9ng5fH5Aqz1nfnDpum)
+[00:03:06.054] Server  ERROR   Analytics error: FirebaseError: [code=invalid-argument]: Function addDoc() called with invalid data. Unsupported field value: undefined (found in field userId in document flag_analytics/oPTCgMXugJprFS6K2wEf)
+[00:03:06.635] Server  WARN    [2025-12-22T15:15:03.755Z]  @firebase/firestore: "Firestore (12.6.0): GrpcConnection" "RPC 'Write' stream 0x16df99ff error. Code:" "7" "Message:" "7 PERMISSION_DENIED: Missing or insufficient permissions."
+[00:03:06.636] Server  ERROR   ❌ Analytics error: FirebaseError: [code=permission-denied]: 7 PERMISSION_DENIED: Missing or insufficient permissions.
+[00:03:06.770] Server  WARN    [2025-12-22T15:15:03.889Z]  @firebase/firestore: "Firestore (12.6.0): GrpcConnection" "RPC 'Write' stream 0x16df9a00 error. Code:" "7" "Message:" "7 PERMISSION_DENIED: Missing or insufficient permissions."
+[00:03:06.770] Server  ERROR   Analytics error: FirebaseError: [code=permission-denied]: 7 PERMISSION_DENIED: Missing or insufficient permissions.
+[00:03:07.023] Server  WARN    [2025-12-22T15:15:04.141Z]  @firebase/firestore: "Firestore (12.6.0): GrpcConnection" "RPC 'Write' stream 0x16df9a01 error. Code:" "7" "Message:" "7 PERMISSION_DENIED: Missing or insufficient permissions."
+[00:03:07.024] Server  ERROR   ❌ Analytics error: FirebaseError: [code=permission-denied]: 7 PERMISSION_DENIED: Missing or insufficient permissions.
+[00:03:07.176] Server  WARN    [2025-12-22T15:15:04.296Z]  @firebase/firestore: "Firestore (12.6.0): GrpcConnection" "RPC 'Write' stream 0x16df9a02 error. Code:" "7" "Message:" "7 PERMISSION_DENIED: Missing or insufficient permissions."
+[00:03:07.177] Server  ERROR   Analytics error: FirebaseError: [code=permission-denied]: 7 PERMISSION_DENIED: Missing or insufficient permissions.
+[00:03:17.959] Server  WARN    [2025-12-22T15:15:15.078Z]  @firebase/firestore: "Firestore (12.6.0): GrpcConnection" "RPC 'Write' stream 0x16df9a03 error. Code:" "7" "Message:" "7 PERMISSION_DENIED: Missing or insufficient permissions."
+[00:03:17.960] Server  ERROR   ❌ Analytics error: FirebaseError: [code=permission-denied]: 7 PERMISSION_DENIED: Missing or insufficient permissions.
+[00:03:18.102] Server  WARN    [2025-12-22T15:15:15.221Z]  @firebase/firestore: "Firestore (12.6.0): GrpcConnection" "RPC 'Write' stream 0x16df9a04 error. Code:" "7" "Message:" "7 PERMISSION_DENIED: Missing or insufficient permissions."
+[00:03:18.102] Server  ERROR   Analytics error: FirebaseError: [code=permission-denied]: 7 PERMISSION_DENIED: Missing or insufficient permissions.
+[00:03:18.336] Server  WARN    [2025-12-22T15:15:15.455Z]  @firebase/firestore: "Firestore (12.6.0): GrpcConnection" "RPC 'Write' stream 0x16df9a05 error. Code:" "7" "Message:" "7 PERMISSION_DENIED: Missing or insufficient permissions."
+[00:03:18.337] Server  ERROR   ❌ Analytics error: FirebaseError: [code=permission-denied]: 7 PERMISSION_DENIED: Missing or insufficient permissions.
+[00:03:18.463] Server  WARN    [2025-12-22T15:15:15.582Z]  @firebase/firestore: "Firestore (12.6.0): GrpcConnection" "RPC 'Write' stream 0x16df9a06 error. Code:" "7" "Message:" "7 PERMISSION_DENIED: Missing or insufficient permissions."
+[00:03:18.465] Server  ERROR   Analytics error: FirebaseError: [code=permission-denied]: 7 PERMISSION_DENIED: Missing or insufficient permissions.
+[00:03:18.745] Server  WARN    [2025-12-22T15:15:15.864Z]  @firebase/firestore: "Firestore (12.6.0): GrpcConnection" "RPC 'Write' stream 0x16df9a07 error. Code:" "7" "Message:" "7 PERMISSION_DENIED: Missing or insufficient permissions."
+[00:03:18.746] Server  ERROR   ❌ Analytics error: FirebaseError: [code=permission-denied]: 7 PERMISSION_DENIED: Missing or insufficient permissions.
+[00:03:18.889] Server  WARN    [2025-12-22T15:15:16.008Z]  @firebase/firestore: "Firestore (12.6.0): GrpcConnection" "RPC 'Write' stream 0x16df9a08 error. Code:" "7" "Message:" "7 PERMISSION_DENIED: Missing or insufficient permissions."
+[00:03:18.891] Server  ERROR   Analytics error: FirebaseError: [code=permission-denied]: 7 PERMISSION_DENIED: Missing or insufficient permissions.
+[00:03:18.975] Server  ERROR   Analytics error: FirebaseError: [code=invalid-argument]: Function addDoc() called with invalid data. Unsupported field value: undefined (found in field userId in document flag_analytics/JWpyxDGhGND8pQgK6c2E)
+[00:03:18.975] Server  ERROR   Analytics error: FirebaseError: [code=invalid-argument]: Function addDoc() called with invalid data. Unsupported field value: undefined (found in field userId in document flag_analytics/rAy89LwRNacpumYHME6M)
+[00:03:19.522] Server  WARN    [2025-12-22T15:15:16.641Z]  @firebase/firestore: "Firestore (12.6.0): GrpcConnection" "RPC 'Write' stream 0x16df9a09 error. Code:" "7" "Message:" "7 PERMISSION_DENIED: Missing or insufficient permissions."
+[00:03:19.522] Server  ERROR   ❌ Analytics error: FirebaseError: [code=permission-denied]: 7 PERMISSION_DENIED: Missing or insufficient permissions.
+[00:03:19.648] Server  WARN    [2025-12-22T15:15:16.767Z]  @firebase/firestore: "Firestore (12.6.0): GrpcConnection" "RPC 'Write' stream 0x16df9a0a error. Code:" "7" "Message:" "7 PERMISSION_DENIED: Missing or insufficient permissions."
+[00:03:19.649] Server  ERROR   Analytics error: FirebaseError: [code=permission-denied]: 7 PERMISSION_DENIED: Missing or insufficient permissions.
+[00:03:19.873] Server  WARN    [2025-12-22T15:15:16.992Z]  @firebase/firestore: "Firestore (12.6.0): GrpcConnection" "RPC 'Write' stream 0x16df9a0b error. Code:" "7" "Message:" "7 PERMISSION_DENIED: Missing or insufficient permissions."
+[00:03:19.874] Server  ERROR   ❌ Analytics error: FirebaseError: [code=permission-denied]: 7 PERMISSION_DENIED: Missing or insufficient permissions.
+[00:03:20.008] Server  WARN    [2025-12-22T15:15:17.127Z]  @firebase/firestore: "Firestore (12.6.0): GrpcConnection" "RPC 'Write' stream 0x16df9a0c error. Code:" "7" "Message:" "7 PERMISSION_DENIED: Missing or insufficient permissions."
+[00:03:20.009] Server  ERROR   Analytics error: FirebaseError: [code=permission-denied]: 7 PERMISSION_DENIED: Missing or insufficient permissions.
+[00:03:47.128] Server  WARN    [2025-12-22T15:15:44.246Z]  @firebase/firestore: "Firestore (12.6.0): GrpcConnection" "RPC 'Write' stream 0x16df9a0d error. Code:" "7" "Message:" "7 PERMISSION_DENIED: Missing or insufficient permissions."
+[00:03:47.129] Server  ERROR   ❌ Analytics error: FirebaseError: [code=permission-denied]: 7 PERMISSION_DENIED: Missing or insufficient permissions.
+[00:03:47.247] Server  WARN    [2025-12-22T15:15:44.366Z]  @firebase/firestore: "Firestore (12.6.0): GrpcConnection" "RPC 'Write' stream 0x16df9a0e error. Code:" "7" "Message:" "7 PERMISSION_DENIED: Missing or insufficient permissions."
+[00:03:47.250] Server  ERROR   Analytics error: FirebaseError: [code=permission-denied]: 7 PERMISSION_DENIED: Missing or insufficient permissions.
+[00:03:47.491] Server  WARN    [2025-12-22T15:15:44.610Z]  @firebase/firestore: "Firestore (12.6.0): GrpcConnection" "RPC 'Write' stream 0x16df9a0f error. Code:" "7" "Message:" "7 PERMISSION_DENIED: Missing or insufficient permissions."
+[00:03:47.492] Server  ERROR   ❌ Analytics error: FirebaseError: [code=permission-denied]: 7 PERMISSION_DENIED: Missing or insufficient permissions.
+[00:03:47.615] Server  WARN    [2025-12-22T15:15:44.734Z]  @firebase/firestore: "Firestore (12.6.0): GrpcConnection" "RPC 'Write' stream 0x16df9a10 error. Code:" "7" "Message:" "7 PERMISSION_DENIED: Missing or insufficient permissions."
+[00:03:47.617] Server  ERROR   Analytics error: FirebaseError: [code=permission-denied]: 7 PERMISSION_DENIED: Missing or insufficient permissions.
+[00:03:47.881] Server  WARN    [2025-12-22T15:15:45.000Z]  @firebase/firestore: "Firestore (12.6.0): GrpcConnection" "RPC 'Write' stream 0x16df9a11 error. Code:" "7" "Message:" "7 PERMISSION_DENIED: Missing or insufficient permissions."
+[00:03:47.882] Server  ERROR   ❌ Analytics error: FirebaseError: [code=permission-denied]: 7 PERMISSION_DENIED: Missing or insufficient permissions.
+[00:03:48.001] Server  WARN    [2025-12-22T15:15:45.120Z]  @firebase/firestore: "Firestore (12.6.0): GrpcConnection" "RPC 'Write' stream 0x16df9a12 error. Code:" "7" "Message:" "7 PERMISSION_DENIED: Missing or insufficient permissions."
+[00:03:48.002] Server  ERROR   Analytics error: FirebaseError: [code=permission-denied]: 7 PERMISSION_DENIED: Missing or insufficient permissions.
+[00:03:48.129] Server  ERROR   Analytics error: FirebaseError: [code=invalid-argument]: Function addDoc() called with invalid data. Unsupported field value: undefined (found in field userId in document flag_analytics/pZ5sAKpE3YJbgdp6JYh9)
+[00:03:48.133] Server  ERROR   Analytics error: FirebaseError: [code=invalid-argument]: Function addDoc() called with invalid data. Unsupported field value: undefined (found in field userId in document flag_analytics/i1dvLCBezS1cPLBMUeQL)
+[00:03:48.712] Server  WARN    [2025-12-22T15:15:45.831Z]  @firebase/firestore: "Firestore (12.6.0): GrpcConnection" "RPC 'Write' stream 0x16df9a13 error. Code:" "7" "Message:" "7 PERMISSION_DENIED: Missing or insufficient permissions."
+[00:03:48.713] Server  ERROR   ❌ Analytics error: FirebaseError: [code=permission-denied]: 7 PERMISSION_DENIED: Missing or insufficient permissions.
+[00:03:48.838] Server  WARN    [2025-12-22T15:15:45.957Z]  @firebase/firestore: "Firestore (12.6.0): GrpcConnection" "RPC 'Write' stream 0x16df9a14 error. Code:" "7" "Message:" "7 PERMISSION_DENIED: Missing or insufficient permissions."
+[00:03:48.841] Server  ERROR   Analytics error: FirebaseError: [code=permission-denied]: 7 PERMISSION_DENIED: Missing or insufficient permissions.
+[00:03:49.071] Server  WARN    [2025-12-22T15:15:46.190Z]  @firebase/firestore: "Firestore (12.6.0): GrpcConnection" "RPC 'Write' stream 0x16df9a15 error. Code:" "7" "Message:" "7 PERMISSION_DENIED: Missing or insufficient permissions."
+[00:03:49.072] Server  ERROR   ❌ Analytics error: FirebaseError: [code=permission-denied]: 7 PERMISSION_DENIED: Missing or insufficient permissions.
+[00:03:49.202] Server  WARN    [2025-12-22T15:15:46.321Z]  @firebase/firestore: "Firestore (12.6.0): GrpcConnection" "RPC 'Write' stream 0x16df9a16 error. Code:" "7" "Message:" "7 PERMISSION_DENIED: Missing or insufficient permissions."
+[00:03:49.203] Server  ERROR   Analytics error: FirebaseError: [code=permission-denied]: 7 PERMISSION_DENIED: Missing or insufficient permissions.
