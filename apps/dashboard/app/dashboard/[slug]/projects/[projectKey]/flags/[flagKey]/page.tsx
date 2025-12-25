@@ -116,7 +116,7 @@ export default function FlagDetailPage() {
       
       if (!valuesSnapshot.empty) {
         const value = valuesSnapshot.docs[0];
-        const data = { id: value.id, ...value.data() };
+        const data = { id: value.id, ...value.data() } as any;
         setFlagValue(data);
         
         // Load targeting if exists

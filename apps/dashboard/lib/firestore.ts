@@ -4,6 +4,7 @@ import {
   serverTimestamp, 
   doc, 
   setDoc,
+  updateDoc,
   query,
   where,
   getDocs

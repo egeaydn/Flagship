@@ -195,7 +195,7 @@ export async function POST(request: NextRequest) {
                    request.headers.get('authorization')?.replace('Bearer ', '');
     
     // Authenticate
-    const auth = await authenticateApiKey(apiKey);
+    const auth = await authenticateApiKey(apiKey ?? null);
     
     if (!auth.valid) {
       return NextResponse.json(
@@ -286,7 +286,7 @@ export async function GET(request: NextRequest) {
                    request.headers.get('authorization')?.replace('Bearer ', '');
     
     // Authenticate
-    const auth = await authenticateApiKey(apiKey);
+    const auth = await authenticateApiKey(apiKey ?? null);
     
     if (!auth.valid) {
       return NextResponse.json(

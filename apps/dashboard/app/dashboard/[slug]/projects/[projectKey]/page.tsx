@@ -162,8 +162,9 @@ export default function ProjectPage() {
       const flagValue = flagValues.find(fv => fv.flagId === flagId && fv.environmentId === selectedEnv);
       const flag = flags.find(f => f.id === flagId);
       
+      const newValue = !currentValue;
+      
       if (flagValue && flag) {
-        const newValue = !currentValue;
         
         // Update flag value
         await updateDoc(doc(db, COLLECTIONS.FLAG_VALUES, flagValue.id), {
