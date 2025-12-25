@@ -1,1 +1,329 @@
-[00:00:01.869] Server  LOG      ✓ Ready in 1363ms
+[00:00:01.681] Server  LOG      ✓ Ready in 1194ms
+[00:05:55.522] Server  LOG      ✓ Compiled in 79ms
+[00:07:06.587] Server  LOG      ✓ Compiled in 42ms
+[00:07:06.692] Browser ERROR   ./Desktop/flagship/apps/dashboard/app/dashboard/[slug]/projects/[projectKey]/webhooks/page.tsx:270:1
+Parsing ecmascript source code failed
+  268 |     </div>
+  269 |   );
+> 270 | }
+      | ^
+  271 |
+  272 | function CreateWebhookModal({
+  273 |   projectKey,
+
+Unexpected token. Did you mean `{'}'}` or `&rbrace;`?
+
+Import traces:
+  Client Component Browser:
+    ./Desktop/flagship/apps/dashboard/app/dashboard/[slug]/projects/[projectKey]/webhooks/page.tsx [Client Component Browser]
+    ./Desktop/flagship/apps/dashboard/app/dashboard/[slug]/projects/[projectKey]/webhooks/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./Desktop/flagship/apps/dashboard/app/dashboard/[slug]/projects/[projectKey]/webhooks/page.tsx [Client Component SSR]
+    ./Desktop/flagship/apps/dashboard/app/dashboard/[slug]/projects/[projectKey]/webhooks/page.tsx [Server Component]
+[00:07:20.390] Browser ERROR   ./Desktop/flagship/apps/dashboard/app/dashboard/[slug]/projects/[projectKey]/webhooks/page.tsx:270:1
+Parsing ecmascript source code failed
+  268 |     </div>
+  269 |   );
+> 270 | }
+      | ^
+  271 |
+  272 | function CreateWebhookModal({
+  273 |   projectKey,
+
+Unexpected token. Did you mean `{'}'}` or `&rbrace;`?
+
+Import traces:
+  Client Component Browser:
+    ./Desktop/flagship/apps/dashboard/app/dashboard/[slug]/projects/[projectKey]/webhooks/page.tsx [Client Component Browser]
+    ./Desktop/flagship/apps/dashboard/app/dashboard/[slug]/projects/[projectKey]/webhooks/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./Desktop/flagship/apps/dashboard/app/dashboard/[slug]/projects/[projectKey]/webhooks/page.tsx [Client Component SSR]
+    ./Desktop/flagship/apps/dashboard/app/dashboard/[slug]/projects/[projectKey]/webhooks/page.tsx [Server Component]
+[00:07:20.390] Browser ERROR   ./Desktop/flagship/apps/dashboard/app/dashboard/[slug]/projects/[projectKey]/webhooks/page.tsx:270:1
+Parsing ecmascript source code failed
+  268 |     </div>
+  269 |   );
+> 270 | }
+      | ^
+  271 |
+  272 | function CreateWebhookModal({
+  273 |   projectKey,
+
+Unexpected token. Did you mean `{'}'}` or `&rbrace;`?
+
+Import traces:
+  Client Component Browser:
+    ./Desktop/flagship/apps/dashboard/app/dashboard/[slug]/projects/[projectKey]/webhooks/page.tsx [Client Component Browser]
+    ./Desktop/flagship/apps/dashboard/app/dashboard/[slug]/projects/[projectKey]/webhooks/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./Desktop/flagship/apps/dashboard/app/dashboard/[slug]/projects/[projectKey]/webhooks/page.tsx [Client Component SSR]
+    ./Desktop/flagship/apps/dashboard/app/dashboard/[slug]/projects/[projectKey]/webhooks/page.tsx [Server Component]
+[00:07:20.390] Browser ERROR   ./Desktop/flagship/apps/dashboard/app/dashboard/[slug]/projects/[projectKey]/webhooks/page.tsx:270:1
+Parsing ecmascript source code failed
+  268 |     </div>
+  269 |   );
+> 270 | }
+      | ^
+  271 |
+  272 | function CreateWebhookModal({
+  273 |   projectKey,
+
+Unexpected token. Did you mean `{'}'}` or `&rbrace;`?
+
+Import traces:
+  Client Component Browser:
+    ./Desktop/flagship/apps/dashboard/app/dashboard/[slug]/projects/[projectKey]/webhooks/page.tsx [Client Component Browser]
+    ./Desktop/flagship/apps/dashboard/app/dashboard/[slug]/projects/[projectKey]/webhooks/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./Desktop/flagship/apps/dashboard/app/dashboard/[slug]/projects/[projectKey]/webhooks/page.tsx [Client Component SSR]
+    ./Desktop/flagship/apps/dashboard/app/dashboard/[slug]/projects/[projectKey]/webhooks/page.tsx [Server Component]
+[00:07:30.401] Server  ERROR    ⨯ ./Desktop/flagship/apps/dashboard/app/dashboard/[slug]/projects/[projectKey]/webhooks/page.tsx:270:1
+Parsing ecmascript source code failed
+  268 |     </div>
+  269 |   );
+> 270 | }
+      | ^
+  271 |
+  272 | function CreateWebhookModal({
+  273 |   projectKey,
+
+Unexpected token. Did you mean `{'}'}` or `&rbrace;`?
+
+Import traces:
+  Client Component Browser:
+    ./Desktop/flagship/apps/dashboard/app/dashboard/[slug]/projects/[projectKey]/webhooks/page.tsx [Client Component Browser]
+    ./Desktop/flagship/apps/dashboard/app/dashboard/[slug]/projects/[projectKey]/webhooks/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./Desktop/flagship/apps/dashboard/app/dashboard/[slug]/projects/[projectKey]/webhooks/page.tsx [Client Component SSR]
+    ./Desktop/flagship/apps/dashboard/app/dashboard/[slug]/projects/[projectKey]/webhooks/page.tsx [Server Component]
+
+
+[00:07:30.512] Browser ERROR   ./Desktop/flagship/apps/dashboard/app/dashboard/[slug]/projects/[projectKey]/webhooks/page.tsx:270:1
+Parsing ecmascript source code failed
+  268 |     </div>
+  269 |   );
+> 270 | }
+      | ^
+  271 |
+  272 | function CreateWebhookModal({
+  273 |   projectKey,
+
+Unexpected token. Did you mean `{'}'}` or `&rbrace;`?
+
+Import traces:
+  Client Component Browser:
+    ./Desktop/flagship/apps/dashboard/app/dashboard/[slug]/projects/[projectKey]/webhooks/page.tsx [Client Component Browser]
+    ./Desktop/flagship/apps/dashboard/app/dashboard/[slug]/projects/[projectKey]/webhooks/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./Desktop/flagship/apps/dashboard/app/dashboard/[slug]/projects/[projectKey]/webhooks/page.tsx [Client Component SSR]
+    ./Desktop/flagship/apps/dashboard/app/dashboard/[slug]/projects/[projectKey]/webhooks/page.tsx [Server Component]
+[00:07:31.025] Browser ERROR   ./Desktop/flagship/apps/dashboard/app/dashboard/[slug]/projects/[projectKey]/webhooks/page.tsx:270:1
+Parsing ecmascript source code failed
+  268 |     </div>
+  269 |   );
+> 270 | }
+      | ^
+  271 |
+  272 | function CreateWebhookModal({
+  273 |   projectKey,
+
+Unexpected token. Did you mean `{'}'}` or `&rbrace;`?
+
+Import traces:
+  Client Component Browser:
+    ./Desktop/flagship/apps/dashboard/app/dashboard/[slug]/projects/[projectKey]/webhooks/page.tsx [Client Component Browser]
+    ./Desktop/flagship/apps/dashboard/app/dashboard/[slug]/projects/[projectKey]/webhooks/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./Desktop/flagship/apps/dashboard/app/dashboard/[slug]/projects/[projectKey]/webhooks/page.tsx [Client Component SSR]
+    ./Desktop/flagship/apps/dashboard/app/dashboard/[slug]/projects/[projectKey]/webhooks/page.tsx [Server Component]
+[00:07:31.025] Browser ERROR   ./Desktop/flagship/apps/dashboard/app/dashboard/[slug]/projects/[projectKey]/webhooks/page.tsx:270:1
+Parsing ecmascript source code failed
+  268 |     </div>
+  269 |   );
+> 270 | }
+      | ^
+  271 |
+  272 | function CreateWebhookModal({
+  273 |   projectKey,
+
+Unexpected token. Did you mean `{'}'}` or `&rbrace;`?
+
+Import traces:
+  Client Component Browser:
+    ./Desktop/flagship/apps/dashboard/app/dashboard/[slug]/projects/[projectKey]/webhooks/page.tsx [Client Component Browser]
+    ./Desktop/flagship/apps/dashboard/app/dashboard/[slug]/projects/[projectKey]/webhooks/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./Desktop/flagship/apps/dashboard/app/dashboard/[slug]/projects/[projectKey]/webhooks/page.tsx [Client Component SSR]
+    ./Desktop/flagship/apps/dashboard/app/dashboard/[slug]/projects/[projectKey]/webhooks/page.tsx [Server Component]
+[00:07:31.461] Browser ERROR   ./Desktop/flagship/apps/dashboard/app/dashboard/[slug]/projects/[projectKey]/webhooks/page.tsx:270:1
+Parsing ecmascript source code failed
+  268 |     </div>
+  269 |   );
+> 270 | }
+      | ^
+  271 |
+  272 | function CreateWebhookModal({
+  273 |   projectKey,
+
+Unexpected token. Did you mean `{'}'}` or `&rbrace;`?
+
+Import traces:
+  Client Component Browser:
+    ./Desktop/flagship/apps/dashboard/app/dashboard/[slug]/projects/[projectKey]/webhooks/page.tsx [Client Component Browser]
+    ./Desktop/flagship/apps/dashboard/app/dashboard/[slug]/projects/[projectKey]/webhooks/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./Desktop/flagship/apps/dashboard/app/dashboard/[slug]/projects/[projectKey]/webhooks/page.tsx [Client Component SSR]
+    ./Desktop/flagship/apps/dashboard/app/dashboard/[slug]/projects/[projectKey]/webhooks/page.tsx [Server Component]
+[00:07:31.657] Browser ERROR   uncaughtError: Error: ./Desktop/flagship/apps/dashboard/app/dashboard/[slug]/projects/[projectKey]/webhooks/page.tsx:270:1
+Parsing ecmascript source code failed
+  268 |     </div>
+  269 |   );
+> 270 | }
+      | ^
+  271 |
+  272 | function CreateWebhookModal({
+  273 |   projectKey,
+
+Unexpected token. Did you mean `{'}'}` or `&rbrace;`?
+
+Import traces:
+  Client Component Browser:
+    ./Desktop/flagship/apps/dashboard/app/dashboard/[slug]/projects/[projectKey]/webhooks/page.tsx [Client Component Browser]
+    ./Desktop/flagship/apps/dashboard/app/dashboard/[slug]/projects/[projectKey]/webhooks/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./Desktop/flagship/apps/dashboard/app/dashboard/[slug]/projects/[projectKey]/webhooks/page.tsx [Client Component SSR]
+    ./Desktop/flagship/apps/dashboard/app/dashboard/[slug]/projects/[projectKey]/webhooks/page.tsx [Server Component]
+
+
+[00:07:31.866] Browser ERROR   ./Desktop/flagship/apps/dashboard/app/dashboard/[slug]/projects/[projectKey]/webhooks/page.tsx:270:1
+Parsing ecmascript source code failed
+  268 |     </div>
+  269 |   );
+> 270 | }
+      | ^
+  271 |
+  272 | function CreateWebhookModal({
+  273 |   projectKey,
+
+Unexpected token. Did you mean `{'}'}` or `&rbrace;`?
+
+Import traces:
+  Client Component Browser:
+    ./Desktop/flagship/apps/dashboard/app/dashboard/[slug]/projects/[projectKey]/webhooks/page.tsx [Client Component Browser]
+    ./Desktop/flagship/apps/dashboard/app/dashboard/[slug]/projects/[projectKey]/webhooks/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./Desktop/flagship/apps/dashboard/app/dashboard/[slug]/projects/[projectKey]/webhooks/page.tsx [Client Component SSR]
+    ./Desktop/flagship/apps/dashboard/app/dashboard/[slug]/projects/[projectKey]/webhooks/page.tsx [Server Component]
+[00:07:31.866] Browser ERROR   ./Desktop/flagship/apps/dashboard/app/dashboard/[slug]/projects/[projectKey]/webhooks/page.tsx:270:1
+Parsing ecmascript source code failed
+  268 |     </div>
+  269 |   );
+> 270 | }
+      | ^
+  271 |
+  272 | function CreateWebhookModal({
+  273 |   projectKey,
+
+Unexpected token. Did you mean `{'}'}` or `&rbrace;`?
+
+Import traces:
+  Client Component Browser:
+    ./Desktop/flagship/apps/dashboard/app/dashboard/[slug]/projects/[projectKey]/webhooks/page.tsx [Client Component Browser]
+    ./Desktop/flagship/apps/dashboard/app/dashboard/[slug]/projects/[projectKey]/webhooks/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./Desktop/flagship/apps/dashboard/app/dashboard/[slug]/projects/[projectKey]/webhooks/page.tsx [Client Component SSR]
+    ./Desktop/flagship/apps/dashboard/app/dashboard/[slug]/projects/[projectKey]/webhooks/page.tsx [Server Component]
+[00:07:35.563] Browser ERROR   ./Desktop/flagship/apps/dashboard/app/dashboard/[slug]/projects/[projectKey]/webhooks/page.tsx:270:1
+Parsing ecmascript source code failed
+  268 |     </div>
+  269 |   );
+> 270 | }
+      | ^
+  271 |
+  272 | function CreateWebhookModal({
+  273 |   projectKey,
+
+Unexpected token. Did you mean `{'}'}` or `&rbrace;`?
+
+Import traces:
+  Client Component Browser:
+    ./Desktop/flagship/apps/dashboard/app/dashboard/[slug]/projects/[projectKey]/webhooks/page.tsx [Client Component Browser]
+    ./Desktop/flagship/apps/dashboard/app/dashboard/[slug]/projects/[projectKey]/webhooks/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./Desktop/flagship/apps/dashboard/app/dashboard/[slug]/projects/[projectKey]/webhooks/page.tsx [Client Component SSR]
+    ./Desktop/flagship/apps/dashboard/app/dashboard/[slug]/projects/[projectKey]/webhooks/page.tsx [Server Component]
+[00:07:35.563] Browser ERROR   ./Desktop/flagship/apps/dashboard/app/dashboard/[slug]/projects/[projectKey]/webhooks/page.tsx:270:1
+Parsing ecmascript source code failed
+  268 |     </div>
+  269 |   );
+> 270 | }
+      | ^
+  271 |
+  272 | function CreateWebhookModal({
+  273 |   projectKey,
+
+Unexpected token. Did you mean `{'}'}` or `&rbrace;`?
+
+Import traces:
+  Client Component Browser:
+    ./Desktop/flagship/apps/dashboard/app/dashboard/[slug]/projects/[projectKey]/webhooks/page.tsx [Client Component Browser]
+    ./Desktop/flagship/apps/dashboard/app/dashboard/[slug]/projects/[projectKey]/webhooks/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./Desktop/flagship/apps/dashboard/app/dashboard/[slug]/projects/[projectKey]/webhooks/page.tsx [Client Component SSR]
+    ./Desktop/flagship/apps/dashboard/app/dashboard/[slug]/projects/[projectKey]/webhooks/page.tsx [Server Component]
+[00:07:36.700] Browser ERROR   ./Desktop/flagship/apps/dashboard/app/dashboard/[slug]/projects/[projectKey]/webhooks/page.tsx:270:1
+Parsing ecmascript source code failed
+  268 |     </div>
+  269 |   );
+> 270 | }
+      | ^
+  271 |
+  272 | function CreateWebhookModal({
+  273 |   projectKey,
+
+Unexpected token. Did you mean `{'}'}` or `&rbrace;`?
+
+Import traces:
+  Client Component Browser:
+    ./Desktop/flagship/apps/dashboard/app/dashboard/[slug]/projects/[projectKey]/webhooks/page.tsx [Client Component Browser]
+    ./Desktop/flagship/apps/dashboard/app/dashboard/[slug]/projects/[projectKey]/webhooks/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./Desktop/flagship/apps/dashboard/app/dashboard/[slug]/projects/[projectKey]/webhooks/page.tsx [Client Component SSR]
+    ./Desktop/flagship/apps/dashboard/app/dashboard/[slug]/projects/[projectKey]/webhooks/page.tsx [Server Component]
+[00:07:36.700] Browser ERROR   ./Desktop/flagship/apps/dashboard/app/dashboard/[slug]/projects/[projectKey]/webhooks/page.tsx:270:1
+Parsing ecmascript source code failed
+  268 |     </div>
+  269 |   );
+> 270 | }
+      | ^
+  271 |
+  272 | function CreateWebhookModal({
+  273 |   projectKey,
+
+Unexpected token. Did you mean `{'}'}` or `&rbrace;`?
+
+Import traces:
+  Client Component Browser:
+    ./Desktop/flagship/apps/dashboard/app/dashboard/[slug]/projects/[projectKey]/webhooks/page.tsx [Client Component Browser]
+    ./Desktop/flagship/apps/dashboard/app/dashboard/[slug]/projects/[projectKey]/webhooks/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./Desktop/flagship/apps/dashboard/app/dashboard/[slug]/projects/[projectKey]/webhooks/page.tsx [Client Component SSR]
+    ./Desktop/flagship/apps/dashboard/app/dashboard/[slug]/projects/[projectKey]/webhooks/page.tsx [Server Component]
+[00:08:03.575] Server  LOG      ✓ Compiled in 109ms
+[00:09:38.850] Server  LOG      ✓ Compiled in 95ms

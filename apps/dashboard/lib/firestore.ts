@@ -216,11 +216,41 @@ export async function createAuditLog(data: {
   ipAddress?: string;
   userAgent?: string;
 }) {
-  return await addDoc(collection(db, COLLECTIONS.AUDIT_LOGS), {
+  const logRef = await addDoc(collection(db, COLLECTIONS.AUDIT_LOGS), {
     ...data,
     timestamp: serverTimestamp(),
     createdAt: serverTimestamp(),
   });
+
+  // Trigger webhooks asynchronously (don't await to avoid slowing down audit log creation)
+  if (data.projectId && data.action) {
+    const { triggerWebhooks, WebhookEvent } = await import('./webhooks');
+    
+    // Map audit log actions to webhook events
+    const eventMap: Record<string, WebhookEvent> = {
+      'FLAG_CREATED': 'flag.created',
+      'FLAG_UPDATED': 'flag.updated',
+      'FLAG_DELETED': 'flag.deleted',
+      'FLAG_TOGGLED': 'flag.toggled',
+      'TARGETING_RULES_UPDATED': 'targeting.updated',
+    };
+
+    const event = eventMap[data.action];
+    
+    if (event) {
+      triggerWebhooks(data.projectId, event, {
+        flagKey: data.metadata?.flagKey || data.resourceName,
+        flagName: data.resourceName,
+        action: data.action,
+        actor: data.userEmail || 'Unknown',
+        changes: data.changes,
+        before: data.changes?.before,
+        after: data.changes?.after,
+      }).catch(err => console.error('Webhook trigger error:', err));
+    }
+  }
+
+  return logRef;
 }
 
 export async function getAuditLogs(organizationId: string, limit: number = 100) {

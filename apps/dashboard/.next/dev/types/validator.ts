@@ -101,6 +101,24 @@ type RouteHandlerConfig<Route extends AppRouteHandlerRoutes = AppRouteHandlerRou
   type __Unused = __Check
 }
 
+// Validate ../../../app/dashboard/[slug]/projects/[projectKey]/webhooks/logs/page.tsx
+{
+  type __IsExpected<Specific extends AppPageConfig<"/dashboard/[slug]/projects/[projectKey]/webhooks/logs">> = Specific
+  const handler = {} as typeof import("../../../app/dashboard/[slug]/projects/[projectKey]/webhooks/logs/page.js")
+  type __Check = __IsExpected<typeof handler>
+  // @ts-ignore
+  type __Unused = __Check
+}
+
+// Validate ../../../app/dashboard/[slug]/projects/[projectKey]/webhooks/page.tsx
+{
+  type __IsExpected<Specific extends AppPageConfig<"/dashboard/[slug]/projects/[projectKey]/webhooks">> = Specific
+  const handler = {} as typeof import("../../../app/dashboard/[slug]/projects/[projectKey]/webhooks/page.js")
+  type __Check = __IsExpected<typeof handler>
+  // @ts-ignore
+  type __Unused = __Check
+}
+
 // Validate ../../../app/dashboard/page.tsx
 {
   type __IsExpected<Specific extends AppPageConfig<"/dashboard">> = Specific
@@ -132,6 +150,15 @@ type RouteHandlerConfig<Route extends AppRouteHandlerRoutes = AppRouteHandlerRou
 {
   type __IsExpected<Specific extends RouteHandlerConfig<"/api/v1/flags">> = Specific
   const handler = {} as typeof import("../../../app/api/v1/flags/route.js")
+  type __Check = __IsExpected<typeof handler>
+  // @ts-ignore
+  type __Unused = __Check
+}
+
+// Validate ../../../app/api/webhooks/test/route.ts
+{
+  type __IsExpected<Specific extends RouteHandlerConfig<"/api/webhooks/test">> = Specific
+  const handler = {} as typeof import("../../../app/api/webhooks/test/route.js")
   type __Check = __IsExpected<typeof handler>
   // @ts-ignore
   type __Unused = __Check

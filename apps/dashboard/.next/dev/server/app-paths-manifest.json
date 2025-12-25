@@ -1,5 +1,10 @@
 {
+  "/_not-found/page": "app/_not-found/page.js",
+  "/dashboard/[slug]/audit-logs/page": "app/dashboard/[slug]/audit-logs/page.js",
   "/dashboard/[slug]/page": "app/dashboard/[slug]/page.js",
+  "/dashboard/[slug]/projects/[projectKey]/api-keys/page": "app/dashboard/[slug]/projects/[projectKey]/api-keys/page.js",
+  "/dashboard/[slug]/projects/[projectKey]/page": "app/dashboard/[slug]/projects/[projectKey]/page.js",
+  "/dashboard/[slug]/projects/[projectKey]/webhooks/page": "app/dashboard/[slug]/projects/[projectKey]/webhooks/page.js",
   "/dashboard/page": "app/dashboard/page.js",
   "/login/page": "app/login/page.js",
   "/page": "app/page.js"

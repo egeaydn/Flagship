@@ -290,6 +290,12 @@ export default function ProjectPage() {
                 📊 Analytics
               </button>
               <button
+                onClick={() => router.push(`/dashboard/${slug}/projects/${projectKey}/webhooks`)}
+                className="px-3 py-1 text-xs sm:text-sm bg-green-100 text-green-700 rounded-md hover:bg-green-200 font-medium"
+              >
+                🪝 Webhooks
+              </button>
+              <button
                 onClick={() => router.push(`/dashboard/${slug}/audit-logs`)}
                 className="px-3 py-1 text-xs sm:text-sm bg-purple-100 text-purple-700 rounded-md hover:bg-purple-200 font-medium"
               >
