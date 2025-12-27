@@ -99,116 +99,204 @@ export default function DashboardPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50">
-      <nav className="bg-white shadow">
+    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100">
+      {/* Modern Top Navigation */}
+      <nav className="bg-white/80 backdrop-blur-md shadow-sm border-b border-gray-200 sticky top-0 z-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between h-16">
-            <div className="flex items-center">
-              <h1 className="text-xl font-bold text-gray-900">Flagship Dashboard</h1>
+          <div className="flex justify-between items-center h-16">
+            <div className="flex items-center space-x-3">
+              <div className="w-10 h-10 bg-gradient-to-br from-[#0066FF] to-[#00B8D4] rounded-lg flex items-center justify-center">
+                <span className="text-xl">🚩</span>
+              </div>
+              <div>
+                <h1 className="text-lg sm:text-xl font-bold bg-gradient-to-r from-[#0066FF] to-[#00B8D4] bg-clip-text text-transparent">
+                  Flagship
+                </h1>
+                <p className="text-xs text-gray-500">Feature Flags Platform</p>
+              </div>
             </div>
-            <div className="flex items-center space-x-4">
-              <span className="text-gray-700">{user?.email}</span>
+            <div className="flex items-center space-x-3">
+              <div className="hidden sm:flex items-center space-x-2 px-3 py-1.5 bg-gradient-to-r from-[#0066FF]/10 to-[#00B8D4]/10 rounded-lg">
+                <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
+                <span className="text-xs font-medium text-gray-700 truncate max-w-[150px]">{user?.email}</span>
+              </div>
               <button
                 onClick={handleLogout}
-                className="px-4 py-2 text-sm font-medium text-white bg-red-600 hover:bg-red-700 rounded-md"
+                className="px-4 py-2 text-sm font-medium text-white bg-gradient-to-r from-red-500 to-red-600 hover:shadow-lg hover:shadow-red-500/40 rounded-lg transition-all duration-300"
               >
-                Çıkış Yap
+                Sign Out
               </button>
             </div>
           </div>
         </div>
       </nav>
 
-      <main className="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
-        <div className="px-4 py-6 sm:px-0">
-          {/* Header */}
-          <div className="flex justify-between items-center mb-6">
-            <h2 className="text-2xl font-bold text-gray-900">Organizations</h2>
+      <main className="max-w-7xl mx-auto py-8 sm:px-6 lg:px-8">
+        <div className="px-4 sm:px-0">
+          {/* Welcome Section */}
+          <div className="mb-8 p-6 bg-gradient-to-r from-[#0066FF] to-[#00B8D4] rounded-2xl shadow-xl text-white">
+            <div className="flex items-center justify-between">
+              <div>
+                <h2 className="text-2xl sm:text-3xl font-bold mb-2">Welcome back! 👋</h2>
+                <p className="text-white/90">Manage your organizations and feature flags</p>
+              </div>
+              <div className="hidden md:block">
+                <div className="w-20 h-20 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center">
+                  <span className="text-4xl">🚀</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Header Section */}
+          <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4 mb-8">
+            <div>
+              <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-2">Organizations</h2>
+              <p className="text-gray-600">Select or create an organization to get started</p>
+            </div>
             <button
               onClick={() => setShowCreateForm(!showCreateForm)}
-              className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 font-medium"
+              className="w-full sm:w-auto px-6 py-3 bg-gradient-to-r from-[#0066FF] to-[#00B8D4] text-white rounded-lg hover:shadow-lg hover:shadow-[#0066FF]/40 font-semibold text-sm sm:text-base transition-all duration-300 transform hover:scale-105"
             >
-              {showCreateForm ? 'İptal' : '+ Yeni Organization'}
+              {showCreateForm ? '✕ Cancel' : '+ New Organization'}
             </button>
           </div>
 
-          {/* Create Form */}
+          {/* Create Form - Modern Glass Card */}
           {showCreateForm && (
-            <div className="bg-white rounded-lg shadow p-6 mb-6">
-              <h3 className="text-lg font-semibold mb-4">Yeni Organization Oluştur</h3>
-              <form onSubmit={handleCreateOrg} className="space-y-4">
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">
-                    Organization Adı
-                  </label>
-                  <input
-                    type="text"
-                    required
-                    value={formData.name}
-                    onChange={(e) => {
-                      setFormData({
-                        name: e.target.value,
-                        slug: generateSlug(e.target.value),
-                      });
-                    }}
-                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                    placeholder="Şirket Adı"
-                  />
+            <div className="mb-8 animate-fadeIn">
+              <div className="bg-white rounded-2xl shadow-xl p-6 sm:p-8 border border-gray-100">
+                <div className="flex items-center justify-between mb-6">
+                  <h3 className="text-xl font-bold text-gray-900">Create New Organization</h3>
+                  <button
+                    onClick={() => setShowCreateForm(false)}
+                    className="text-gray-400 hover:text-gray-600 transition-colors"
+                  >
+                    <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                  </button>
                 </div>
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">
-                    Slug (URL)
-                  </label>
-                  <input
-                    type="text"
-                    required
-                    value={formData.slug}
-                    onChange={(e) => setFormData({ ...formData, slug: e.target.value })}
-                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                    placeholder="sirket-adi"
-                  />
-                  <p className="text-xs text-gray-500 mt-1">
-                    URL: flagship.com/{formData.slug || 'slug'}
-                  </p>
-                </div>
-                <button
-                  type="submit"
-                  disabled={creating}
-                  className="w-full px-4 py-2 bg-green-600 text-white rounded-md hover:bg-green-700 font-medium disabled:opacity-50"
-                >
-                  {creating ? 'Oluşturuluyor...' : 'Oluştur'}
-                </button>
-              </form>
+                <form onSubmit={handleCreateOrg} className="space-y-5">
+                  <div>
+                    <label className="block text-sm font-semibold text-gray-700 mb-2">
+                      Organization Name
+                    </label>
+                    <input
+                      type="text"
+                      required
+                      value={formData.name}
+                      onChange={(e) => {
+                        setFormData({
+                          name: e.target.value,
+                          slug: generateSlug(e.target.value),
+                        });
+                      }}
+                      className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#0066FF] focus:border-transparent transition-all text-gray-900"
+                      placeholder="Acme Inc."
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-semibold text-gray-700 mb-2">
+                      Slug (URL)
+                    </label>
+                    <input
+                      type="text"
+                      required
+                      value={formData.slug}
+                      onChange={(e) => setFormData({ ...formData, slug: e.target.value })}
+                      className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#0066FF] focus:border-transparent transition-all text-gray-900 font-mono text-sm"
+                      placeholder="acme-inc"
+                    />
+                    <p className="text-xs text-gray-500 mt-2 flex items-center">
+                      <span className="mr-1">🔗</span>
+                      URL: <code className="ml-1 text-[#0066FF]">flagship.com/{formData.slug || 'slug'}</code>
+                    </p>
+                  </div>
+                  <button
+                    type="submit"
+                    disabled={creating}
+                    className="w-full px-6 py-3 bg-gradient-to-r from-green-500 to-green-600 text-white rounded-lg hover:shadow-lg hover:shadow-green-500/40 font-semibold disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-300 transform hover:scale-[1.02]"
+                  >
+                    {creating ? (
+                      <span className="flex items-center justify-center">
+                        <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                          <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                          <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                        </svg>
+                        Creating...
+                      </span>
+                    ) : (
+                      '✓ Create Organization'
+                    )}
+                  </button>
+                </form>
+              </div>
             </div>
           )}
 
-          {/* Organizations List */}
+          {/* Organizations List - Modern Cards */}
           {organizations.length === 0 ? (
-            <div className="bg-white rounded-lg shadow p-8 text-center">
-              <p className="text-gray-500 mb-4">Henüz organization oluşturmadınız.</p>
+            <div className="bg-white rounded-2xl shadow-xl p-12 text-center border border-gray-100">
+              <div className="w-20 h-20 mx-auto mb-6 bg-gradient-to-br from-[#0066FF]/10 to-[#00B8D4]/10 rounded-full flex items-center justify-center">
+                <span className="text-4xl">🏢</span>
+              </div>
+              <h3 className="text-xl font-bold text-gray-900 mb-2">No organizations yet</h3>
+              <p className="text-gray-600 mb-6">Create your first organization to start managing feature flags</p>
               <button
                 onClick={() => setShowCreateForm(true)}
-                className="text-blue-600 hover:text-blue-700 font-medium"
+                className="inline-flex items-center px-6 py-3 bg-gradient-to-r from-[#0066FF] to-[#00B8D4] text-white rounded-lg hover:shadow-lg hover:shadow-[#0066FF]/40 font-semibold transition-all duration-300 transform hover:scale-105"
               >
-                İlk organization'ınızı oluşturun →
+                <span className="mr-2">+</span>
+                Create Your First Organization
               </button>
             </div>
           ) : (
-            <div className="grid gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {organizations.map((org) => (
                 <div
                   key={org.id}
-                  className="bg-white rounded-lg shadow p-6 hover:shadow-md transition-shadow cursor-pointer"
                   onClick={() => router.push(`/dashboard/${org.slug}`)}
+                  className="group bg-white rounded-xl shadow-md hover:shadow-xl transition-all duration-300 overflow-hidden border border-gray-100 hover:border-[#0066FF]/30 cursor-pointer"
                 >
-                  <div className="flex justify-between items-start">
-                    <div>
-                      <h3 className="text-lg font-semibold text-gray-900">{org.name}</h3>
-                      <p className="text-sm text-gray-500">/{org.slug}</p>
+                  {/* Card Header with Gradient */}
+                  <div className="h-2 bg-gradient-to-r from-[#0066FF] to-[#00B8D4]"></div>
+                  
+                  {/* Card Content */}
+                  <div className="p-6">
+                    <div className="flex items-start justify-between mb-4">
+                      <div className="flex-1 min-w-0">
+                        <h3 className="text-lg font-bold text-gray-900 group-hover:text-[#0066FF] transition-colors truncate mb-2">
+                          {org.name}
+                        </h3>
+                        <div className="flex items-center text-xs text-gray-500 space-x-1">
+                          <span>🔗</span>
+                          <code className="font-mono bg-gray-100 px-2 py-1 rounded">
+                            /{org.slug}
+                          </code>
+                        </div>
+                      </div>
+                      <div className="ml-3 flex-shrink-0 w-12 h-12 bg-gradient-to-br from-[#0066FF]/10 to-[#00B8D4]/10 rounded-lg flex items-center justify-center group-hover:scale-110 transition-transform">
+                        <span className="text-2xl">🏢</span>
+                      </div>
                     </div>
-                    <span className="text-xs text-gray-400">
-                      {org.createdAt?.toDate?.()?.toLocaleDateString('tr-TR') || 'Yeni'}
-                    </span>
+
+                    {/* Card Footer */}
+                    <div className="flex items-center justify-between pt-4 border-t border-gray-100">
+                      <span className="text-xs text-gray-500">
+                        {org.createdAt?.toDate?.()?.toLocaleDateString('en-US', {
+                          month: 'short',
+                          day: 'numeric',
+                          year: 'numeric'
+                        }) || 'New'}
+                      </span>
+                      <div className="flex items-center text-[#0066FF] group-hover:translate-x-1 transition-transform">
+                        <span className="text-sm font-medium mr-1">Open</span>
+                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                        </svg>
+                      </div>
+                    </div>
                   </div>
                 </div>
               ))}

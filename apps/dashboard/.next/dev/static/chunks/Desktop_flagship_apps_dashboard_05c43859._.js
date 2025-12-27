@@ -191,7 +191,7 @@ async function createApiKey(data) {
 }
 async function revokeApiKey(keyId) {
     const keyRef = (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$flagship$2f$node_modules$2f40$firebase$2f$firestore$2f$dist$2f$index$2e$esm$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["doc"])(__TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$flagship$2f$apps$2f$dashboard$2f$lib$2f$firebase$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["db"], COLLECTIONS.API_KEYS, keyId);
-    await updateDoc(keyRef, {
+    await (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$flagship$2f$node_modules$2f40$firebase$2f$firestore$2f$dist$2f$index$2e$esm$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["updateDoc"])(keyRef, {
         revoked: true,
         updatedAt: (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$flagship$2f$node_modules$2f40$firebase$2f$firestore$2f$dist$2f$index$2e$esm$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["serverTimestamp"])()
     });
@@ -205,11 +205,36 @@ async function getEnvironmentApiKeys(environmentId) {
         }));
 }
 async function createAuditLog(data) {
-    return await (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$flagship$2f$node_modules$2f40$firebase$2f$firestore$2f$dist$2f$index$2e$esm$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["addDoc"])((0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$flagship$2f$node_modules$2f40$firebase$2f$firestore$2f$dist$2f$index$2e$esm$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["collection"])(__TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$flagship$2f$apps$2f$dashboard$2f$lib$2f$firebase$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["db"], COLLECTIONS.AUDIT_LOGS), {
+    const logRef = await (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$flagship$2f$node_modules$2f40$firebase$2f$firestore$2f$dist$2f$index$2e$esm$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["addDoc"])((0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$flagship$2f$node_modules$2f40$firebase$2f$firestore$2f$dist$2f$index$2e$esm$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["collection"])(__TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$flagship$2f$apps$2f$dashboard$2f$lib$2f$firebase$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["db"], COLLECTIONS.AUDIT_LOGS), {
         ...data,
         timestamp: (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$flagship$2f$node_modules$2f40$firebase$2f$firestore$2f$dist$2f$index$2e$esm$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["serverTimestamp"])(),
         createdAt: (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$flagship$2f$node_modules$2f40$firebase$2f$firestore$2f$dist$2f$index$2e$esm$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["serverTimestamp"])()
     });
+    // Trigger webhooks asynchronously (don't await to avoid slowing down audit log creation)
+    if (data.projectId && data.action) {
+        const { triggerWebhooks, WebhookEvent } = await __turbopack_context__.A("[project]/Desktop/flagship/apps/dashboard/lib/webhooks.ts [app-client] (ecmascript, async loader)");
+        // Map audit log actions to webhook events
+        const eventMap = {
+            'FLAG_CREATED': 'flag.created',
+            'FLAG_UPDATED': 'flag.updated',
+            'FLAG_DELETED': 'flag.deleted',
+            'FLAG_TOGGLED': 'flag.toggled',
+            'TARGETING_RULES_UPDATED': 'targeting.updated'
+        };
+        const event = eventMap[data.action];
+        if (event) {
+            triggerWebhooks(data.projectId, event, {
+                flagKey: data.metadata?.flagKey || data.resourceName,
+                flagName: data.resourceName,
+                action: data.action,
+                actor: data.userEmail || 'Unknown',
+                changes: data.changes,
+                before: data.changes?.before,
+                after: data.changes?.after
+            }).catch((err)=>console.error('Webhook trigger error:', err));
+        }
+    }
+    return logRef;
 }
 async function getAuditLogs(organizationId, limit = 100) {
     const logsQuery = (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$flagship$2f$node_modules$2f40$firebase$2f$firestore$2f$dist$2f$index$2e$esm$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["query"])((0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$flagship$2f$node_modules$2f40$firebase$2f$firestore$2f$dist$2f$index$2e$esm$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["collection"])(__TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$flagship$2f$apps$2f$dashboard$2f$lib$2f$firebase$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["db"], COLLECTIONS.AUDIT_LOGS), (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$flagship$2f$node_modules$2f40$firebase$2f$firestore$2f$dist$2f$index$2e$esm$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["where"])('organizationId', '==', organizationId));
@@ -297,9 +322,11 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$flagship$2f$apps$
 var __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$flagship$2f$apps$2f$dashboard$2f$lib$2f$firestore$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/Desktop/flagship/apps/dashboard/lib/firestore.ts [app-client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$flagship$2f$node_modules$2f$firebase$2f$auth$2f$dist$2f$esm$2f$index$2e$esm$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$locals$3e$__ = __turbopack_context__.i("[project]/Desktop/flagship/node_modules/firebase/auth/dist/esm/index.esm.js [app-client] (ecmascript) <locals>");
 var __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$flagship$2f$node_modules$2f40$firebase$2f$auth$2f$dist$2f$esm$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/Desktop/flagship/node_modules/@firebase/auth/dist/esm/index.js [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$flagship$2f$node_modules$2f$react$2d$hot$2d$toast$2f$dist$2f$index$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/Desktop/flagship/node_modules/react-hot-toast/dist/index.mjs [app-client] (ecmascript)");
 ;
 var _s = __turbopack_context__.k.signature();
 'use client';
+;
 ;
 ;
 ;
@@ -447,10 +474,10 @@ function FlagDetailPage() {
                     after: targeting
                 }
             });
-            alert('Targeting rules saved!');
+            __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$flagship$2f$node_modules$2f$react$2d$hot$2d$toast$2f$dist$2f$index$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"].success('✅ Targeting rules saved successfully!');
         } catch (error) {
             console.error('Error saving targeting:', error);
-            alert('Failed to save targeting rules');
+            __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$flagship$2f$node_modules$2f$react$2d$hot$2d$toast$2f$dist$2f$index$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"].error('❌ Failed to save targeting rules');
         }
     }
     function addRule() {
@@ -533,17 +560,17 @@ function FlagDetailPage() {
                     children: "Loading..."
                 }, void 0, false, {
                     fileName: "[project]/Desktop/flagship/apps/dashboard/app/dashboard/[slug]/projects/[projectKey]/flags/[flagKey]/page.tsx",
-                    lineNumber: 263,
+                    lineNumber: 264,
                     columnNumber: 11
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/Desktop/flagship/apps/dashboard/app/dashboard/[slug]/projects/[projectKey]/flags/[flagKey]/page.tsx",
-                lineNumber: 262,
+                lineNumber: 263,
                 columnNumber: 9
             }, this)
         }, void 0, false, {
             fileName: "[project]/Desktop/flagship/apps/dashboard/app/dashboard/[slug]/projects/[projectKey]/flags/[flagKey]/page.tsx",
-            lineNumber: 261,
+            lineNumber: 262,
             columnNumber: 7
         }, this);
     }
@@ -562,7 +589,7 @@ function FlagDetailPage() {
                             children: "← Back to Project"
                         }, void 0, false, {
                             fileName: "[project]/Desktop/flagship/apps/dashboard/app/dashboard/[slug]/projects/[projectKey]/flags/[flagKey]/page.tsx",
-                            lineNumber: 276,
+                            lineNumber: 277,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$flagship$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -574,7 +601,7 @@ function FlagDetailPage() {
                                         children: flag.name
                                     }, void 0, false, {
                                         fileName: "[project]/Desktop/flagship/apps/dashboard/app/dashboard/[slug]/projects/[projectKey]/flags/[flagKey]/page.tsx",
-                                        lineNumber: 285,
+                                        lineNumber: 286,
                                         columnNumber: 15
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$flagship$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -582,7 +609,7 @@ function FlagDetailPage() {
                                         children: flag.description || 'No description'
                                     }, void 0, false, {
                                         fileName: "[project]/Desktop/flagship/apps/dashboard/app/dashboard/[slug]/projects/[projectKey]/flags/[flagKey]/page.tsx",
-                                        lineNumber: 286,
+                                        lineNumber: 287,
                                         columnNumber: 15
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$flagship$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -596,7 +623,7 @@ function FlagDetailPage() {
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/Desktop/flagship/apps/dashboard/app/dashboard/[slug]/projects/[projectKey]/flags/[flagKey]/page.tsx",
-                                                lineNumber: 288,
+                                                lineNumber: 289,
                                                 columnNumber: 17
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$flagship$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -604,30 +631,30 @@ function FlagDetailPage() {
                                                 children: flag.flagType
                                             }, void 0, false, {
                                                 fileName: "[project]/Desktop/flagship/apps/dashboard/app/dashboard/[slug]/projects/[projectKey]/flags/[flagKey]/page.tsx",
-                                                lineNumber: 291,
+                                                lineNumber: 292,
                                                 columnNumber: 17
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/Desktop/flagship/apps/dashboard/app/dashboard/[slug]/projects/[projectKey]/flags/[flagKey]/page.tsx",
-                                        lineNumber: 287,
+                                        lineNumber: 288,
                                         columnNumber: 15
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/Desktop/flagship/apps/dashboard/app/dashboard/[slug]/projects/[projectKey]/flags/[flagKey]/page.tsx",
-                                lineNumber: 284,
+                                lineNumber: 285,
                                 columnNumber: 13
                             }, this)
                         }, void 0, false, {
                             fileName: "[project]/Desktop/flagship/apps/dashboard/app/dashboard/[slug]/projects/[projectKey]/flags/[flagKey]/page.tsx",
-                            lineNumber: 283,
+                            lineNumber: 284,
                             columnNumber: 11
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/Desktop/flagship/apps/dashboard/app/dashboard/[slug]/projects/[projectKey]/flags/[flagKey]/page.tsx",
-                    lineNumber: 275,
+                    lineNumber: 276,
                     columnNumber: 9
                 }, this),
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$flagship$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -638,7 +665,7 @@ function FlagDetailPage() {
                             children: "Environment"
                         }, void 0, false, {
                             fileName: "[project]/Desktop/flagship/apps/dashboard/app/dashboard/[slug]/projects/[projectKey]/flags/[flagKey]/page.tsx",
-                            lineNumber: 301,
+                            lineNumber: 302,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$flagship$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("select", {
@@ -650,18 +677,18 @@ function FlagDetailPage() {
                                     children: env.name
                                 }, env.id, false, {
                                     fileName: "[project]/Desktop/flagship/apps/dashboard/app/dashboard/[slug]/projects/[projectKey]/flags/[flagKey]/page.tsx",
-                                    lineNumber: 310,
+                                    lineNumber: 311,
                                     columnNumber: 15
                                 }, this))
                         }, void 0, false, {
                             fileName: "[project]/Desktop/flagship/apps/dashboard/app/dashboard/[slug]/projects/[projectKey]/flags/[flagKey]/page.tsx",
-                            lineNumber: 304,
+                            lineNumber: 305,
                             columnNumber: 11
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/Desktop/flagship/apps/dashboard/app/dashboard/[slug]/projects/[projectKey]/flags/[flagKey]/page.tsx",
-                    lineNumber: 300,
+                    lineNumber: 301,
                     columnNumber: 9
                 }, this),
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$flagship$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -675,7 +702,7 @@ function FlagDetailPage() {
                                 children: "Settings"
                             }, void 0, false, {
                                 fileName: "[project]/Desktop/flagship/apps/dashboard/app/dashboard/[slug]/projects/[projectKey]/flags/[flagKey]/page.tsx",
-                                lineNumber: 320,
+                                lineNumber: 321,
                                 columnNumber: 13
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$flagship$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -684,18 +711,18 @@ function FlagDetailPage() {
                                 children: "🎯 Targeting Rules"
                             }, void 0, false, {
                                 fileName: "[project]/Desktop/flagship/apps/dashboard/app/dashboard/[slug]/projects/[projectKey]/flags/[flagKey]/page.tsx",
-                                lineNumber: 330,
+                                lineNumber: 331,
                                 columnNumber: 13
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/Desktop/flagship/apps/dashboard/app/dashboard/[slug]/projects/[projectKey]/flags/[flagKey]/page.tsx",
-                        lineNumber: 319,
+                        lineNumber: 320,
                         columnNumber: 11
                     }, this)
                 }, void 0, false, {
                     fileName: "[project]/Desktop/flagship/apps/dashboard/app/dashboard/[slug]/projects/[projectKey]/flags/[flagKey]/page.tsx",
-                    lineNumber: 318,
+                    lineNumber: 319,
                     columnNumber: 9
                 }, this),
                 activeTab === 'settings' && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$flagship$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -711,7 +738,7 @@ function FlagDetailPage() {
                                             children: "Flag Status"
                                         }, void 0, false, {
                                             fileName: "[project]/Desktop/flagship/apps/dashboard/app/dashboard/[slug]/projects/[projectKey]/flags/[flagKey]/page.tsx",
-                                            lineNumber: 348,
+                                            lineNumber: 349,
                                             columnNumber: 17
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$flagship$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -719,13 +746,13 @@ function FlagDetailPage() {
                                             children: "Enable or disable this flag"
                                         }, void 0, false, {
                                             fileName: "[project]/Desktop/flagship/apps/dashboard/app/dashboard/[slug]/projects/[projectKey]/flags/[flagKey]/page.tsx",
-                                            lineNumber: 349,
+                                            lineNumber: 350,
                                             columnNumber: 17
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/Desktop/flagship/apps/dashboard/app/dashboard/[slug]/projects/[projectKey]/flags/[flagKey]/page.tsx",
-                                    lineNumber: 347,
+                                    lineNumber: 348,
                                     columnNumber: 15
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$flagship$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -735,18 +762,18 @@ function FlagDetailPage() {
                                         className: `inline-block h-6 w-6 transform rounded-full bg-white shadow transition-transform ${flagValue?.enabled ? 'translate-x-7' : 'translate-x-1'}`
                                     }, void 0, false, {
                                         fileName: "[project]/Desktop/flagship/apps/dashboard/app/dashboard/[slug]/projects/[projectKey]/flags/[flagKey]/page.tsx",
-                                        lineNumber: 357,
+                                        lineNumber: 358,
                                         columnNumber: 17
                                     }, this)
                                 }, void 0, false, {
                                     fileName: "[project]/Desktop/flagship/apps/dashboard/app/dashboard/[slug]/projects/[projectKey]/flags/[flagKey]/page.tsx",
-                                    lineNumber: 351,
+                                    lineNumber: 352,
                                     columnNumber: 15
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/Desktop/flagship/apps/dashboard/app/dashboard/[slug]/projects/[projectKey]/flags/[flagKey]/page.tsx",
-                            lineNumber: 346,
+                            lineNumber: 347,
                             columnNumber: 13
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$flagship$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -756,7 +783,7 @@ function FlagDetailPage() {
                                     children: "Flag Value"
                                 }, void 0, false, {
                                     fileName: "[project]/Desktop/flagship/apps/dashboard/app/dashboard/[slug]/projects/[projectKey]/flags/[flagKey]/page.tsx",
-                                    lineNumber: 366,
+                                    lineNumber: 367,
                                     columnNumber: 15
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$flagship$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -766,24 +793,24 @@ function FlagDetailPage() {
                                         children: JSON.stringify(flagValue?.value, null, 2)
                                     }, void 0, false, {
                                         fileName: "[project]/Desktop/flagship/apps/dashboard/app/dashboard/[slug]/projects/[projectKey]/flags/[flagKey]/page.tsx",
-                                        lineNumber: 368,
+                                        lineNumber: 369,
                                         columnNumber: 17
                                     }, this)
                                 }, void 0, false, {
                                     fileName: "[project]/Desktop/flagship/apps/dashboard/app/dashboard/[slug]/projects/[projectKey]/flags/[flagKey]/page.tsx",
-                                    lineNumber: 367,
+                                    lineNumber: 368,
                                     columnNumber: 15
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/Desktop/flagship/apps/dashboard/app/dashboard/[slug]/projects/[projectKey]/flags/[flagKey]/page.tsx",
-                            lineNumber: 365,
+                            lineNumber: 366,
                             columnNumber: 13
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/Desktop/flagship/apps/dashboard/app/dashboard/[slug]/projects/[projectKey]/flags/[flagKey]/page.tsx",
-                    lineNumber: 345,
+                    lineNumber: 346,
                     columnNumber: 11
                 }, this),
                 activeTab === 'targeting' && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$flagship$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -801,7 +828,7 @@ function FlagDetailPage() {
                                                 children: "Enable Targeting"
                                             }, void 0, false, {
                                                 fileName: "[project]/Desktop/flagship/apps/dashboard/app/dashboard/[slug]/projects/[projectKey]/flags/[flagKey]/page.tsx",
-                                                lineNumber: 383,
+                                                lineNumber: 384,
                                                 columnNumber: 19
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$flagship$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -809,13 +836,13 @@ function FlagDetailPage() {
                                                 children: "Use rules to target specific users"
                                             }, void 0, false, {
                                                 fileName: "[project]/Desktop/flagship/apps/dashboard/app/dashboard/[slug]/projects/[projectKey]/flags/[flagKey]/page.tsx",
-                                                lineNumber: 384,
+                                                lineNumber: 385,
                                                 columnNumber: 19
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/Desktop/flagship/apps/dashboard/app/dashboard/[slug]/projects/[projectKey]/flags/[flagKey]/page.tsx",
-                                        lineNumber: 382,
+                                        lineNumber: 383,
                                         columnNumber: 17
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$flagship$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -828,23 +855,23 @@ function FlagDetailPage() {
                                             className: `inline-block h-6 w-6 transform rounded-full bg-white shadow transition-transform ${targeting.enabled ? 'translate-x-7' : 'translate-x-1'}`
                                         }, void 0, false, {
                                             fileName: "[project]/Desktop/flagship/apps/dashboard/app/dashboard/[slug]/projects/[projectKey]/flags/[flagKey]/page.tsx",
-                                            lineNumber: 392,
+                                            lineNumber: 393,
                                             columnNumber: 19
                                         }, this)
                                     }, void 0, false, {
                                         fileName: "[project]/Desktop/flagship/apps/dashboard/app/dashboard/[slug]/projects/[projectKey]/flags/[flagKey]/page.tsx",
-                                        lineNumber: 386,
+                                        lineNumber: 387,
                                         columnNumber: 17
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/Desktop/flagship/apps/dashboard/app/dashboard/[slug]/projects/[projectKey]/flags/[flagKey]/page.tsx",
-                                lineNumber: 381,
+                                lineNumber: 382,
                                 columnNumber: 15
                             }, this)
                         }, void 0, false, {
                             fileName: "[project]/Desktop/flagship/apps/dashboard/app/dashboard/[slug]/projects/[projectKey]/flags/[flagKey]/page.tsx",
-                            lineNumber: 380,
+                            lineNumber: 381,
                             columnNumber: 13
                         }, this),
                         targeting.enabled && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$flagship$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$flagship$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Fragment"], {
@@ -860,7 +887,7 @@ function FlagDetailPage() {
                                                     children: "Targeting Rules"
                                                 }, void 0, false, {
                                                     fileName: "[project]/Desktop/flagship/apps/dashboard/app/dashboard/[slug]/projects/[projectKey]/flags/[flagKey]/page.tsx",
-                                                    lineNumber: 406,
+                                                    lineNumber: 407,
                                                     columnNumber: 21
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$flagship$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -869,13 +896,13 @@ function FlagDetailPage() {
                                                     children: "+ Add Rule"
                                                 }, void 0, false, {
                                                     fileName: "[project]/Desktop/flagship/apps/dashboard/app/dashboard/[slug]/projects/[projectKey]/flags/[flagKey]/page.tsx",
-                                                    lineNumber: 407,
+                                                    lineNumber: 408,
                                                     columnNumber: 21
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/Desktop/flagship/apps/dashboard/app/dashboard/[slug]/projects/[projectKey]/flags/[flagKey]/page.tsx",
-                                            lineNumber: 405,
+                                            lineNumber: 406,
                                             columnNumber: 19
                                         }, this),
                                         targeting.rules.length === 0 ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$flagship$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -883,7 +910,7 @@ function FlagDetailPage() {
                                             children: "No rules yet. Add a rule to start targeting specific users."
                                         }, void 0, false, {
                                             fileName: "[project]/Desktop/flagship/apps/dashboard/app/dashboard/[slug]/projects/[projectKey]/flags/[flagKey]/page.tsx",
-                                            lineNumber: 416,
+                                            lineNumber: 417,
                                             columnNumber: 21
                                         }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$flagship$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                             className: "space-y-4",
@@ -905,7 +932,7 @@ function FlagDetailPage() {
                                                                         className: "w-full px-4 py-2 border-2 border-gray-300 rounded-lg bg-white text-gray-900 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                                                                     }, void 0, false, {
                                                                         fileName: "[project]/Desktop/flagship/apps/dashboard/app/dashboard/[slug]/projects/[projectKey]/flags/[flagKey]/page.tsx",
-                                                                        lineNumber: 425,
+                                                                        lineNumber: 426,
                                                                         columnNumber: 31
                                                                     }, this),
                                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$flagship$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -919,7 +946,7 @@ function FlagDetailPage() {
                                                                                         children: "Conditions (ALL must match)"
                                                                                     }, void 0, false, {
                                                                                         fileName: "[project]/Desktop/flagship/apps/dashboard/app/dashboard/[slug]/projects/[projectKey]/flags/[flagKey]/page.tsx",
-                                                                                        lineNumber: 436,
+                                                                                        lineNumber: 437,
                                                                                         columnNumber: 35
                                                                                     }, this),
                                                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$flagship$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -928,13 +955,13 @@ function FlagDetailPage() {
                                                                                         children: "+ Add Condition"
                                                                                     }, void 0, false, {
                                                                                         fileName: "[project]/Desktop/flagship/apps/dashboard/app/dashboard/[slug]/projects/[projectKey]/flags/[flagKey]/page.tsx",
-                                                                                        lineNumber: 439,
+                                                                                        lineNumber: 440,
                                                                                         columnNumber: 35
                                                                                     }, this)
                                                                                 ]
                                                                             }, void 0, true, {
                                                                                 fileName: "[project]/Desktop/flagship/apps/dashboard/app/dashboard/[slug]/projects/[projectKey]/flags/[flagKey]/page.tsx",
-                                                                                lineNumber: 435,
+                                                                                lineNumber: 436,
                                                                                 columnNumber: 33
                                                                             }, this),
                                                                             rule.conditions.map((condition, condIndex)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$flagship$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -950,7 +977,7 @@ function FlagDetailPage() {
                                                                                             className: "flex-1 px-3 py-2 border border-gray-300 rounded-lg text-sm bg-white text-gray-900"
                                                                                         }, void 0, false, {
                                                                                             fileName: "[project]/Desktop/flagship/apps/dashboard/app/dashboard/[slug]/projects/[projectKey]/flags/[flagKey]/page.tsx",
-                                                                                            lineNumber: 449,
+                                                                                            lineNumber: 450,
                                                                                             columnNumber: 37
                                                                                         }, this),
                                                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$flagship$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("select", {
@@ -965,7 +992,7 @@ function FlagDetailPage() {
                                                                                                     children: "equals"
                                                                                                 }, void 0, false, {
                                                                                                     fileName: "[project]/Desktop/flagship/apps/dashboard/app/dashboard/[slug]/projects/[projectKey]/flags/[flagKey]/page.tsx",
-                                                                                                    lineNumber: 461,
+                                                                                                    lineNumber: 462,
                                                                                                     columnNumber: 39
                                                                                                 }, this),
                                                                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$flagship$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("option", {
@@ -973,7 +1000,7 @@ function FlagDetailPage() {
                                                                                                     children: "not equals"
                                                                                                 }, void 0, false, {
                                                                                                     fileName: "[project]/Desktop/flagship/apps/dashboard/app/dashboard/[slug]/projects/[projectKey]/flags/[flagKey]/page.tsx",
-                                                                                                    lineNumber: 462,
+                                                                                                    lineNumber: 463,
                                                                                                     columnNumber: 39
                                                                                                 }, this),
                                                                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$flagship$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("option", {
@@ -981,7 +1008,7 @@ function FlagDetailPage() {
                                                                                                     children: "contains"
                                                                                                 }, void 0, false, {
                                                                                                     fileName: "[project]/Desktop/flagship/apps/dashboard/app/dashboard/[slug]/projects/[projectKey]/flags/[flagKey]/page.tsx",
-                                                                                                    lineNumber: 463,
+                                                                                                    lineNumber: 464,
                                                                                                     columnNumber: 39
                                                                                                 }, this),
                                                                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$flagship$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("option", {
@@ -989,7 +1016,7 @@ function FlagDetailPage() {
                                                                                                     children: "in"
                                                                                                 }, void 0, false, {
                                                                                                     fileName: "[project]/Desktop/flagship/apps/dashboard/app/dashboard/[slug]/projects/[projectKey]/flags/[flagKey]/page.tsx",
-                                                                                                    lineNumber: 464,
+                                                                                                    lineNumber: 465,
                                                                                                     columnNumber: 39
                                                                                                 }, this),
                                                                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$flagship$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("option", {
@@ -997,7 +1024,7 @@ function FlagDetailPage() {
                                                                                                     children: "greater than"
                                                                                                 }, void 0, false, {
                                                                                                     fileName: "[project]/Desktop/flagship/apps/dashboard/app/dashboard/[slug]/projects/[projectKey]/flags/[flagKey]/page.tsx",
-                                                                                                    lineNumber: 465,
+                                                                                                    lineNumber: 466,
                                                                                                     columnNumber: 39
                                                                                                 }, this),
                                                                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$flagship$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("option", {
@@ -1005,7 +1032,7 @@ function FlagDetailPage() {
                                                                                                     children: "less than"
                                                                                                 }, void 0, false, {
                                                                                                     fileName: "[project]/Desktop/flagship/apps/dashboard/app/dashboard/[slug]/projects/[projectKey]/flags/[flagKey]/page.tsx",
-                                                                                                    lineNumber: 466,
+                                                                                                    lineNumber: 467,
                                                                                                     columnNumber: 39
                                                                                                 }, this),
                                                                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$flagship$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("option", {
@@ -1013,7 +1040,7 @@ function FlagDetailPage() {
                                                                                                     children: "≥"
                                                                                                 }, void 0, false, {
                                                                                                     fileName: "[project]/Desktop/flagship/apps/dashboard/app/dashboard/[slug]/projects/[projectKey]/flags/[flagKey]/page.tsx",
-                                                                                                    lineNumber: 467,
+                                                                                                    lineNumber: 468,
                                                                                                     columnNumber: 39
                                                                                                 }, this),
                                                                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$flagship$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("option", {
@@ -1021,13 +1048,13 @@ function FlagDetailPage() {
                                                                                                     children: "≤"
                                                                                                 }, void 0, false, {
                                                                                                     fileName: "[project]/Desktop/flagship/apps/dashboard/app/dashboard/[slug]/projects/[projectKey]/flags/[flagKey]/page.tsx",
-                                                                                                    lineNumber: 468,
+                                                                                                    lineNumber: 469,
                                                                                                     columnNumber: 39
                                                                                                 }, this)
                                                                                             ]
                                                                                         }, void 0, true, {
                                                                                             fileName: "[project]/Desktop/flagship/apps/dashboard/app/dashboard/[slug]/projects/[projectKey]/flags/[flagKey]/page.tsx",
-                                                                                            lineNumber: 456,
+                                                                                            lineNumber: 457,
                                                                                             columnNumber: 37
                                                                                         }, this),
                                                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$flagship$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
@@ -1040,7 +1067,7 @@ function FlagDetailPage() {
                                                                                             className: "flex-1 px-3 py-2 border border-gray-300 rounded-lg text-sm bg-white text-gray-900"
                                                                                         }, void 0, false, {
                                                                                             fileName: "[project]/Desktop/flagship/apps/dashboard/app/dashboard/[slug]/projects/[projectKey]/flags/[flagKey]/page.tsx",
-                                                                                            lineNumber: 470,
+                                                                                            lineNumber: 471,
                                                                                             columnNumber: 37
                                                                                         }, this),
                                                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$flagship$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -1049,19 +1076,19 @@ function FlagDetailPage() {
                                                                                             children: "×"
                                                                                         }, void 0, false, {
                                                                                             fileName: "[project]/Desktop/flagship/apps/dashboard/app/dashboard/[slug]/projects/[projectKey]/flags/[flagKey]/page.tsx",
-                                                                                            lineNumber: 477,
+                                                                                            lineNumber: 478,
                                                                                             columnNumber: 37
                                                                                         }, this)
                                                                                     ]
                                                                                 }, condIndex, true, {
                                                                                     fileName: "[project]/Desktop/flagship/apps/dashboard/app/dashboard/[slug]/projects/[projectKey]/flags/[flagKey]/page.tsx",
-                                                                                    lineNumber: 448,
+                                                                                    lineNumber: 449,
                                                                                     columnNumber: 35
                                                                                 }, this))
                                                                         ]
                                                                     }, void 0, true, {
                                                                         fileName: "[project]/Desktop/flagship/apps/dashboard/app/dashboard/[slug]/projects/[projectKey]/flags/[flagKey]/page.tsx",
-                                                                        lineNumber: 434,
+                                                                        lineNumber: 435,
                                                                         columnNumber: 31
                                                                     }, this),
                                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$flagship$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1076,7 +1103,7 @@ function FlagDetailPage() {
                                                                                 ]
                                                                             }, void 0, true, {
                                                                                 fileName: "[project]/Desktop/flagship/apps/dashboard/app/dashboard/[slug]/projects/[projectKey]/flags/[flagKey]/page.tsx",
-                                                                                lineNumber: 489,
+                                                                                lineNumber: 490,
                                                                                 columnNumber: 33
                                                                             }, this),
                                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$flagship$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
@@ -1090,13 +1117,13 @@ function FlagDetailPage() {
                                                                                 className: "w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer"
                                                                             }, void 0, false, {
                                                                                 fileName: "[project]/Desktop/flagship/apps/dashboard/app/dashboard/[slug]/projects/[projectKey]/flags/[flagKey]/page.tsx",
-                                                                                lineNumber: 492,
+                                                                                lineNumber: 493,
                                                                                 columnNumber: 33
                                                                             }, this)
                                                                         ]
                                                                     }, void 0, true, {
                                                                         fileName: "[project]/Desktop/flagship/apps/dashboard/app/dashboard/[slug]/projects/[projectKey]/flags/[flagKey]/page.tsx",
-                                                                        lineNumber: 488,
+                                                                        lineNumber: 489,
                                                                         columnNumber: 31
                                                                     }, this),
                                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$flagship$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1106,7 +1133,7 @@ function FlagDetailPage() {
                                                                                 children: "Return Value"
                                                                             }, void 0, false, {
                                                                                 fileName: "[project]/Desktop/flagship/apps/dashboard/app/dashboard/[slug]/projects/[projectKey]/flags/[flagKey]/page.tsx",
-                                                                                lineNumber: 504,
+                                                                                lineNumber: 505,
                                                                                 columnNumber: 33
                                                                             }, this),
                                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$flagship$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
@@ -1122,19 +1149,19 @@ function FlagDetailPage() {
                                                                                 className: "w-full px-4 py-2 border-2 border-gray-300 rounded-lg text-sm font-mono bg-white text-gray-900"
                                                                             }, void 0, false, {
                                                                                 fileName: "[project]/Desktop/flagship/apps/dashboard/app/dashboard/[slug]/projects/[projectKey]/flags/[flagKey]/page.tsx",
-                                                                                lineNumber: 507,
+                                                                                lineNumber: 508,
                                                                                 columnNumber: 33
                                                                             }, this)
                                                                         ]
                                                                     }, void 0, true, {
                                                                         fileName: "[project]/Desktop/flagship/apps/dashboard/app/dashboard/[slug]/projects/[projectKey]/flags/[flagKey]/page.tsx",
-                                                                        lineNumber: 503,
+                                                                        lineNumber: 504,
                                                                         columnNumber: 31
                                                                     }, this)
                                                                 ]
                                                             }, void 0, true, {
                                                                 fileName: "[project]/Desktop/flagship/apps/dashboard/app/dashboard/[slug]/projects/[projectKey]/flags/[flagKey]/page.tsx",
-                                                                lineNumber: 424,
+                                                                lineNumber: 425,
                                                                 columnNumber: 29
                                                             }, this),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$flagship$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -1143,29 +1170,29 @@ function FlagDetailPage() {
                                                                 children: "🗑️"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/Desktop/flagship/apps/dashboard/app/dashboard/[slug]/projects/[projectKey]/flags/[flagKey]/page.tsx",
-                                                                lineNumber: 520,
+                                                                lineNumber: 521,
                                                                 columnNumber: 29
                                                             }, this)
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/Desktop/flagship/apps/dashboard/app/dashboard/[slug]/projects/[projectKey]/flags/[flagKey]/page.tsx",
-                                                        lineNumber: 423,
+                                                        lineNumber: 424,
                                                         columnNumber: 27
                                                     }, this)
                                                 }, rule.id, false, {
                                                     fileName: "[project]/Desktop/flagship/apps/dashboard/app/dashboard/[slug]/projects/[projectKey]/flags/[flagKey]/page.tsx",
-                                                    lineNumber: 422,
+                                                    lineNumber: 423,
                                                     columnNumber: 25
                                                 }, this))
                                         }, void 0, false, {
                                             fileName: "[project]/Desktop/flagship/apps/dashboard/app/dashboard/[slug]/projects/[projectKey]/flags/[flagKey]/page.tsx",
-                                            lineNumber: 420,
+                                            lineNumber: 421,
                                             columnNumber: 21
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/Desktop/flagship/apps/dashboard/app/dashboard/[slug]/projects/[projectKey]/flags/[flagKey]/page.tsx",
-                                    lineNumber: 404,
+                                    lineNumber: 405,
                                     columnNumber: 17
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$flagship$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1176,7 +1203,7 @@ function FlagDetailPage() {
                                             children: "Default Rule"
                                         }, void 0, false, {
                                             fileName: "[project]/Desktop/flagship/apps/dashboard/app/dashboard/[slug]/projects/[projectKey]/flags/[flagKey]/page.tsx",
-                                            lineNumber: 535,
+                                            lineNumber: 536,
                                             columnNumber: 19
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$flagship$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -1184,7 +1211,7 @@ function FlagDetailPage() {
                                             children: "Applied when no rules match"
                                         }, void 0, false, {
                                             fileName: "[project]/Desktop/flagship/apps/dashboard/app/dashboard/[slug]/projects/[projectKey]/flags/[flagKey]/page.tsx",
-                                            lineNumber: 536,
+                                            lineNumber: 537,
                                             columnNumber: 19
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$flagship$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1202,7 +1229,7 @@ function FlagDetailPage() {
                                                             ]
                                                         }, void 0, true, {
                                                             fileName: "[project]/Desktop/flagship/apps/dashboard/app/dashboard/[slug]/projects/[projectKey]/flags/[flagKey]/page.tsx",
-                                                            lineNumber: 542,
+                                                            lineNumber: 543,
                                                             columnNumber: 23
                                                         }, this),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$flagship$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
@@ -1220,13 +1247,13 @@ function FlagDetailPage() {
                                                             className: "w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer"
                                                         }, void 0, false, {
                                                             fileName: "[project]/Desktop/flagship/apps/dashboard/app/dashboard/[slug]/projects/[projectKey]/flags/[flagKey]/page.tsx",
-                                                            lineNumber: 545,
+                                                            lineNumber: 546,
                                                             columnNumber: 23
                                                         }, this)
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/Desktop/flagship/apps/dashboard/app/dashboard/[slug]/projects/[projectKey]/flags/[flagKey]/page.tsx",
-                                                    lineNumber: 541,
+                                                    lineNumber: 542,
                                                     columnNumber: 21
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$flagship$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1236,7 +1263,7 @@ function FlagDetailPage() {
                                                             children: "Default Value"
                                                         }, void 0, false, {
                                                             fileName: "[project]/Desktop/flagship/apps/dashboard/app/dashboard/[slug]/projects/[projectKey]/flags/[flagKey]/page.tsx",
-                                                            lineNumber: 562,
+                                                            lineNumber: 563,
                                                             columnNumber: 23
                                                         }, this),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$flagship$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
@@ -1256,25 +1283,25 @@ function FlagDetailPage() {
                                                             className: "w-full px-4 py-2 border-2 border-gray-300 rounded-lg font-mono bg-white text-gray-900"
                                                         }, void 0, false, {
                                                             fileName: "[project]/Desktop/flagship/apps/dashboard/app/dashboard/[slug]/projects/[projectKey]/flags/[flagKey]/page.tsx",
-                                                            lineNumber: 565,
+                                                            lineNumber: 566,
                                                             columnNumber: 23
                                                         }, this)
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/Desktop/flagship/apps/dashboard/app/dashboard/[slug]/projects/[projectKey]/flags/[flagKey]/page.tsx",
-                                                    lineNumber: 561,
+                                                    lineNumber: 562,
                                                     columnNumber: 21
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/Desktop/flagship/apps/dashboard/app/dashboard/[slug]/projects/[projectKey]/flags/[flagKey]/page.tsx",
-                                            lineNumber: 540,
+                                            lineNumber: 541,
                                             columnNumber: 19
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/Desktop/flagship/apps/dashboard/app/dashboard/[slug]/projects/[projectKey]/flags/[flagKey]/page.tsx",
-                                    lineNumber: 534,
+                                    lineNumber: 535,
                                     columnNumber: 17
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$flagship$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -1283,7 +1310,7 @@ function FlagDetailPage() {
                                     children: "💾 Save Targeting Rules"
                                 }, void 0, false, {
                                     fileName: "[project]/Desktop/flagship/apps/dashboard/app/dashboard/[slug]/projects/[projectKey]/flags/[flagKey]/page.tsx",
-                                    lineNumber: 586,
+                                    lineNumber: 587,
                                     columnNumber: 17
                                 }, this)
                             ]
@@ -1291,18 +1318,18 @@ function FlagDetailPage() {
                     ]
                 }, void 0, true, {
                     fileName: "[project]/Desktop/flagship/apps/dashboard/app/dashboard/[slug]/projects/[projectKey]/flags/[flagKey]/page.tsx",
-                    lineNumber: 378,
+                    lineNumber: 379,
                     columnNumber: 11
                 }, this)
             ]
         }, void 0, true, {
             fileName: "[project]/Desktop/flagship/apps/dashboard/app/dashboard/[slug]/projects/[projectKey]/flags/[flagKey]/page.tsx",
-            lineNumber: 273,
+            lineNumber: 274,
             columnNumber: 7
         }, this)
     }, void 0, false, {
         fileName: "[project]/Desktop/flagship/apps/dashboard/app/dashboard/[slug]/projects/[projectKey]/flags/[flagKey]/page.tsx",
-        lineNumber: 272,
+        lineNumber: 273,
         columnNumber: 5
     }, this);
 }
