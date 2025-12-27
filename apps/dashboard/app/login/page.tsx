@@ -44,8 +44,9 @@ export default function LoginPage() {
       {/* Navigation */}
       <div className="absolute top-0 left-0 right-0 p-6">
         <div className="max-w-7xl mx-auto flex justify-between items-center">
-          <Link href="/" className="text-2xl font-bold gradient-text hover:opacity-80 transition-opacity">
-            🚩 Flagship
+          <Link href="/" className="flex items-center space-x-2 hover:opacity-80 transition-opacity">
+            <img src="/FlagShip-logo-transparent.png" alt="Flagship" className="w-10 h-10 object-contain" />
+            <span className="text-2xl font-bold gradient-text">Flagship</span>
           </Link>
         </div>
       </div>
@@ -55,8 +56,8 @@ export default function LoginPage() {
         <div className="glass p-8 rounded-2xl shadow-2xl border border-white/20">
           {/* Header */}
           <div className="text-center mb-8">
-            <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-[#0066FF] to-[#00B8D4] rounded-full mb-4">
-              <span className="text-3xl">🚩</span>
+            <div className="inline-flex items-center justify-center w-16 h-16 mb-4">
+              <img src="/FlagShip-logo-transparent.png" alt="Flagship" className="w-16 h-16 object-contain" />
             </div>
             <h2 className="text-3xl font-bold text-white mb-2">
               {isSignup ? 'Create Account' : 'Welcome Back'}

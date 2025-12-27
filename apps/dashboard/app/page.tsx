@@ -35,8 +35,8 @@ export default function Home() {
       <nav className="fixed top-0 w-full bg-white/10 backdrop-blur-md border-b border-white/20 z-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
-            <div className="flex items-center space-x-2">
-              <div className="text-2xl">🚀</div>
+            <div className="flex items-center space-x-3">
+              <img src="/FlagShip-logo-transparent.png" alt="Flagship" className="w-10 h-10 object-contain" />
               <span className="text-2xl font-bold text-white">Flagship</span>
             </div>
             <div className="flex items-center space-x-4">

@@ -123,9 +123,11 @@ export default function DashboardNav({ user, organization, project }: DashboardN
 
               {/* Logo */}
               <Link href="/dashboard" className="flex items-center space-x-2 group">
-                <div className="w-10 h-10 bg-gradient-to-br from-[#0066FF] to-[#00B8D4] rounded-lg flex items-center justify-center group-hover:scale-110 transition-transform">
-                  <span className="text-xl">🚩</span>
-                </div>
+                <img 
+                  src="/FlagShip-logo-transparent.png" 
+                  alt="Flagship Logo" 
+                  className="w-10 h-10 object-contain group-hover:scale-110 transition-transform"
+                />
                 <div className="hidden sm:block">
                   <h1 className="text-lg font-bold bg-gradient-to-r from-[#0066FF] to-[#00B8D4] bg-clip-text text-transparent">
                     Flagship
