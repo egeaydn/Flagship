@@ -1,4 +1,109 @@
-[00:00:01.264] Server  LOG      ✓ Ready in 840ms
-[00:00:27.089] Server  LOG      ✓ Compiled in 104ms
-[00:01:01.435] Browser WARN    Detected `scroll-behavior: smooth` on the `<html>` element. To disable smooth scrolling during route transitions, add `data-scroll-behavior="smooth"` to your <html> element. Learn more: https://nextjs.org/docs/messages/missing-data-scroll-behavior
-[00:01:54.992] Server  LOG      ✓ Compiled in 52ms
+[00:00:01.174] Server  LOG      ✓ Ready in 826ms
+[00:00:07.879] Browser WARN    Detected `scroll-behavior: smooth` on the `<html>` element. To disable smooth scrolling during route transitions, add `data-scroll-behavior="smooth"` to your <html> element. Learn more: https://nextjs.org/docs/messages/missing-data-scroll-behavior
+[00:00:14.882] Server  ERROR    ⨯ ./Desktop/Proje Klosörü/React/flagship/apps/dashboard/app/dashboard/[slug]/projects/[projectKey]/flags/[flagKey]/page.tsx:646:29
+Parsing ecmascript source code failed
+  644 |                               onClick={() => removeRule(rule.id)}
+  645 |                               className="ml-4 w-10 h-10 flex items-center justify-center text-red-600 hover:bg-red-50 rounded-lg transition-colors shrink-0">
+> 646 |                             >
+      |                             ^
+  647 |                               <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+  648 |                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+  649 |                               </svg>
+
+Unexpected token. Did you mean `{'>'}` or `&gt;`?
+
+
+[00:00:14.997] Browser ERROR   ./Desktop/Proje Klosörü/React/flagship/apps/dashboard/app/dashboard/[slug]/projects/[projectKey]/flags/[flagKey]/page.tsx:646:29
+Parsing ecmascript source code failed
+  644 |                               onClick={() => removeRule(rule.id)}
+  645 |                               className="ml-4 w-10 h-10 flex items-center justify-center text-red-600 hover:bg-red-50 rounded-lg transition-colors shrink-0">
+> 646 |                             >
+      |                             ^
+  647 |                               <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+  648 |                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+  649 |                               </svg>
+
+Unexpected token. Did you mean `{'>'}` or `&gt;`?
+[00:00:15.641] Browser ERROR   ./Desktop/Proje Klosörü/React/flagship/apps/dashboard/app/dashboard/[slug]/projects/[projectKey]/flags/[flagKey]/page.tsx:646:29
+Parsing ecmascript source code failed
+  644 |                               onClick={() => removeRule(rule.id)}
+  645 |                               className="ml-4 w-10 h-10 flex items-center justify-center text-red-600 hover:bg-red-50 rounded-lg transition-colors shrink-0">
+> 646 |                             >
+      |                             ^
+  647 |                               <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+  648 |                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+  649 |                               </svg>
+
+Unexpected token. Did you mean `{'>'}` or `&gt;`?
+[00:00:15.796] Browser ERROR   ./Desktop/Proje Klosörü/React/flagship/apps/dashboard/app/dashboard/[slug]/projects/[projectKey]/flags/[flagKey]/page.tsx:646:29
+Parsing ecmascript source code failed
+  644 |                               onClick={() => removeRule(rule.id)}
+  645 |                               className="ml-4 w-10 h-10 flex items-center justify-center text-red-600 hover:bg-red-50 rounded-lg transition-colors shrink-0">
+> 646 |                             >
+      |                             ^
+  647 |                               <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+  648 |                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+  649 |                               </svg>
+
+Unexpected token. Did you mean `{'>'}` or `&gt;`?
+[00:00:16.228] Browser ERROR   ./Desktop/Proje Klosörü/React/flagship/apps/dashboard/app/dashboard/[slug]/projects/[projectKey]/flags/[flagKey]/page.tsx:646:29
+Parsing ecmascript source code failed
+  644 |                               onClick={() => removeRule(rule.id)}
+  645 |                               className="ml-4 w-10 h-10 flex items-center justify-center text-red-600 hover:bg-red-50 rounded-lg transition-colors shrink-0">
+> 646 |                             >
+      |                             ^
+  647 |                               <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+  648 |                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+  649 |                               </svg>
+
+Unexpected token. Did you mean `{'>'}` or `&gt;`?
+[00:00:16.259] Server  ERROR    ⨯ ./Desktop/Proje Klosörü/React/flagship/apps/dashboard/app/dashboard/[slug]/projects/[projectKey]/flags/[flagKey]/page.tsx:646:29
+Parsing ecmascript source code failed
+  644 |                               onClick={() => removeRule(rule.id)}
+  645 |                               className="ml-4 w-10 h-10 flex items-center justify-center text-red-600 hover:bg-red-50 rounded-lg transition-colors shrink-0">
+> 646 |                             >
+      |                             ^
+  647 |                               <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+  648 |                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+  649 |                               </svg>
+
+Unexpected token. Did you mean `{'>'}` or `&gt;`?
+
+
+[00:00:16.576] Browser ERROR   uncaughtError: Error: ./Desktop/Proje Klosörü/React/flagship/apps/dashboard/app/dashboard/[slug]/projects/[projectKey]/flags/[flagKey]/page.tsx:646:29
+Parsing ecmascript source code failed
+  644 |                               onClick={() => removeRule(rule.id)}
+  645 |                               className="ml-4 w-10 h-10 flex items-center justify-center text-red-600 hover:bg-red-50 rounded-lg transition-colors shrink-0">
+> 646 |                             >
+      |                             ^
+  647 |                               <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+  648 |                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+  649 |                               </svg>
+
+Unexpected token. Did you mean `{'>'}` or `&gt;`?
+
+
+[00:00:16.768] Browser ERROR   ./Desktop/Proje Klosörü/React/flagship/apps/dashboard/app/dashboard/[slug]/projects/[projectKey]/flags/[flagKey]/page.tsx:646:29
+Parsing ecmascript source code failed
+  644 |                               onClick={() => removeRule(rule.id)}
+  645 |                               className="ml-4 w-10 h-10 flex items-center justify-center text-red-600 hover:bg-red-50 rounded-lg transition-colors shrink-0">
+> 646 |                             >
+      |                             ^
+  647 |                               <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+  648 |                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+  649 |                               </svg>
+
+Unexpected token. Did you mean `{'>'}` or `&gt;`?
+[00:00:16.768] Browser ERROR   ./Desktop/Proje Klosörü/React/flagship/apps/dashboard/app/dashboard/[slug]/projects/[projectKey]/flags/[flagKey]/page.tsx:646:29
+Parsing ecmascript source code failed
+  644 |                               onClick={() => removeRule(rule.id)}
+  645 |                               className="ml-4 w-10 h-10 flex items-center justify-center text-red-600 hover:bg-red-50 rounded-lg transition-colors shrink-0">
+> 646 |                             >
+      |                             ^
+  647 |                               <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+  648 |                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+  649 |                               </svg>
+
+Unexpected token. Did you mean `{'>'}` or `&gt;`?
+[00:00:42.827] Server  LOG      ✓ Compiled in 69ms
+[00:01:03.398] Browser WARN    Detected `scroll-behavior: smooth` on the `<html>` element. To disable smooth scrolling during route transitions, add `data-scroll-behavior="smooth"` to your <html> element. Learn more: https://nextjs.org/docs/messages/missing-data-scroll-behavior

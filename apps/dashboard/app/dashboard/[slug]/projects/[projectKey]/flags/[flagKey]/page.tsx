@@ -259,9 +259,10 @@ export default function FlagDetailPage() {
 
   if (loading) {
     return (
-      <div className="p-8">
-        <div className="max-w-5xl mx-auto">
-          <p className="text-gray-500">Loading...</p>
+      <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 flex items-center justify-center">
+        <div className="text-center">
+          <div className="w-16 h-16 mx-auto mb-4 border-4 border-[#0066FF] border-t-transparent rounded-full animate-spin"></div>
+          <p className="text-gray-600 font-medium">Loading...</p>
         </div>
       </div>
     );
@@ -270,27 +271,54 @@ export default function FlagDetailPage() {
   if (!flag) return null;
 
   return (
-    <div className="min-h-screen bg-gray-50 p-8">
-      <div className="max-w-5xl mx-auto">
-        {/* Header */}
-        <div className="mb-6">
-          <button
-            onClick={() => router.push(`/dashboard/${params.slug}/projects/${params.projectKey}`)}
-            className="text-blue-600 hover:text-blue-700 mb-4 flex items-center gap-2 font-medium"
-          >
-            ← Back to Project
-          </button>
-          
-          <div className="flex items-start justify-between bg-white p-6 rounded-lg shadow">
-            <div>
-              <h1 className="text-3xl font-bold text-gray-900">{flag.name}</h1>
-              <p className="text-gray-600 mt-2">{flag.description || 'No description'}</p>
-              <div className="flex gap-2 mt-3">
-                <span className="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-sm font-medium">
-                  Key: {flag.key}
+    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100">
+      {/* Modern Top Navigation */}
+      <nav className="bg-white/80 backdrop-blur-md shadow-sm border-b border-gray-200 sticky top-0 z-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex justify-between items-center h-16">
+            <div className="flex items-center space-x-3">
+              <button
+                onClick={() => router.push(`/dashboard/${params.slug}/projects/${params.projectKey}`)}
+                className="flex items-center space-x-2 text-gray-600 hover:text-[#0066FF] transition-colors"
+              >
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+                </svg>
+                <span className="font-medium">Back to Project</span>
+              </button>
+            </div>
+            <div className="flex items-center space-x-3">
+              <div className="px-3 py-1.5 bg-gradient-to-r from-[#0066FF]/10 to-[#00B8D4]/10 rounded-lg">
+                <span className="text-xs font-medium text-gray-700">Flag Details</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </nav>
+
+      <main className="max-w-7xl mx-auto py-8 px-4 sm:px-6 lg:px-8">
+        {/* Header Card */}
+        <div className="mb-8 bg-gradient-to-r from-[#0066FF] to-[#00B8D4] rounded-2xl shadow-xl text-white p-8">
+          <div className="flex items-start justify-between">
+            <div className="flex-1">
+              <div className="flex items-center space-x-3 mb-3">
+                <div className="w-12 h-12 bg-white/20 backdrop-blur-sm rounded-xl flex items-center justify-center">
+                  <span className="text-2xl">🚩</span>
+                </div>
+                <div>
+                  <h1 className="text-3xl sm:text-4xl font-bold">{flag.name}</h1>
+                  <p className="text-white/80 text-sm mt-1">Feature Flag Configuration</p>
+                </div>
+              </div>
+              <p className="text-white/90 mt-4 text-lg">{flag.description || 'No description provided'}</p>
+              <div className="flex flex-wrap gap-2 mt-4">
+                <span className="px-4 py-2 bg-white/20 backdrop-blur-sm text-white rounded-lg text-sm font-medium flex items-center space-x-2">
+                  <span>🔑</span>
+                  <span>{flag.key}</span>
                 </span>
-                <span className="px-3 py-1 bg-blue-100 text-blue-700 rounded-full text-sm font-medium">
-                  {flag.flagType}
+                <span className="px-4 py-2 bg-white/20 backdrop-blur-sm text-white rounded-lg text-sm font-medium flex items-center space-x-2">
+                  <span>📝</span>
+                  <span className="capitalize">{flag.flagType}</span>
                 </span>
               </div>
             </div>
@@ -298,77 +326,133 @@ export default function FlagDetailPage() {
         </div>
 
         {/* Environment Selector */}
-        <div className="mb-6 bg-white p-4 rounded-lg shadow">
-          <label className="block text-sm font-medium text-gray-700 mb-2">
-            Environment
-          </label>
-          <select
-            value={selectedEnv}
-            onChange={(e) => setSelectedEnv(e.target.value)}
-            className="px-4 py-2 border border-gray-300 rounded-lg bg-white text-gray-900 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-          >
-            {environments.map(env => (
-              <option key={env.id} value={env.id}>
-                {env.name}
-              </option>
-            ))}
-          </select>
+        <div className="mb-8">
+          <div className="bg-white rounded-xl shadow-md p-6 border border-gray-100">
+            <label className="block text-sm font-semibold text-gray-700 mb-3">
+              Select Environment
+            </label>
+            <select
+              value={selectedEnv}
+              onChange={(e) => setSelectedEnv(e.target.value)}
+              className="w-full sm:w-auto px-4 py-3 bg-gray-50 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#0066FF] focus:border-transparent transition-all text-gray-900 font-medium"
+            >
+              {environments.map(env => (
+                <option key={env.id} value={env.id}>
+                  {env.name}
+                </option>
+              ))}
+            </select>
+          </div>
         </div>
 
         {/* Tabs */}
-        <div className="bg-white rounded-lg shadow mb-6">
-          <div className="flex gap-1 p-2">
-            <button
-              onClick={() => setActiveTab('settings')}
-              className={`flex-1 px-4 py-2 font-medium rounded-lg transition-colors ${
-                activeTab === 'settings'
-                  ? 'bg-blue-600 text-white'
-                  : 'bg-white text-gray-600 hover:bg-gray-100'
-              }`}
-            >
-              Settings
-            </button>
-            <button
-              onClick={() => setActiveTab('targeting')}
-              className={`flex-1 px-4 py-2 font-medium rounded-lg transition-colors ${
-                activeTab === 'targeting'
-                  ? 'bg-blue-600 text-white'
-                  : 'bg-white text-gray-600 hover:bg-gray-100'
-              }`}
-            >
-              🎯 Targeting Rules
-            </button>
+        <div className="mb-8">
+          <div className="bg-white rounded-xl shadow-md p-2 border border-gray-100">
+            <div className="flex gap-2">
+              <button
+                onClick={() => setActiveTab('settings')}
+                className={`flex-1 px-6 py-3 font-semibold rounded-lg transition-all duration-300 transform ${
+                  activeTab === 'settings'
+                    ? 'bg-gradient-to-r from-[#0066FF] to-[#00B8D4] text-white shadow-lg scale-105'
+                    : 'bg-gray-50 text-gray-600 hover:bg-gray-100'
+                }`}
+              >
+                ⚙️ Settings
+              </button>
+              <button
+                onClick={() => setActiveTab('targeting')}
+                className={`flex-1 px-6 py-3 font-semibold rounded-lg transition-all duration-300 transform ${
+                  activeTab === 'targeting'
+                    ? 'bg-gradient-to-r from-[#0066FF] to-[#00B8D4] text-white shadow-lg scale-105'
+                    : 'bg-gray-50 text-gray-600 hover:bg-gray-100'
+                }`}
+              >
+                🎯 Targeting Rules
+              </button>
+            </div>
           </div>
         </div>
 
         {/* Settings Tab */}
         {activeTab === 'settings' && (
-          <div className="bg-white rounded-lg shadow p-6">
-            <div className="flex items-center justify-between mb-6 pb-6 border-b">
-              <div>
-                <h3 className="text-lg font-semibold text-gray-900">Flag Status</h3>
-                <p className="text-sm text-gray-600 mt-1">Enable or disable this flag</p>
-              </div>
-              <button
-                onClick={handleToggle}
-                className={`relative inline-flex h-8 w-14 items-center rounded-full transition-colors ${
-                  flagValue?.enabled ? 'bg-green-600' : 'bg-gray-300'
-                }`}
-              >
-                <span
-                  className={`inline-block h-6 w-6 transform rounded-full bg-white shadow transition-transform ${
-                    flagValue?.enabled ? 'translate-x-7' : 'translate-x-1'
+          <div className="space-y-6">
+            {/* Flag Status Card */}
+            <div className="bg-white rounded-xl shadow-md p-8 border border-gray-100">
+              <div className="flex items-center justify-between mb-6">
+                <div>
+                  <h3 className="text-xl font-bold text-gray-900 flex items-center space-x-2">
+                    <span>⚡</span>
+                    <span>Flag Status</span>
+                  </h3>
+                  <p className="text-sm text-gray-600 mt-1">Enable or disable this feature flag</p>
+                </div>
+                <button
+                  onClick={handleToggle}
+                  className={`relative inline-flex h-10 w-20 items-center rounded-full transition-all duration-300 transform hover:scale-110 shadow-lg ${
+                    flagValue?.enabled 
+                      ? 'bg-gradient-to-r from-green-500 to-green-600 shadow-green-500/40' 
+                      : 'bg-gray-300 shadow-gray-300/40'
                   }`}
-                />
-              </button>
+                >
+                  <span
+                    className={`inline-block h-8 w-8 transform rounded-full bg-white shadow-lg transition-transform duration-300 ${
+                      flagValue?.enabled ? 'translate-x-11' : 'translate-x-1'
+                    }`}
+                  />
+                </button>
+              </div>
+              
+              <div className={`p-4 rounded-lg ${
+                flagValue?.enabled 
+                  ? 'bg-gradient-to-r from-green-50 to-green-100 border border-green-200' 
+                  : 'bg-gray-50 border border-gray-200'
+              }`}>
+                <div className="flex items-center space-x-3">
+                  <div className={`w-3 h-3 rounded-full ${
+                    flagValue?.enabled ? 'bg-green-500 animate-pulse' : 'bg-gray-400'
+                  }`}></div>
+                  <span className={`font-semibold ${
+                    flagValue?.enabled ? 'text-green-700' : 'text-gray-600'
+                  }`}>
+                    {flagValue?.enabled ? 'Flag is Active' : 'Flag is Inactive'}
+                  </span>
+                </div>
+              </div>
             </div>
 
-            <div>
-              <h3 className="text-lg font-semibold text-gray-900 mb-4">Flag Value</h3>
-              <div className="bg-gray-50 border border-gray-200 p-4 rounded-lg">
-                <pre className="text-sm text-gray-800 font-mono">
+            {/* Flag Value Card */}
+            <div className="bg-white rounded-xl shadow-md p-8 border border-gray-100">
+              <div className="mb-6">
+                <h3 className="text-xl font-bold text-gray-900 flex items-center space-x-2">
+                  <span>📊</span>
+                  <span>Current Value</span>
+                </h3>
+                <p className="text-sm text-gray-600 mt-1">The value returned when this flag is evaluated</p>
+              </div>
+              
+              <div className="bg-gradient-to-br from-gray-50 to-gray-100 border-2 border-gray-200 p-6 rounded-xl">
+                <pre className="text-sm text-gray-800 font-mono overflow-x-auto">
                   {JSON.stringify(flagValue?.value, null, 2)}
                 </pre>
+              </div>
+
+              <div className="mt-6 grid grid-cols-1 sm:grid-cols-3 gap-4">
+                <div className="bg-gradient-to-br from-blue-50 to-blue-100 p-4 rounded-lg border border-blue-200">
+                  <p className="text-xs text-blue-600 font-medium mb-1">Type</p>
+                  <p className="text-lg font-bold text-blue-900 capitalize">{flag.flagType}</p>
+                </div>
+                <div className="bg-gradient-to-br from-purple-50 to-purple-100 p-4 rounded-lg border border-purple-200">
+                  <p className="text-xs text-purple-600 font-medium mb-1">Environment</p>
+                  <p className="text-lg font-bold text-purple-900">
+                    {environments.find(e => e.id === selectedEnv)?.name || 'Unknown'}
+                  </p>
+                </div>
+                <div className="bg-gradient-to-br from-orange-50 to-orange-100 p-4 rounded-lg border border-orange-200">
+                  <p className="text-xs text-orange-600 font-medium mb-1">Status</p>
+                  <p className="text-lg font-bold text-orange-900">
+                    {flagValue?.enabled ? 'Enabled' : 'Disabled'}
+                  </p>
+                </div>
               </div>
             </div>
           </div>
@@ -377,22 +461,27 @@ export default function FlagDetailPage() {
         {/* Targeting Tab */}
         {activeTab === 'targeting' && (
           <div className="space-y-6">
-            {/* Enable Targeting */}
-            <div className="bg-white rounded-lg shadow p-6">
+            {/* Enable Targeting Card */}
+            <div className="bg-white rounded-xl shadow-md p-8 border border-gray-100">
               <div className="flex items-center justify-between">
                 <div>
-                  <h3 className="text-lg font-semibold text-gray-900">Enable Targeting</h3>
-                  <p className="text-sm text-gray-600 mt-1">Use rules to target specific users</p>
+                  <h3 className="text-xl font-bold text-gray-900 flex items-center space-x-2">
+                    <span>🎯</span>
+                    <span>Enable Targeting</span>
+                  </h3>
+                  <p className="text-sm text-gray-600 mt-1">Use rules to target specific users and segments</p>
                 </div>
                 <button
                   onClick={() => setTargeting({ ...targeting, enabled: !targeting.enabled })}
-                  className={`relative inline-flex h-8 w-14 items-center rounded-full transition-colors ${
-                    targeting.enabled ? 'bg-green-600' : 'bg-gray-300'
+                  className={`relative inline-flex h-10 w-20 items-center rounded-full transition-all duration-300 transform hover:scale-110 shadow-lg ${
+                    targeting.enabled 
+                      ? 'bg-gradient-to-r from-green-500 to-green-600 shadow-green-500/40' 
+                      : 'bg-gray-300 shadow-gray-300/40'
                   }`}
                 >
                   <span
-                    className={`inline-block h-6 w-6 transform rounded-full bg-white shadow transition-transform ${
-                      targeting.enabled ? 'translate-x-7' : 'translate-x-1'
+                    className={`inline-block h-8 w-8 transform rounded-full bg-white shadow-lg transition-transform duration-300 ${
+                      targeting.enabled ? 'translate-x-11' : 'translate-x-1'
                     }`}
                   />
                 </button>
@@ -401,63 +490,86 @@ export default function FlagDetailPage() {
 
             {targeting.enabled && (
               <>
-                {/* Rules */}
-                <div className="bg-white rounded-lg shadow p-6">
+                {/* Rules Section */}
+                <div className="bg-white rounded-xl shadow-md p-8 border border-gray-100">
                   <div className="flex items-center justify-between mb-6">
-                    <h3 className="text-lg font-semibold text-gray-900">Targeting Rules</h3>
+                    <div>
+                      <h3 className="text-xl font-bold text-gray-900 flex items-center space-x-2">
+                        <span>📋</span>
+                        <span>Targeting Rules</span>
+                      </h3>
+                      <p className="text-sm text-gray-600 mt-1">Define conditions for user targeting</p>
+                    </div>
                     <button
                       onClick={addRule}
-                      className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 font-medium shadow-sm"
+                      className="px-6 py-3 bg-gradient-to-r from-[#0066FF] to-[#00B8D4] text-white rounded-lg hover:shadow-lg hover:shadow-[#0066FF]/40 font-semibold transition-all duration-300 transform hover:scale-105"
                     >
                       + Add Rule
                     </button>
                   </div>
 
                   {targeting.rules.length === 0 ? (
-                    <p className="text-gray-500 text-center py-8 bg-gray-50 rounded-lg border-2 border-dashed border-gray-300">
-                      No rules yet. Add a rule to start targeting specific users.
-                    </p>
+                    <div className="text-center py-16">
+                      <div className="w-20 h-20 mx-auto mb-6 bg-gradient-to-br from-gray-100 to-gray-200 rounded-full flex items-center justify-center">
+                        <span className="text-4xl">🎯</span>
+                      </div>
+                      <h4 className="text-lg font-bold text-gray-900 mb-2">No targeting rules yet</h4>
+                      <p className="text-gray-600 mb-6">Add a rule to start targeting specific users or segments</p>
+                      <button
+                        onClick={addRule}
+                        className="inline-flex items-center px-6 py-3 bg-gradient-to-r from-[#0066FF] to-[#00B8D4] text-white rounded-lg hover:shadow-lg hover:shadow-[#0066FF]/40 font-semibold transition-all duration-300 transform hover:scale-105"
+                      >
+                        + Create Your First Rule
+                      </button>
+                    </div>
                   ) : (
-                    <div className="space-y-4">
+                    <div className="space-y-6">
                       {targeting.rules.map((rule, ruleIndex) => (
-                        <div key={rule.id} className="border-2 border-gray-200 rounded-lg p-5 space-y-4 bg-gray-50">
+                        <div key={rule.id} className="bg-gradient-to-br from-gray-50 to-gray-100 border-2 border-gray-200 rounded-xl p-6 space-y-5 hover:border-[#0066FF]/30 transition-all">
                           <div className="flex items-start justify-between">
-                            <div className="flex-1 space-y-4">
-                              <input
-                                type="text"
-                                value={rule.description}
-                                onChange={(e) => updateRule(rule.id, { description: e.target.value })}
-                                placeholder="Rule description"
-                                className="w-full px-4 py-2 border-2 border-gray-300 rounded-lg bg-white text-gray-900 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                              />
+                            <div className="flex-1 space-y-5">
+                              {/* Rule Description */}
+                              <div>
+                                <label className="block text-xs font-semibold text-gray-700 mb-2">
+                                  Rule Description
+                                </label>
+                                <input
+                                  type="text"
+                                  value={rule.description}
+                                  onChange={(e) => updateRule(rule.id, { description: e.target.value })}
+                                  placeholder="e.g., Premium users rule"
+                                  className="w-full px-4 py-3 bg-white border-2 border-gray-200 rounded-lg text-gray-900 focus:outline-none focus:ring-2 focus:ring-[#0066FF] focus:border-transparent transition-all font-medium"
+                                />
+                              </div>
 
                               {/* Conditions */}
                               <div className="space-y-3">
                                 <div className="flex items-center justify-between">
-                                  <label className="text-sm font-semibold text-gray-900">
-                                    Conditions (ALL must match)
+                                  <label className="text-sm font-bold text-gray-900 flex items-center space-x-2">
+                                    <span>🔧</span>
+                                    <span>Conditions (ALL must match)</span>
                                   </label>
                                   <button
                                     onClick={() => addCondition(rule.id)}
-                                    className="text-sm text-blue-600 hover:text-blue-700 font-medium"
+                                    className="text-sm text-[#0066FF] hover:text-[#00B8D4] font-semibold transition-colors"
                                   >
                                     + Add Condition
                                   </button>
                                 </div>
 
                                 {rule.conditions.map((condition, condIndex) => (
-                                  <div key={condIndex} className="flex gap-2 items-center bg-white p-3 rounded-lg border border-gray-300">
+                                  <div key={condIndex} className="flex gap-2 items-center bg-white p-4 rounded-lg border-2 border-gray-200 hover:border-[#0066FF]/30 transition-all">
                                     <input
                                       type="text"
                                       value={condition.attribute}
                                       onChange={(e) => updateCondition(rule.id, condIndex, { attribute: e.target.value })}
                                       placeholder="attribute (e.g., plan)"
-                                      className="flex-1 px-3 py-2 border border-gray-300 rounded-lg text-sm bg-white text-gray-900"
+                                      className="flex-1 px-3 py-2 bg-gray-50 border border-gray-300 rounded-lg text-sm text-gray-900 focus:outline-none focus:ring-2 focus:ring-[#0066FF] font-medium"
                                     />
                                     <select
                                       value={condition.operator}
                                       onChange={(e) => updateCondition(rule.id, condIndex, { operator: e.target.value as any })}
-                                      className="px-3 py-2 border border-gray-300 rounded-lg text-sm bg-white text-gray-900"
+                                      className="px-3 py-2 bg-gray-50 border border-gray-300 rounded-lg text-sm text-gray-900 focus:outline-none focus:ring-2 focus:ring-[#0066FF] font-medium"
                                     >
                                       <option value="eq">equals</option>
                                       <option value="ne">not equals</option>
@@ -473,22 +585,28 @@ export default function FlagDetailPage() {
                                       value={condition.value}
                                       onChange={(e) => updateCondition(rule.id, condIndex, { value: e.target.value })}
                                       placeholder="value"
-                                      className="flex-1 px-3 py-2 border border-gray-300 rounded-lg text-sm bg-white text-gray-900"
+                                      className="flex-1 px-3 py-2 bg-gray-50 border border-gray-300 rounded-lg text-sm text-gray-900 focus:outline-none focus:ring-2 focus:ring-[#0066FF] font-medium"
                                     />
                                     <button
                                       onClick={() => removeCondition(rule.id, condIndex)}
-                                      className="text-red-600 hover:text-red-700 text-xl font-bold px-2"
+                                      className="w-8 h-8 flex items-center justify-center text-red-600 hover:bg-red-50 rounded-lg transition-colors"
                                     >
-                                      ×
+                                      <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                                      </svg>
                                     </button>
                                   </div>
                                 ))}
                               </div>
 
                               {/* Rollout Percentage */}
-                              <div className="bg-white p-4 rounded-lg border border-gray-300">
-                                <label className="block text-sm font-semibold text-gray-900 mb-2">
-                                  Rollout: {rule.rolloutPercentage}%
+                              <div className="bg-white p-5 rounded-lg border-2 border-gray-200">
+                                <label className="flex text-sm font-bold text-gray-900 mb-3 items-center justify-between">
+                                  <span className="flex items-center space-x-2">
+                                    <span>📊</span>
+                                    <span>Rollout Percentage</span>
+                                  </span>
+                                  <span className="text-2xl font-bold text-[#0066FF]">{rule.rolloutPercentage}%</span>
                                 </label>
                                 <input
                                   type="range"
@@ -496,14 +614,18 @@ export default function FlagDetailPage() {
                                   max="100"
                                   value={rule.rolloutPercentage}
                                   onChange={(e) => updateRule(rule.id, { rolloutPercentage: parseInt(e.target.value) })}
-                                  className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer"
+                                  className="w-full h-3 bg-gradient-to-r from-gray-200 via-[#0066FF]/30 to-[#00B8D4]/30 rounded-lg appearance-none cursor-pointer"
+                                  style={{
+                                    background: `linear-gradient(to right, #0066FF 0%, #00B8D4 ${rule.rolloutPercentage}%, #e5e7eb ${rule.rolloutPercentage}%, #e5e7eb 100%)`
+                                  }}
                                 />
                               </div>
 
                               {/* Rule Value */}
                               <div>
-                                <label className="block text-sm font-semibold text-gray-900 mb-2">
-                                  Return Value
+                                <label className="flex text-sm font-bold text-gray-900 mb-2 items-center space-x-2">
+                                  <span>💎</span>
+                                  <span>Return Value</span>
                                 </label>
                                 <input
                                   type="text"
@@ -513,16 +635,17 @@ export default function FlagDetailPage() {
                                       updateRule(rule.id, { value: JSON.parse(e.target.value) });
                                     } catch {}
                                   }}
-                                  className="w-full px-4 py-2 border-2 border-gray-300 rounded-lg text-sm font-mono bg-white text-gray-900"
+                                  className="w-full px-4 py-3 bg-white border-2 border-gray-200 rounded-lg text-sm font-mono text-gray-900 focus:outline-none focus:ring-2 focus:ring-[#0066FF] focus:border-transparent transition-all"
                                 />
                               </div>
                             </div>
 
                             <button
                               onClick={() => removeRule(rule.id)}
-                              className="ml-4 text-red-600 hover:text-red-700 text-2xl"
-                            >
-                              🗑️
+                              className="ml-4 w-10 h-10 flex items-center justify-center text-red-600 hover:bg-red-50 rounded-lg transition-colors shrink-0">
+                              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                              </svg>
                             </button>
                           </div>
                         </div>
@@ -531,17 +654,27 @@ export default function FlagDetailPage() {
                   )}
                 </div>
 
-                {/* Default Rule */}
-                <div className="bg-white rounded-lg shadow p-6">
-                  <h3 className="text-lg font-semibold text-gray-900 mb-2">Default Rule</h3>
-                  <p className="text-sm text-gray-600 mb-6">
-                    Applied when no rules match
-                  </p>
+                {/* Default Rule Section */}
+                <div className="bg-white rounded-xl shadow-md p-8 border border-gray-100">
+                  <div className="mb-6">
+                    <h3 className="text-xl font-bold text-gray-900 flex items-center space-x-2">
+                      <span>⚙️</span>
+                      <span>Default Rule</span>
+                    </h3>
+                    <p className="text-sm text-gray-600 mt-1">
+                      Applied when no targeting rules match
+                    </p>
+                  </div>
 
                   <div className="space-y-5">
-                    <div className="bg-gray-50 p-4 rounded-lg border border-gray-200">
-                      <label className="block text-sm font-semibold text-gray-900 mb-2">
-                        Rollout: {targeting.defaultRule.rolloutPercentage}%
+                    {/* Default Rollout */}
+                    <div className="bg-gradient-to-br from-gray-50 to-gray-100 p-6 rounded-lg border-2 border-gray-200">
+                      <label className="flex text-sm font-bold text-gray-900 mb-3 items-center justify-between">
+                        <span className="flex items-center space-x-2">
+                          <span>📊</span>
+                          <span>Default Rollout</span>
+                        </span>
+                        <span className="text-2xl font-bold text-[#0066FF]">{targeting.defaultRule.rolloutPercentage}%</span>
                       </label>
                       <input
                         type="range"
@@ -555,13 +688,18 @@ export default function FlagDetailPage() {
                             rolloutPercentage: parseInt(e.target.value)
                           }
                         })}
-                        className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer"
+                        className="w-full h-3 rounded-lg appearance-none cursor-pointer"
+                        style={{
+                          background: `linear-gradient(to right, #0066FF 0%, #00B8D4 ${targeting.defaultRule.rolloutPercentage}%, #e5e7eb ${targeting.defaultRule.rolloutPercentage}%, #e5e7eb 100%)`
+                        }}
                       />
                     </div>
 
+                    {/* Default Value */}
                     <div>
-                      <label className="block text-sm font-semibold text-gray-900 mb-2">
-                        Default Value
+                      <label className="flex text-sm font-bold text-gray-900 mb-2 items-center space-x-2">
+                        <span>💎</span>
+                        <span>Default Value</span>
                       </label>
                       <input
                         type="text"
@@ -577,7 +715,7 @@ export default function FlagDetailPage() {
                             });
                           } catch {}
                         }}
-                        className="w-full px-4 py-2 border-2 border-gray-300 rounded-lg font-mono bg-white text-gray-900"
+                        className="w-full px-4 py-3 bg-white border-2 border-gray-200 rounded-lg font-mono text-gray-900 focus:outline-none focus:ring-2 focus:ring-[#0066FF] focus:border-transparent transition-all"
                       />
                     </div>
                   </div>
@@ -586,15 +724,18 @@ export default function FlagDetailPage() {
                 {/* Save Button */}
                 <button
                   onClick={saveTargeting}
-                  className="w-full py-4 bg-green-600 text-white rounded-lg hover:bg-green-700 font-semibold shadow-lg text-lg"
+                  className="w-full py-4 bg-gradient-to-r from-green-500 to-green-600 text-white rounded-xl hover:shadow-xl hover:shadow-green-500/40 font-bold text-lg transition-all duration-300 transform hover:scale-[1.02] flex items-center justify-center space-x-2"
                 >
-                  💾 Save Targeting Rules
+                  <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                  </svg>
+                  <span>Save Targeting Rules</span>
                 </button>
               </>
             )}
           </div>
         )}
-      </div>
+      </main>
     </div>
   );
 }

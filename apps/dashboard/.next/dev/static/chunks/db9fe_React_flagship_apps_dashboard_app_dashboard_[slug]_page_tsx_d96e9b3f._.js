@@ -1,0 +1,11 @@
+(globalThis.TURBOPACK_CHUNK_LISTS || (globalThis.TURBOPACK_CHUNK_LISTS = [])).push({
+    script: typeof document === "object" ? document.currentScript : undefined,
+    chunks: [
+  "static/chunks/Desktop_Proje Klosörü_React_flagship_56e8464d._.js",
+  "static/chunks/34e88_@firebase_auth_dist_esm_1ffdeee6._.js",
+  "static/chunks/34e88_@firebase_firestore_dist_index_esm_4fe7f99a.js",
+  "static/chunks/34e88_b77bdfa5._.js",
+  "static/chunks/Desktop_Proje Klosörü_React_flagship_apps_dashboard_b2c77f75._.js"
+],
+    source: "dynamic"
+});

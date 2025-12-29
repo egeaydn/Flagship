@@ -1,13 +1,13 @@
 __turbopack_load_page_chunks__("/_app", [
-  "static/chunks/b3668_next_dist_compiled_46efaf5b._.js",
-  "static/chunks/b3668_next_dist_shared_lib_157b4997._.js",
-  "static/chunks/b3668_next_dist_client_1dcdfe0a._.js",
-  "static/chunks/b3668_next_dist_99609900._.js",
-  "static/chunks/b3668_next_app_795238eb.js",
-  "static/chunks/[next]_entry_page-loader_ts_965ab71b._.js",
-  "static/chunks/b3668_react-dom_640afe38._.js",
-  "static/chunks/b3668_8982de86._.js",
-  "static/chunks/[root-of-the-server]__1e7d94ca._.js",
-  "static/chunks/Desktop_flagship_apps_dashboard_pages__app_2da965e7._.js",
-  "static/chunks/turbopack-Desktop_flagship_apps_dashboard_pages__app_9693144c._.js"
+  "static/chunks/34e88_next_dist_compiled_08d8d6b6._.js",
+  "static/chunks/34e88_next_dist_shared_lib_668f6259._.js",
+  "static/chunks/34e88_next_dist_client_a16ab886._.js",
+  "static/chunks/34e88_next_dist_e5cdf16c._.js",
+  "static/chunks/34e88_next_app_e3bb0611.js",
+  "static/chunks/[next]_entry_page-loader_ts_cd1a2ba5._.js",
+  "static/chunks/34e88_react-dom_1fa57463._.js",
+  "static/chunks/34e88_40ad09de._.js",
+  "static/chunks/[root-of-the-server]__596828d3._.js",
+  "static/chunks/Desktop_Proje Klosörü_React_flagship_apps_dashboard_pages__app_2da965e7._.js",
+  "static/chunks/88e7d_Proje Klosörü_React_flagship_apps_dashboard_pages__app_a0862bfb._.js"
 ])
