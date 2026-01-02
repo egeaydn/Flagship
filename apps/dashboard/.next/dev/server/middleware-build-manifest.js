@@ -1,31 +1,6 @@
 globalThis.__BUILD_MANIFEST = {
   "pages": {
-    "/_app": [
-      "static/chunks/34e88_next_dist_compiled_08d8d6b6._.js",
-      "static/chunks/34e88_next_dist_shared_lib_668f6259._.js",
-      "static/chunks/34e88_next_dist_client_a16ab886._.js",
-      "static/chunks/34e88_next_dist_e5cdf16c._.js",
-      "static/chunks/34e88_next_app_e3bb0611.js",
-      "static/chunks/[next]_entry_page-loader_ts_cd1a2ba5._.js",
-      "static/chunks/34e88_react-dom_1fa57463._.js",
-      "static/chunks/34e88_40ad09de._.js",
-      "static/chunks/[root-of-the-server]__596828d3._.js",
-      "static/chunks/Desktop_Proje Klosörü_React_flagship_apps_dashboard_pages__app_2da965e7._.js",
-      "static/chunks/88e7d_Proje Klosörü_React_flagship_apps_dashboard_pages__app_a0862bfb._.js"
-    ],
-    "/_error": [
-      "static/chunks/34e88_next_dist_compiled_08d8d6b6._.js",
-      "static/chunks/34e88_next_dist_shared_lib_c191deac._.js",
-      "static/chunks/34e88_next_dist_client_a16ab886._.js",
-      "static/chunks/34e88_next_dist_ec1e2754._.js",
-      "static/chunks/34e88_next_error_52dcd8f3.js",
-      "static/chunks/[next]_entry_page-loader_ts_4f749b3d._.js",
-      "static/chunks/34e88_react-dom_1fa57463._.js",
-      "static/chunks/34e88_40ad09de._.js",
-      "static/chunks/[root-of-the-server]__60208ff8._.js",
-      "static/chunks/Desktop_Proje Klosörü_React_flagship_apps_dashboard_pages__error_2da965e7._.js",
-      "static/chunks/88e7d_Proje Klosörü_React_flagship_apps_dashboard_pages__error_6b53ee6e._.js"
-    ]
+    "/_app": []
   },
   "devFiles": [],
   "polyfillFiles": [

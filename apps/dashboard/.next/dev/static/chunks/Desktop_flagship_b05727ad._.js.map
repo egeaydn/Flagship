@@ -1,7 +1,0 @@
-{
-  "version": 3,
-  "sources": [],
-  "sections": [
-    {"offset": {"line": 4, "column": 0}, "map": {"version":3,"sources":["file:///C:/Users/tr/Desktop/flagship/apps/dashboard/app/page.tsx"],"sourcesContent":["'use client';\r\n\r\nimport { useEffect } from 'react';\r\nimport { useRouter } from 'next/navigation';\r\n\r\nexport default function Home() {\r\n  const router = useRouter();\r\n\r\n  useEffect(() => {\r\n    router.push('/login');\r\n  }, [router]);\r\n\r\n  return (\r\n    <div className=\"min-h-screen flex items-center justify-center\">\r\n      <div className=\"text-gray-600\">Yönlendiriliyor...</div>\r\n    </div>\r\n  );\r\n}\r\n"],"names":[],"mappings":";;;;;AAEA;AACA;;;AAHA;;;AAKe,SAAS;;IACtB,MAAM,SAAS,IAAA,yKAAS;IAExB,IAAA,iMAAS;0BAAC;YACR,OAAO,IAAI,CAAC;QACd;yBAAG;QAAC;KAAO;IAEX,qBACE,oNAAC;QAAI,WAAU;kBACb,cAAA,oNAAC;YAAI,WAAU;sBAAgB;;;;;;;;;;;AAGrC;GAZwB;;QACP,yKAAS;;;KADF"}},
-    {"offset": {"line": 56, "column": 0}, "map": {"version":3,"sources":["file:///C:/Users/tr/Desktop/flagship/node_modules/next/navigation.js"],"sourcesContent":["module.exports = require('./dist/client/components/navigation')\n"],"names":[],"mappings":"AAAA,OAAO,OAAO","ignoreList":[0]}}]
-}

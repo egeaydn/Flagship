@@ -15,8 +15,7 @@
     "test:e2e:report": "playwright show-report"
   },
   "dependencies": {
-    "@types/animejs": "^3.1.13",
-    "animejs": "^4.2.2",
+    "animejs": "^3.2.1",
     "bcryptjs": "^3.0.3",
     "firebase": "^12.7.0",
     "firebase-admin": "^13.6.0",

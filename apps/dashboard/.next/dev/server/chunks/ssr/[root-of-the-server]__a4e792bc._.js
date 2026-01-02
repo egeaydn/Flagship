@@ -410,6 +410,7 @@ async function getAggregatedAnalytics(projectId, environmentId, days = 7) {
 "[project]/Desktop/Proje Klosörü/React/flagship/apps/dashboard/lib/animations.ts [app-ssr] (ecmascript)", ((__turbopack_context__) => {
 "use strict";
 
+// Client-side only anime.js wrapper with dynamic imports
 __turbopack_context__.s([
     "animateGradient",
     ()=>animateGradient,
@@ -446,298 +447,105 @@ __turbopack_context__.s([
     "waveText",
     ()=>waveText
 ]);
-(()=>{
-    const e = new Error("Cannot find module 'animejs/dist/bundles/anime.esm.js'");
-    e.code = 'MODULE_NOT_FOUND';
-    throw e;
-})();
-;
+const isBrowser = ("TURBOPACK compile-time value", "undefined") !== 'undefined';
+// Dynamically import anime.js v3 only on client side
+let animePromise = null;
+const loadAnime = ()=>{
+    if ("TURBOPACK compile-time falsy", 0) //TURBOPACK unreachable
+    ;
+    return animePromise;
+};
 const fadeIn = (targets, delay = 0)=>{
-    anime({
-        targets,
-        opacity: [
-            0,
-            1
-        ],
-        translateY: [
-            20,
-            0
-        ],
-        duration: 800,
-        delay,
-        easing: 'easeOutCubic'
-    });
+    if ("TURBOPACK compile-time truthy", 1) return;
+    //TURBOPACK unreachable
+    ;
 };
 const fadeInLeft = (targets, delay = 0)=>{
-    anime({
-        targets,
-        opacity: [
-            0,
-            1
-        ],
-        translateX: [
-            -50,
-            0
-        ],
-        duration: 800,
-        delay,
-        easing: 'easeOutCubic'
-    });
+    if ("TURBOPACK compile-time truthy", 1) return;
+    //TURBOPACK unreachable
+    ;
 };
 const fadeInRight = (targets, delay = 0)=>{
-    anime({
-        targets,
-        opacity: [
-            0,
-            1
-        ],
-        translateX: [
-            50,
-            0
-        ],
-        duration: 800,
-        delay,
-        easing: 'easeOutCubic'
-    });
+    if ("TURBOPACK compile-time truthy", 1) return;
+    //TURBOPACK unreachable
+    ;
 };
 const scaleIn = (targets, delay = 0)=>{
-    anime({
-        targets,
-        opacity: [
-            0,
-            1
-        ],
-        scale: [
-            0.8,
-            1
-        ],
-        duration: 600,
-        delay,
-        easing: 'easeOutElastic(1, .6)'
-    });
+    if ("TURBOPACK compile-time truthy", 1) return;
+    //TURBOPACK unreachable
+    ;
 };
 const staggerFadeIn = (targets)=>{
-    anime({
-        targets,
-        opacity: [
-            0,
-            1
-        ],
-        translateY: [
-            30,
-            0
-        ],
-        duration: 800,
-        delay: anime.stagger(100),
-        easing: 'easeOutCubic'
-    });
+    if ("TURBOPACK compile-time truthy", 1) return;
+    //TURBOPACK unreachable
+    ;
 };
 const cardHover = (element)=>{
-    anime({
-        targets: element,
-        scale: 1.05,
-        translateY: -8,
-        duration: 300,
-        easing: 'easeOutCubic'
-    });
+    if ("TURBOPACK compile-time truthy", 1) return;
+    //TURBOPACK unreachable
+    ;
 };
 const cardHoverEnd = (element)=>{
-    anime({
-        targets: element,
-        scale: 1,
-        translateY: 0,
-        duration: 300,
-        easing: 'easeOutCubic'
-    });
+    if ("TURBOPACK compile-time truthy", 1) return;
+    //TURBOPACK unreachable
+    ;
 };
 const pulse = (targets)=>{
-    anime({
-        targets,
-        scale: [
-            1,
-            1.1,
-            1
-        ],
-        duration: 1000,
-        easing: 'easeInOutQuad',
-        loop: true
-    });
+    if ("TURBOPACK compile-time truthy", 1) return;
+    //TURBOPACK unreachable
+    ;
 };
 const rotate = (targets)=>{
-    anime({
-        targets,
-        rotate: '1turn',
-        duration: 2000,
-        easing: 'linear',
-        loop: true
-    });
+    if ("TURBOPACK compile-time truthy", 1) return;
+    //TURBOPACK unreachable
+    ;
 };
 const slideInBottom = (targets, delay = 0)=>{
-    anime({
-        targets,
-        opacity: [
-            0,
-            1
-        ],
-        translateY: [
-            100,
-            0
-        ],
-        duration: 1000,
-        delay,
-        easing: 'easeOutExpo'
-    });
+    if ("TURBOPACK compile-time truthy", 1) return;
+    //TURBOPACK unreachable
+    ;
 };
 const bounceIn = (targets, delay = 0)=>{
-    anime({
-        targets,
-        opacity: [
-            0,
-            1
-        ],
-        scale: [
-            0.3,
-            1
-        ],
-        duration: 800,
-        delay,
-        easing: 'easeOutElastic(1, .5)'
-    });
+    if ("TURBOPACK compile-time truthy", 1) return;
+    //TURBOPACK unreachable
+    ;
 };
 const shake = (targets)=>{
-    anime({
-        targets,
-        translateX: [
-            {
-                value: -10,
-                duration: 100
-            },
-            {
-                value: 10,
-                duration: 100
-            },
-            {
-                value: -10,
-                duration: 100
-            },
-            {
-                value: 10,
-                duration: 100
-            },
-            {
-                value: 0,
-                duration: 100
-            }
-        ],
-        easing: 'easeInOutSine'
-    });
+    if ("TURBOPACK compile-time truthy", 1) return;
+    //TURBOPACK unreachable
+    ;
 };
 const waveText = (targets)=>{
-    const textWrapper = document.querySelector(targets);
-    if (textWrapper && textWrapper.textContent) {
-        textWrapper.innerHTML = textWrapper.textContent.replace(/\S/g, "<span class='letter'>$&</span>");
-        anime.timeline().add({
-            targets: `${targets} .letter`,
-            translateY: [
-                -100,
-                0
-            ],
-            opacity: [
-                0,
-                1
-            ],
-            easing: "easeOutExpo",
-            duration: 1400,
-            delay: (el, i)=>30 * i
-        });
-    }
+    if ("TURBOPACK compile-time truthy", 1) return;
+    //TURBOPACK unreachable
+    ;
+    const textWrapper = undefined;
 };
 const pageTransition = (targets)=>{
-    anime.timeline().add({
-        targets,
-        opacity: [
-            0,
-            1
-        ],
-        duration: 600,
-        easing: 'easeOutCubic'
-    }).add({
-        targets: `${targets} > *`,
-        opacity: [
-            0,
-            1
-        ],
-        translateY: [
-            20,
-            0
-        ],
-        duration: 800,
-        delay: anime.stagger(100),
-        easing: 'easeOutCubic'
-    }, '-=400');
+    if ("TURBOPACK compile-time truthy", 1) return;
+    //TURBOPACK unreachable
+    ;
 };
 const buttonRipple = (e)=>{
-    const button = e.currentTarget;
-    const rect = button.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
-    const ripple = document.createElement('span');
-    ripple.style.cssText = `
-    position: absolute;
-    left: ${x}px;
-    top: ${y}px;
-    width: 0;
-    height: 0;
-    border-radius: 50%;
-    background: rgba(255, 255, 255, 0.6);
-    transform: translate(-50%, -50%);
-    pointer-events: none;
-  `;
-    button.style.position = 'relative';
-    button.style.overflow = 'hidden';
-    button.appendChild(ripple);
-    anime({
-        targets: ripple,
-        width: Math.max(rect.width, rect.height) * 2,
-        height: Math.max(rect.width, rect.height) * 2,
-        opacity: [
-            0.6,
-            0
-        ],
-        duration: 600,
-        easing: 'easeOutQuad',
-        complete: ()=>ripple.remove()
-    });
+    if ("TURBOPACK compile-time truthy", 1) return;
+    //TURBOPACK unreachable
+    ;
+    const button = undefined;
+    const rect = undefined;
+    const x = undefined;
+    const y = undefined;
+    const ripple = undefined;
 };
 const animateNumber = (element, target, duration = 2000)=>{
-    const obj = {
-        value: 0
-    };
-    anime({
-        targets: obj,
-        value: target,
-        duration,
-        easing: 'easeOutExpo',
-        round: 1,
-        update: ()=>{
-            element.textContent = obj.value.toLocaleString();
-        }
-    });
+    if ("TURBOPACK compile-time truthy", 1) return;
+    //TURBOPACK unreachable
+    ;
+    const obj = undefined;
 };
 const animateGradient = (targets)=>{
-    anime({
-        targets,
-        background: [
-            'linear-gradient(45deg, #0066FF, #00B8D4)',
-            'linear-gradient(135deg, #00B8D4, #0066FF)',
-            'linear-gradient(225deg, #0066FF, #00B8D4)',
-            'linear-gradient(315deg, #00B8D4, #0066FF)',
-            'linear-gradient(45deg, #0066FF, #00B8D4)'
-        ],
-        duration: 8000,
-        easing: 'linear',
-        loop: true
-    });
+    if ("TURBOPACK compile-time truthy", 1) return;
+    //TURBOPACK unreachable
+    ;
 };
 }),
 "[project]/Desktop/Proje Klosörü/React/flagship/apps/dashboard/app/dashboard/page.tsx [app-ssr] (ecmascript)", ((__turbopack_context__) => {
