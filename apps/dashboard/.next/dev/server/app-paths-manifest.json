@@ -1,8 +1,4 @@
 {
-  "/dashboard/[slug]/page": "app/dashboard/[slug]/page.js",
-  "/dashboard/[slug]/projects/[projectKey]/flags/[flagKey]/page": "app/dashboard/[slug]/projects/[projectKey]/flags/[flagKey]/page.js",
-  "/dashboard/[slug]/projects/[projectKey]/page": "app/dashboard/[slug]/projects/[projectKey]/page.js",
   "/dashboard/page": "app/dashboard/page.js",
-  "/login/page": "app/login/page.js",
   "/page": "app/page.js"
 }
