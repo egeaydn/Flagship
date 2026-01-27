@@ -1,4 +1,21 @@
-[00:00:01.947] Server  LOG      ✓ Ready in 1366ms
-[00:00:10.099] Server  LOG      ○ Compiling / ...
-[00:00:10.509] Server  WARN     ⚠ metadataBase property in metadata export is not set for resolving social open graph or twitter images, using "http://localhost:3000". See https://nextjs.org/docs/app/api-reference/functions/generate-metadata#metadatabase
-[00:00:13.171] Browser WARN    Detected `scroll-behavior: smooth` on the `<html>` element. To disable smooth scrolling during route transitions, add `data-scroll-behavior="smooth"` to your <html> element. Learn more: https://nextjs.org/docs/messages/missing-data-scroll-behavior
+[00:00:01.745] Server  LOG      ✓ Ready in 1264ms
+[00:00:10.203] Server  WARN     ⚠ metadataBase property in metadata export is not set for resolving social open graph or twitter images, using "http://localhost:3000". See https://nextjs.org/docs/app/api-reference/functions/generate-metadata#metadatabase
+[00:00:11.856] Browser WARN    Detected `scroll-behavior: smooth` on the `<html>` element. To disable smooth scrolling during route transitions, add `data-scroll-behavior="smooth"` to your <html> element. Learn more: https://nextjs.org/docs/messages/missing-data-scroll-behavior
+[00:00:14.012] Browser LOG     Toggling theme from dark to light
+[00:00:14.012] Browser LOG     HTML element classes before: dark
+[00:00:14.012] Browser LOG     HTML element classes after: 
+[00:00:14.676] Browser LOG     Toggling theme from light to dark
+[00:00:14.676] Browser LOG     HTML element classes before: 
+[00:00:14.676] Browser LOG     HTML element classes after: dark
+[00:00:15.390] Browser LOG     Toggling theme from dark to light
+[00:00:15.390] Browser LOG     HTML element classes before: dark
+[00:00:15.390] Browser LOG     HTML element classes after: 
+[00:00:15.968] Browser LOG     Toggling theme from light to dark
+[00:00:15.968] Browser LOG     HTML element classes before: 
+[00:00:15.968] Browser LOG     HTML element classes after: dark
+[00:00:16.752] Browser LOG     Toggling theme from dark to light
+[00:00:16.752] Browser LOG     HTML element classes before: dark
+[00:00:16.752] Browser LOG     HTML element classes after: 
+[00:00:17.206] Browser LOG     Toggling theme from light to dark
+[00:00:17.206] Browser LOG     HTML element classes before: 
+[00:00:17.206] Browser LOG     HTML element classes after: dark

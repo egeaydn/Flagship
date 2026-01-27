@@ -23,14 +23,20 @@ export default function ThemeToggle() {
 
   const toggleTheme = () => {
     const newTheme = theme === 'light' ? 'dark' : 'light';
+    console.log('Toggling theme from', theme, 'to', newTheme);
     setTheme(newTheme);
     localStorage.setItem('theme', newTheme);
     
+    const html = document.documentElement;
+    console.log('HTML element classes before:', html.className);
+    
     if (newTheme === 'dark') {
-      document.documentElement.classList.add('dark');
+      html.classList.add('dark');
     } else {
-      document.documentElement.classList.remove('dark');
+      html.classList.remove('dark');
     }
+    
+    console.log('HTML element classes after:', html.className);
   };
 
   // Avoid hydration mismatch

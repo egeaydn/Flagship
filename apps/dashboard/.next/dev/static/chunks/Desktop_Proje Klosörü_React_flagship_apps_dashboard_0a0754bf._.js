@@ -748,13 +748,17 @@ function ThemeToggle() {
     }["ThemeToggle.useEffect"], []);
     const toggleTheme = ()=>{
         const newTheme = theme === 'light' ? 'dark' : 'light';
+        console.log('Toggling theme from', theme, 'to', newTheme);
         setTheme(newTheme);
         localStorage.setItem('theme', newTheme);
+        const html = document.documentElement;
+        console.log('HTML element classes before:', html.className);
         if (newTheme === 'dark') {
-            document.documentElement.classList.add('dark');
+            html.classList.add('dark');
         } else {
-            document.documentElement.classList.remove('dark');
+            html.classList.remove('dark');
         }
+        console.log('HTML element classes after:', html.className);
     };
     // Avoid hydration mismatch
     if (!mounted) {
@@ -765,12 +769,12 @@ function ThemeToggle() {
                 children: "Loading theme"
             }, void 0, false, {
                 fileName: "[project]/Desktop/Proje Klosörü/React/flagship/apps/dashboard/components/ThemeToggle.tsx",
-                lineNumber: 40,
+                lineNumber: 46,
                 columnNumber: 9
             }, this)
         }, void 0, false, {
             fileName: "[project]/Desktop/Proje Klosörü/React/flagship/apps/dashboard/components/ThemeToggle.tsx",
-            lineNumber: 39,
+            lineNumber: 45,
             columnNumber: 7
         }, this);
     }
@@ -784,7 +788,7 @@ function ThemeToggle() {
                 className: "absolute inset-0 bg-yellow-100/30 dark:bg-blue-400/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
             }, void 0, false, {
                 fileName: "[project]/Desktop/Proje Klosörü/React/flagship/apps/dashboard/components/ThemeToggle.tsx",
-                lineNumber: 53,
+                lineNumber: 59,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$Proje__Klos$f6$r$fc2f$React$2f$flagship$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -802,12 +806,12 @@ function ThemeToggle() {
                             d: "M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"
                         }, void 0, false, {
                             fileName: "[project]/Desktop/Proje Klosörü/React/flagship/apps/dashboard/components/ThemeToggle.tsx",
-                            lineNumber: 68,
+                            lineNumber: 74,
                             columnNumber: 11
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/Desktop/Proje Klosörü/React/flagship/apps/dashboard/components/ThemeToggle.tsx",
-                        lineNumber: 58,
+                        lineNumber: 64,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$Proje__Klos$f6$r$fc2f$React$2f$flagship$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("svg", {
@@ -822,31 +826,31 @@ function ThemeToggle() {
                             d: "M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"
                         }, void 0, false, {
                             fileName: "[project]/Desktop/Proje Klosörü/React/flagship/apps/dashboard/components/ThemeToggle.tsx",
-                            lineNumber: 87,
+                            lineNumber: 93,
                             columnNumber: 11
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/Desktop/Proje Klosörü/React/flagship/apps/dashboard/components/ThemeToggle.tsx",
-                        lineNumber: 77,
+                        lineNumber: 83,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/Desktop/Proje Klosörü/React/flagship/apps/dashboard/components/ThemeToggle.tsx",
-                lineNumber: 56,
+                lineNumber: 62,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$Proje__Klos$f6$r$fc2f$React$2f$flagship$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                 className: "absolute inset-0 rounded-xl bg-white/30 dark:bg-white/10 scale-0 group-active:scale-100 transition-transform duration-300"
             }, void 0, false, {
                 fileName: "[project]/Desktop/Proje Klosörü/React/flagship/apps/dashboard/components/ThemeToggle.tsx",
-                lineNumber: 97,
+                lineNumber: 103,
                 columnNumber: 7
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/Desktop/Proje Klosörü/React/flagship/apps/dashboard/components/ThemeToggle.tsx",
-        lineNumber: 46,
+        lineNumber: 52,
         columnNumber: 5
     }, this);
 }
